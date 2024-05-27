@@ -24,4 +24,11 @@ HOURS
 MINUTES
 }
 
+class PruebaCosa {
+- unAtributo
++ Instancias(eh)
+
+copien https://code-with-me.global.jetbrains.com/GMV7YyWgXO5tNo6j46eg9g#p=IU&fp=EB4B7C27C0EFAD9CC829C975B5D1B372000C6AF97E8924392A87283ED5C2100C&newUi=true
+}
+
 @enduml
