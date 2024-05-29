@@ -21,7 +21,7 @@ class AlgoJuego{
 }
 
 interface Pregunta {
-    +obtenerRespuestaCorrecta(): Array<Respuesta>
+    -obtenerRespuestaCorrecta(): Array<Respuesta>
     + puntuar(respuesta : Respuesta)
 }
 
@@ -71,8 +71,11 @@ interface PenalizacionPregunta {
 }
 
 class Respuesta{
+    +esCorrecta(): Boolean+ method():
+}
 
-respuesta+ esCorrecta(): Boolean+ method():
+class RespuestaElegida{
+
 }
 
 
@@ -92,6 +95,9 @@ Pregunta <|.. MultipleChoiceParcial
 Pregunta <|.. MultipleChoicePenalidad
 Pregunta <|.. OrderedChoice
 Pregunta <|.. GroupChoice
+
+RespuestaElegida -> Jugador
+
 
 Jugador "2..5 "--"1 " Panel
 Jugador .> ModficadorDePuntaje
