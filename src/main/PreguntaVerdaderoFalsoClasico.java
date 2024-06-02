@@ -34,4 +34,8 @@ public class PreguntaVerdaderoFalsoClasico implements Pregunta {
         return respuestas;
     }
 
+    public String getEnunciado() {
+        return enunciado;
+    }
+
 }
