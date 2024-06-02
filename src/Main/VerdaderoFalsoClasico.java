@@ -1,7 +1,4 @@
-package Main;
-
-import java.util.ArrayList;
-import java.util.List;
+package main;
 
 
 //Asigna un punto a cada jugador que responda con la opción correcta
@@ -12,17 +9,21 @@ public class VerdaderoFalsoClasico implements Pregunta {
     private Respuesta respuestaCorrecta;
 
 
+
     public VerdaderoFalsoClasico(String pregunta,Respuesta respuesta) {
         enunciado = pregunta;
         respuestaCorrecta = respuesta;
+
     }
 
     @Override
-    private Respuesta obtenerRespuestaCorrecta() {
-        return respuestaCorrecta;
+    public void puntuar(Respuesta respuesta) {
+        if (respuesta.esCorrecta()){
+            respuesta.actualizar_puntaje(1);
+        }else {
+            respuesta.actualizar_puntaje(0);
+        }
     }
 
-    public boolean EsLaRespuestaCorrecta(Respuesta respuestaDelJugador) {
-        return respuestaCorrecta.esCorrecta(respuestaDelJugador);
-    }
+
 }
