@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Responder Pregunta Verdadero Falso
+
+participant Actor as Actor
+participant "jugador1: Jugador" as jugador1
+participant "pregunta: PreguntaVerdaderoFalso" as pregunta
+participant "respuestaElegida: RespuestaElegida" as respuestaElegida
+
+activate pregunta
+create pregunta
+Actor -> pregunta: pregunta("Estamos en el año 2024?", "Verdadero"): <<create>>
+deactivate pregunta
+
+Actor -> jugador1: responder(pregunta)
+activate jugador1
+jugador1 -> pregunta: obtenerOpciones(): ArrayList<Respuesta>
+pregunta --> jugador1: Respuestas
+
+jugador1 -> jugador1: seleccionarOpcion(Opciones): Respuesta
+
+create respuestaElegida
+jugador1 -> respuestaElegida: Respuesta(Respuesta: Verdadero): <<create>>
+jugador1 --> Actor: respuestaElegida
+
+
+
+Actor -> pregunta: puntuar(respuestaElegida)
+Activate pregunta
+
+pregunta -> respuestaElegida: esCorrecta("Verdadero"): boolean
+Activate respuestaElegida
+respuestaElegida --> pregunta: true
+
+pregunta -> respuestaElegida: actualizarPuntaje(1)
+
+
+
+
+'respuesta = seleccionarOpcion(Opciones): Respuesta'
+'pregunta puntuar(respuesta, jugador1)'
+
+
+
+
+
+@enduml

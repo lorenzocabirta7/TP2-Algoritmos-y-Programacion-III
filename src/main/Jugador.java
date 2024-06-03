@@ -6,12 +6,14 @@ public class Jugador {
 
     private String nombre;
     private int puntos;
-    private Modificador modificador;
+    //private modificador;
+    private MultiplicadorPorDos multiplicadorPorDos;
 
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
         this.puntos = 0;
+        multiplicadorPorDos = new MultiplicadorPorDos();
     }
 
     public  void responder(Pregunta pregunta) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
