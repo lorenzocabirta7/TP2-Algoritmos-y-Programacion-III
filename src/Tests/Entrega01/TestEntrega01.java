@@ -7,9 +7,20 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//test 01  ✅UnaPreguntadeVerdadero/Falsoclásicorecibeunalistaderespuestasyasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+//test 02  ●UnaPreguntadeVerdadero/Falsoclásicorecibeunalistaderespuestasyasignacorrectamentepuntosalosjugadoresquerespondierondeformaincorrecta❌.
+//test 03  ●UnaPreguntadeMúltipleChoiceclásicorecibeunalistaderespuestadeunjugadoryasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+//test 04  ●UnaPreguntadeMúltipleChoiceclásicorecibeunalistaderespuestadeunjugadoryasignacorrectamentepuntosalosjugadoresquerespondierondeformaincorrecta❌.
+//test 05  ●UnaPreguntadeVerdadero/Falsoconpenalidadrecibeunalistaderespuestasyasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+//test 06  ●UnaPreguntadeVerdadero/Falsoconpenalidadrecibeunalistaderespuestasyasignacorrectamentepuntosalosjugadoresquerespondierondeformaincorrecta❌.
+//test 07  ●UnaPreguntadeMúltipleChoiceconpenalidadrecibeunalistaderespuestadeunjugadoryasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+//test 08  ●UnaPreguntadeMúltipleChoiceconpenalidadrecibeunalistaderespuestadeunjugadoryasignacorrectamentepuntosalosjugadoresquerespondierondeformaincorrecta❌.
+
+
+
 public class TestEntrega01 {
     @org.junit.jupiter.api.Test
-    public void VerdaderoFalsoRecibeListaDeRespuestasYAsignaPuntosAJugadoresQueRespondieronCorrectamenteTest01() {
+    public void test01VerdaderoFalsoRecibeListaDeRespuestasYAsignaPuntosAJugadoresQueRespondieronCorrectamenteTest01() {
 
         //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
         //correctamente puntos a los jugadores que respondieron correctamente
@@ -42,6 +53,57 @@ public class TestEntrega01 {
 
         assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test02PreguntadeVerdaderoFalsoRecibeListaDeRespuestasYAsignaPuntosalosjugadores(){
+
+        //Una PreguntadeVerdadero/Falso clásico recibe una lista de respuestas
+        //y asigna correctamente puntos a los jugadores que respondieron de forma incorrecta❌.
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test03PreguntadeVerdaderoFalsoRecibeListaDeRespuestasYAsignaPuntosalosjugadores(){
+
+        //UnaPreguntadeMúltipleChoiceclásicorecibeunalistaderespuestadeunjugador
+        // yasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test04(){
+
+
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test05(){
+
+
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test06(){
+
+
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test07(){
+
+
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test08(){
+
+
+
     }
 
 }
