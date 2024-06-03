@@ -1,5 +1,7 @@
 package main;
 
+import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
+
 import java.util.ArrayList;
 
 public class Jugador {
@@ -23,13 +25,12 @@ public class Jugador {
     }
 
     private Respuesta elegirRespuesta(ArrayList<Respuesta> respuestas) {
-        Respuesta respuestaElegida = respuestas.get(0);
-        return respuestaElegida;
+        return respuestas.getFirst();
     }
 
     public void modificarPuntaje(int puntajePregunta) {
-        //cuando implementemos la logica de los multiplicaodres creo que iria acá
-        this.puntos += puntajePregunta;
+        int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
+        this.puntos += puntajeModificado;
     }
 
     public int obtenerPuntos() {
@@ -38,5 +39,9 @@ public class Jugador {
 
     public String obtenerNombre() {
         return this.nombre;
+    }
+
+    public void activarDuplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+        this.multiplicadorPorDos.activar();
     }
 }
