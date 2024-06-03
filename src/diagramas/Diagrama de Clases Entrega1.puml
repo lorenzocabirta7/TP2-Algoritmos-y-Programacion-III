@@ -1,0 +1,103 @@
+@startuml
+'https://plantuml.com/class-diagram'
+
+
+class Jugador {
+
+    -nombre
+    +{static}Jugador(nombre)
+    +responder(Pregunta pregunta)
+    -elegirRespuesta(ArrayList<Respuesta> respuestas)
+    +modificarPuntaje(puntaje)
+    +activarDuplicadorDePuntaje()
+}
+
+
+interface Pregunta {
+    +obtenerRespuestasPosibles(): Array<Respuesta>
+    -obtenerRespuestaCorrecta(): Array<Respuesta>
+    + puntuar(ArrayList<Respuesta> respuestas)
+}
+
+interface MultiplicadorPorDos {
+    - usosDisponibles
+    + modificarPuntaje():
+    + activar()
+}
+
+
+interface DuplicadorDePuntaje {
+    modificarPuntaje():
+}
+
+class DuplicadorDePuntajeActivado implements DuplicadorDePuntaje {
+    modificarPuntaje():
+}
+
+class DuplicadorDePuntajeDesactivado implements DuplicadorDePuntaje {
+    modificarPuntaje():
+}
+class VerdaderoFalsoClasico {
+
+}
+
+class VerdaderoFalsoPenalidad {
+
+}
+
+class MultipleChoiceClasico {
+
+}
+
+class MultipleChoiceParcial {
+
+}
+
+class MultipleChoicePenalidad {
+
+}
+
+class OrderedChoice {
+
+}
+
+class GroupChoice {
+
+}
+
+interface PenalizacionPregunta {
+
+}
+
+class Respuesta{
+    +actualizarPuntaje()
+    +esCorrecta(): Boolean
+}
+
+class RespuestaElegida{
+
+}
+
+MultiplicadorPorDos *--> DuplicadorDePuntaje
+
+
+Pregunta *-"*"Respuesta
+
+Pregunta <|.. VerdaderoFalsoClasico
+Pregunta <|.. VerdaderoFalsoPenalidad
+Pregunta <|.. MultipleChoiceClasico
+Pregunta <|.. MultipleChoiceParcial
+Pregunta <|.. MultipleChoicePenalidad
+Pregunta <|.. OrderedChoice
+Pregunta <|.. GroupChoice
+
+RespuestaElegida -> Jugador
+
+
+Jugador -> MultiplicadorPorDos
+Respuesta ->"*" Jugador
+
+VerdaderoFalsoPenalidad .. PenalizacionPregunta
+MultipleChoicePenalidad.. PenalizacionPregunta
+
+@enduml
