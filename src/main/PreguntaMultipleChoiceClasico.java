@@ -1,29 +1,21 @@
 package main;
 
-
 import java.util.ArrayList;
-import java.util.List;
 
-//Asigna un punto a cada jugador que responda con la opción correcta
-public class PreguntaVerdaderoFalsoClasico implements Pregunta {
-
+public class PreguntaMultipleChoiceClasico implements Pregunta{
     private String enunciado;
 
     private ArrayList<Respuesta> respuestas;
 
-
-
-    public PreguntaVerdaderoFalsoClasico(String pregunta, ArrayList<Respuesta> respuestas) {
-        enunciado = pregunta;
+    public PreguntaMultipleChoiceClasico(String enunciado, ArrayList<Respuesta> respuestas){
+        this.enunciado = enunciado;
         this.respuestas = respuestas;
-
     }
-
 
     @Override
     public void puntuar(ArrayList<Respuesta> respuestas) {
         for (Respuesta respuesta: respuestas) {
-                respuesta.actualizarPuntaje(1);
+            respuesta.actualizarPuntaje(1);
         }
     }
 
@@ -36,5 +28,5 @@ public class PreguntaVerdaderoFalsoClasico implements Pregunta {
     public String getEnunciado() {
         return enunciado;
     }
-
 }
+

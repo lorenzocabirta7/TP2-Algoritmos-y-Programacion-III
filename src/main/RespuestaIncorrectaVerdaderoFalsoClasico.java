@@ -3,9 +3,11 @@ package main;
 import java.util.ArrayList;
 
 public class RespuestaIncorrectaVerdaderoFalsoClasico implements Respuesta{
+    private String enunciadoRespuesta;
     private ArrayList<Jugador> jugadores;
 
         public RespuestaIncorrectaVerdaderoFalsoClasico(){
+            enunciadoRespuesta = "Falso";
             this.jugadores = new ArrayList<Jugador>();
         }
 
@@ -17,5 +19,10 @@ public class RespuestaIncorrectaVerdaderoFalsoClasico implements Respuesta{
     @Override
     public void setJugador(Jugador unJugador){
             this.jugadores.add(unJugador);
+    }
+
+    @Override
+    public String getEnunciadoRespuesta(){
+        return enunciadoRespuesta;
     }
 }

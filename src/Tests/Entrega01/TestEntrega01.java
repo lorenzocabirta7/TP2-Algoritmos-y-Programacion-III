@@ -84,15 +84,86 @@ public class TestEntrega01 {
     @org.junit.jupiter.api.Test
     public void test03unaPreguntaDeMultipleChoiceClasicoRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorrectamente(){
 
-        //UnaPreguntadeMúltipleChoiceclásicorecibeunalistaderespuestadeunjugador
-        // yasignacorrectamentepuntosalosjugadoresquerespondieroncorrectamente✅.
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
 
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 2;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrectaMultipleChoiceClasico respuesta1 = new RespuestaCorrectaMultipleChoiceClasico("1");
+        RespuestaCorrectaMultipleChoiceClasico respuesta2 = new RespuestaCorrectaMultipleChoiceClasico("2");
+        RespuestaIncorrectaMultipleChoiceClasico respuesta3 = new RespuestaIncorrectaMultipleChoiceClasico("3");
+        RespuestaIncorrectaMultipleChoiceClasico respuesta4 = new RespuestaIncorrectaMultipleChoiceClasico("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+
+        jugador1.cambiarFormaDeResponder();
+        jugador2.cambiarFormaDeResponder();
+
+        jugador1.responder(pregunta);
+        jugador2.responder(pregunta);
+
+        pregunta.puntuar(respuestasPosibles);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
     }
 
     @org.junit.jupiter.api.Test
     public void test04unaPreguntaDeMultipleChoiceClasicoRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma incorrecta❌.
 
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
 
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrectaMultipleChoiceClasico respuesta1 = new RespuestaCorrectaMultipleChoiceClasico("1");
+        RespuestaCorrectaMultipleChoiceClasico respuesta2 = new RespuestaCorrectaMultipleChoiceClasico("2");
+        RespuestaIncorrectaMultipleChoiceClasico respuesta3 = new RespuestaIncorrectaMultipleChoiceClasico("3");
+        RespuestaIncorrectaMultipleChoiceClasico respuesta4 = new RespuestaIncorrectaMultipleChoiceClasico("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+
+        jugador1.cambiarFormaDeResponder();
+        jugador2.cambiarFormaDeResponder();
+
+        jugador1.responder(pregunta);
+        jugador2.responder(pregunta);
+
+        pregunta.puntuar(respuestasPosibles);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
     }
 
@@ -169,14 +240,88 @@ public class TestEntrega01 {
 
     @org.junit.jupiter.api.Test
     public void test07unaPreguntaDeMultipleChoiceConPenalidadRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronCorrectamente(){
+        //Una Pregunta de MúltipleChoicePenalidad recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
 
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 2;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrectaMultipleChoicePenalidad respuesta1 = new RespuestaCorrectaMultipleChoicePenalidad("1");
+        RespuestaCorrectaMultipleChoicePenalidad respuesta2 = new RespuestaCorrectaMultipleChoicePenalidad("2");
+        RespuestaIncorrectaMultipleChoicePenalidad respuesta3 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
+        RespuestaIncorrectaMultipleChoicePenalidad respuesta4 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        PreguntaMultipleChoicePenalidad pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+
+        jugador1.cambiarFormaDeResponder();
+        jugador2.cambiarFormaDeResponder();
+
+        jugador1.responder(pregunta);
+        jugador2.responder(pregunta);
+
+        pregunta.puntuar(respuestasPosibles);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
 
     }
 
     @org.junit.jupiter.api.Test
     public void test08unaPreguntaDeMultipleChoiceConPenalidadRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+        //Una Pregunta de MúltipleChoicePenalidad recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma incorrecta❌.
 
+        int puntajeEsperadoJugador1 = -2;
+        int puntajeEsperadoJugador2 = -2;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrectaMultipleChoicePenalidad respuesta1 = new RespuestaCorrectaMultipleChoicePenalidad("1");
+        RespuestaCorrectaMultipleChoicePenalidad respuesta2 = new RespuestaCorrectaMultipleChoicePenalidad("2");
+        RespuestaIncorrectaMultipleChoicePenalidad respuesta3 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
+        RespuestaIncorrectaMultipleChoicePenalidad respuesta4 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+
+        jugador1.cambiarFormaDeResponder();
+        jugador2.cambiarFormaDeResponder();
+
+        jugador1.responder(pregunta);
+        jugador2.responder(pregunta);
+
+        pregunta.puntuar(respuestasPosibles);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
 
     }

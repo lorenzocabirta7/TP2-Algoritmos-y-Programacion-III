@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 public class RespuestaCorrectaVerdaderoFalsoClasico implements Respuesta{
+    private String enunciadoRespuesta;
     private ArrayList<Jugador> jugadores;
 
     public RespuestaCorrectaVerdaderoFalsoClasico(){
@@ -27,5 +28,9 @@ public class RespuestaCorrectaVerdaderoFalsoClasico implements Respuesta{
             return jugador.obtenerNombre();
         }
         return "";
+    }
+    @Override
+    public String getEnunciadoRespuesta(){
+        return enunciadoRespuesta;
     }
 }

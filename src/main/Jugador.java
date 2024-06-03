@@ -10,17 +10,20 @@ public class Jugador {
     private int puntos;
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
+    private formasDeResponder formaDeResponder;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
         this.puntos = 0;
         multiplicadorPorDos = new MultiplicadorPorDos();
+        this.formaDeResponder = new RespuestaVerdaderoFalsoStrategy(new Responder1Vez()); //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
 
     public  void responder(Pregunta pregunta) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
-        ArrayList<Respuesta> respuestas = pregunta.respuestasPosibles();
-        Respuesta respuestaElegida = this.elegirRespuesta(respuestas);
-        respuestaElegida.setJugador(this);
+        ArrayList<Respuesta> respuestasElegidas = this.formaDeResponder.responder(pregunta);
+        for(Respuesta respuesta : respuestasElegidas) {
+            respuesta.setJugador(this);
+        }
     }
 
     //podriamos usar el patron strategy para que cada pregunta que llega cambie este metodo, pasando el metodo
@@ -46,5 +49,9 @@ public class Jugador {
 
     public void activarDuplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
         this.multiplicadorPorDos.activar();
+    }
+
+    public void cambiarFormaDeResponder(){
+        this.formaDeResponder = new RespuestaChoiceStrategy(new Responder2Veces());
     }
 }
