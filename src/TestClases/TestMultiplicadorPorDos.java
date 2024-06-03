@@ -28,7 +28,6 @@ public class TestMultiplicadorPorDos {
         assertEquals(puntajeObtenido,puntajeEsperado);
     }
 
-
     @org.junit.jupiter.api.Test
     public void test03UnDuplicadorDePuntajeSeActivaYSeUsaDosVecesDeberiaDuplicarUnaVezElPuntaje() throws ModificadorSeUsaMasDeUnaVezException {
         int puntajeEsperado = 4;
@@ -38,5 +37,20 @@ public class TestMultiplicadorPorDos {
         int puntajeObtenido = multiplicador.modificarPuntaje(unPuntaje);
         puntajeObtenido = multiplicador.modificarPuntaje(puntajeObtenido);
         assertEquals(puntajeObtenido,puntajeEsperado);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test04UnDuplicadorDePuntajeSeActivaDosVecesDeberiaLanzarUnaExcepcion() throws ModificadorSeUsaMasDeUnaVezException {
+        int puntajeEsperado = 4;
+        int unPuntaje = 2;
+        MultiplicadorPorDos multiplicador = new MultiplicadorPorDos();
+        multiplicador.activar();
+        int puntajeObtenido = multiplicador.modificarPuntaje(unPuntaje);
+        try {
+            multiplicador.activar();
+        } catch (ModificadorSeUsaMasDeUnaVezException e) {
+            assertEquals(e.getMessage(), "No hay usos disponibles");
+        }
+
     }
 }
