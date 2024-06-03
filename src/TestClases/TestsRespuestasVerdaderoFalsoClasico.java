@@ -1,50 +1,30 @@
 package TestClases;
 
-import main.Jugador;
-import main.RespuestaCorrectaVerdaderoFalsoClasico;
-import main.RespuestaIncorrectaVerdaderoFalsoClasico;
-import main.RespuestasDeVerdaderoFalsoClasico;
+import main.*;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestsRespuestasVerdaderoFalsoClasico {
     @org.junit.jupiter.api.Test
-    public void Test01UnaRespuestaCorrectaSeInicializaCorrectamente() {
+    public void Test01UnaRespuestaCorrectaAsignaAUnJugadorSuPuntajeCorrectamente() {
 
-        Boolean respuestaEsperada = true;
-
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico("Verdadero", true);
-
-        Boolean respuestaObtenida = respuesta.esCorrecta();
-
-        assertEquals(respuestaEsperada, respuestaObtenida);
-    }
-    @org.junit.jupiter.api.Test
-    public void Test02UnaRespuestaIncorrectaSeInicializaCorrectamente() {
-
-        Boolean respuestaEsperada = false;
-
-        RespuestaIncorrectaVerdaderoFalsoClasico respuesta = new RespuestaIncorrectaVerdaderoFalsoClasico("Falso", false);
-        Boolean respuestaObtenida = respuesta.esCorrecta();
-
-        assertEquals(respuestaEsperada, respuestaObtenida);
-    }
-
-    @org.junit.jupiter.api.Test
-    public void Test03UnaRespuestaCorrectaSeteaUnJugadorCorrectamente() {
-
-        String nombreDeJugadorEsperado  = "Riquelme";
+        int puntajeEsperado  = 1;
 
         Jugador jugador1 = new Jugador("Riquelme");
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico("verdaderp", true);
-
+        RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico();
+        ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
+        respuestas.add(respuesta);
         respuesta.setJugador(jugador1);
-        String nombreDeJugadorObtenido =  respuesta.NombreDeJugador();
 
-        assertEquals(nombreDeJugadorEsperado, nombreDeJugadorObtenido);
+        PreguntaVerdaderoFalsoClasico pregunta = new PreguntaVerdaderoFalsoClasico("es 2024?", respuestas);
+        jugador1.responder(pregunta);
+        pregunta.puntuar(respuestas);
+
+        int puntajeObtenido =  jugador1.obtenerPuntos();
+
+        assertEquals(puntajeEsperado, puntajeObtenido);
     }
 }
-
-
-
-

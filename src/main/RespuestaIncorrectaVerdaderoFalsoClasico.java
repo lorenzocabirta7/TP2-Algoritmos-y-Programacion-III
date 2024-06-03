@@ -1,19 +1,13 @@
 package main;
 
-public class RespuestaIncorrectaVerdaderoFalsoClasico implements RespuestasDeVerdaderoFalsoClasico{
-        private final String contenido;
-        private Jugador jugadorQueEligeRespuesta;
-        private Boolean veracidad;
+import java.util.ArrayList;
 
-        public RespuestaIncorrectaVerdaderoFalsoClasico(String unContenido, Boolean unaVeracidad){
-            this.contenido = unContenido;
-            this.veracidad = unaVeracidad;
+public class RespuestaIncorrectaVerdaderoFalsoClasico implements Respuesta{
+    private ArrayList<Jugador> jugadores;
+
+        public RespuestaIncorrectaVerdaderoFalsoClasico(){
+            this.jugadores = new ArrayList<Jugador>();
         }
-
-
-    public Boolean esCorrecta() {
-        return false;
-    }
 
     @Override
     public void actualizarPuntaje(int puntaje) {
@@ -22,6 +16,6 @@ public class RespuestaIncorrectaVerdaderoFalsoClasico implements RespuestasDeVer
 
     @Override
     public void setJugador(Jugador unJugador){
-            this.jugadorQueEligeRespuesta = unJugador;
+            this.jugadores.add(unJugador);
     }
 }

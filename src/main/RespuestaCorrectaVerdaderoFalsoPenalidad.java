@@ -2,11 +2,14 @@ package main;
 
 import java.util.ArrayList;
 
-public class RespuestaCorrectaVerdaderoFalsoClasico implements Respuesta{
+public class RespuestaCorrectaVerdaderoFalsoPenalidad implements Respuesta{
+    private final String enunciadoRespuesta;
     private ArrayList<Jugador> jugadores;
 
-    public RespuestaCorrectaVerdaderoFalsoClasico(){
+    public RespuestaCorrectaVerdaderoFalsoPenalidad(){
+        this.enunciadoRespuesta = "Verdadero" ;
         this.jugadores = new ArrayList<Jugador>();
+
     }
 
     @Override
