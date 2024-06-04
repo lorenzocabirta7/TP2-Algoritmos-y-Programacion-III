@@ -22,12 +22,12 @@ public class TestEntrega01 {
         RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico();
         RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico();
 
-        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        PreguntaVerdaderoFalsoClasico pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");

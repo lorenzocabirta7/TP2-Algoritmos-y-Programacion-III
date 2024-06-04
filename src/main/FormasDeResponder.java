@@ -2,10 +2,10 @@ package main;
 
 import java.util.ArrayList;
 
-public class formasDeResponder {
+public class FormasDeResponder {
     FormaRespuesta formaDeResponder;
 
-    public formasDeResponder(FormaRespuesta unaFormaDeResponder)
+    public FormasDeResponder(FormaRespuesta unaFormaDeResponder)
     {
         this.formaDeResponder = unaFormaDeResponder;
     }

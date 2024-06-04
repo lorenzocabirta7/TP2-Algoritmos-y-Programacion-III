@@ -2,12 +2,13 @@ package main;
 
 import java.util.ArrayList;
 
-public class PreguntaMultipleChoiceClasico implements Pregunta{
+public class PreguntaMultipleChoiceClasico extends Pregunta{
     private String enunciado;
 
     private ArrayList<Respuesta> respuestas;
 
     public PreguntaMultipleChoiceClasico(String enunciado, ArrayList<Respuesta> respuestas){
+        super(enunciado, respuestas);
         this.enunciado = enunciado;
         this.respuestas = respuestas;
     }
@@ -17,16 +18,6 @@ public class PreguntaMultipleChoiceClasico implements Pregunta{
         for (Respuesta respuesta: respuestas) {
             respuesta.actualizarPuntaje(1);
         }
-    }
-
-    @Override
-    public ArrayList<Respuesta> respuestasPosibles(){
-        return respuestas;
-    }
-
-
-    public String getEnunciado() {
-        return enunciado;
     }
 }
 

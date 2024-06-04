@@ -13,7 +13,7 @@ class Jugador {
 }
 
 
-interface Pregunta {
+abstract class Pregunta {
     +obtenerRespuestasPosibles(): Array<Respuesta>
     -obtenerRespuestaCorrecta(): Array<Respuesta>
     + puntuar(ArrayList<Respuesta> respuestas)
@@ -21,21 +21,21 @@ interface Pregunta {
 
 interface MultiplicadorPorDos {
     - usosDisponibles
-    + modificarPuntaje():
+    + modificarPuntaje(int: puntaje):
     + activar()
 }
 
 
 interface DuplicadorDePuntaje {
-    modificarPuntaje():
+    modificarPuntaje(int: puntaje):
 }
 
 class DuplicadorDePuntajeActivado implements DuplicadorDePuntaje {
-    modificarPuntaje():
+    modificarPuntaje(int: puntaje):
 }
 
 class DuplicadorDePuntajeDesactivado implements DuplicadorDePuntaje {
-    modificarPuntaje():
+    modificarPuntaje(int: puntaje):
 }
 class VerdaderoFalsoClasico {
 
@@ -69,14 +69,35 @@ interface PenalizacionPregunta {
 
 }
 
-class Respuesta{
+interface Respuesta{
     +actualizarPuntaje()
     +esCorrecta(): Boolean
 }
 
-class RespuestaElegida{
+class RespuestaCorrecta implements Respuesta{
+}
+
+class MultipleChoiceCorrecta extends RespuestaCorrecta{
 
 }
+
+class VerdaderoFalsoCorrecta extends RespuestaCorrecta{
+
+}
+
+
+
+class RespuestaIncorrecta implements Respuesta{
+}
+
+class MultipleChoiceIncorrecta extends RespuestaIncorrecta{
+
+}
+
+class VerdaderFalsoIncorrecta extends RespuestaIncorrecta{
+
+}
+
 
 MultiplicadorPorDos *--> DuplicadorDePuntaje
 
@@ -90,9 +111,6 @@ Pregunta <|.. MultipleChoiceParcial
 Pregunta <|.. MultipleChoicePenalidad
 Pregunta <|.. OrderedChoice
 Pregunta <|.. GroupChoice
-
-RespuestaElegida -> Jugador
-
 
 Jugador -> MultiplicadorPorDos
 Respuesta ->"*" Jugador

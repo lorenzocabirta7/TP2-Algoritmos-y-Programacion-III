@@ -10,7 +10,7 @@ public class Jugador {
     private int puntos;
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
-    private formasDeResponder formaDeResponder;
+    private FormasDeResponder formaDeResponder;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;

@@ -1,0 +1,8 @@
+Hay un 99% de codigo repetido en las diferentes clases de respuestas. Por ejemplo respuesta correcta de verdadero-falso-clasico y verdadero-falso-penalidad
+son exactamente iguales. Tendriamos que tener una unica clase que responda a ambas no?
+En ese caso, que hacemos con el caso de la respuesta incorrecta clasica y con penalidad, tenemos que hacer 2 clases para las diferentes situaciones no?
+Eso nos dejaria 3 clases para cada tipo de pregunta, incluyendo clasica y con penalidad. O es preferible tener solo 2 clases y a la hora de inicializar nuestro
+objeto respuestaIncorrecta pasarle un parametro si es con penalidad o sin penalidad? eso podria funcionar.
+
+Lo mismo sucede para las preguntas, la logica diferente en las preguntas clasicas y de penalidad es nula, son exactamente iguales. Solo deberiamos tener una clase
+pregunta verdadero-falso y nunca discriminar si la pregunta es clasica o con penalidad porque a razon de la pregunta, es exactamente lo mismo.
