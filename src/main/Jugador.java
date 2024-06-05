@@ -22,8 +22,8 @@ public class Jugador {
         //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
 
-    public  void responder(Pregunta pregunta) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
-        respuestasDelJugador = this.formaDeResponder.responder(pregunta);
+    public  void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
+        respuestasDelJugador.add(respuestaElegida);
         }
 
 

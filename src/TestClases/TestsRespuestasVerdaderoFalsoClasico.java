@@ -17,9 +17,10 @@ public class TestsRespuestasVerdaderoFalsoClasico {
         RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
         respuestas.add(respuesta);
+        RespuestaCorrectaVerdaderoFalsoClasico RespuestaDelJugador = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
 
         Pregunta pregunta = new PreguntaVerdaderoFalsoClasico("es 2024?", respuestas);
-        jugador1.responder(pregunta);
+        jugador1.responder(pregunta, RespuestaDelJugador);
         pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
 
         int puntajeObtenido =  jugador1.obtenerPuntos();
