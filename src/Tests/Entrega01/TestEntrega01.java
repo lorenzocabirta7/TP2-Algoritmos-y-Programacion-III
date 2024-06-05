@@ -19,8 +19,8 @@ public class TestEntrega01 {
 
         String enunciado = "Estamos en el año 2024?";
 
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico();
-        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico();
+        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
+        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -35,7 +35,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -56,15 +57,15 @@ public class TestEntrega01 {
 
             String enunciado = "Estamos en el año 2000?";
 
-            RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico();
-            RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico();
+            RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico("No");
+            RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("Si");
 
             ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
             respuestasPosibles.add(respuesta2);
             respuestasPosibles.add(respuesta1);
 
-            PreguntaVerdaderoFalsoClasico pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
+            Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
 
             Jugador jugador1 = new Jugador("Jugador 1");
             Jugador jugador2 = new Jugador("Jugador 2");
@@ -72,7 +73,8 @@ public class TestEntrega01 {
             jugador1.responder(pregunta);
             jugador2.responder(pregunta);
 
-            pregunta.puntuar(respuestasPosibles);
+            pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+            pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
             int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
             int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -87,8 +89,8 @@ public class TestEntrega01 {
         //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
         // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
 
-        int puntajeEsperadoJugador1 = 2;
-        int puntajeEsperadoJugador2 = 2;
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 1;
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
@@ -104,7 +106,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -115,7 +117,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -146,7 +149,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -157,7 +160,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -178,15 +182,15 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad();
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad();
+        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia No");
+        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        PreguntaVerdaderoFalsoPenalidad pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -194,7 +198,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -212,15 +217,15 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad();
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad();
+        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia no");
+        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
         respuestasPosibles.add(respuesta2);
         respuestasPosibles.add(respuesta1);
 
-        PreguntaVerdaderoFalsoPenalidad pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -228,7 +233,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -260,7 +266,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        PreguntaMultipleChoicePenalidad pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -271,7 +277,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -304,7 +311,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -315,7 +322,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta);
         jugador2.responder(pregunta);
 
-        pregunta.puntuar(respuestasPosibles);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();

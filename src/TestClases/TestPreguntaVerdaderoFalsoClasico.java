@@ -17,8 +17,8 @@ public class TestPreguntaVerdaderoFalsoClasico {
 
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico();
-        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico();
+        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
+        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("No");
 
         respuestas.add(respuesta1);
         respuestas.add(respuesta2);

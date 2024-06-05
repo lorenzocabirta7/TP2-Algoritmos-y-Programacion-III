@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface Respuesta {
 
-    public void actualizarPuntaje(int puntaje);
-
-    public void setJugador(Jugador unJugador);
+    public int actualizarPuntaje(int puntaje);
 
     public String getEnunciadoRespuesta();
+
+    public Boolean EsCorrecta();
 }

@@ -4,27 +4,23 @@ import java.util.ArrayList;
 
 public class RespuestaIncorrectaVerdaderoFalsoPenalidad implements Respuesta{
     private final String enunciadoRespuesta;
-    private ArrayList<Jugador> jugadores;
 
-    public RespuestaIncorrectaVerdaderoFalsoPenalidad(){
-        this.enunciadoRespuesta = "Falso";
-        this.jugadores = new ArrayList<Jugador>();
+    public RespuestaIncorrectaVerdaderoFalsoPenalidad(String respuesta){
+        this.enunciadoRespuesta = respuesta;
     }
 
     @Override
-    public void actualizarPuntaje(int puntaje) {
-        for (Jugador jugador : jugadores) {
-            jugador.modificarPuntaje((-1 * puntaje));
-        }
-    }
-
-    @Override
-    public void setJugador(Jugador unJugador){
-        this.jugadores.add(unJugador);
+    public int actualizarPuntaje(int puntaje) {
+        return (puntaje * -1);
     }
 
     @Override
     public String getEnunciadoRespuesta(){
         return enunciadoRespuesta;
+    }
+
+    @Override
+    public Boolean EsCorrecta(){
+        return false;
     }
 }

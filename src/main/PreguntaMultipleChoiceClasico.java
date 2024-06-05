@@ -14,9 +14,21 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
     }
 
     @Override
-    public void puntuar(ArrayList<Respuesta> respuestas) {
-        for (Respuesta respuesta: respuestas) {
-            respuesta.actualizarPuntaje(1);
+    public void puntuar(ArrayList<Respuesta> respuestasDelJugador, Jugador unJugador) {
+        int CantidadDeRespuestasCorrectas = 0;
+        ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
+
+        for (Respuesta respuestaDelJugador : respuestasDelJugador) {
+            for (Respuesta respuestaCorrecta : respuestasCorrectas) {
+                if (respuestaDelJugador == respuestaCorrecta){
+                    CantidadDeRespuestasCorrectas += 1;
+                }
+            }
+        }
+
+        if (CantidadDeRespuestasCorrectas == respuestasCorrectas.size()){
+            int puntosObtenidos = 1;
+            unJugador.modificarPuntaje(puntosObtenidos);
         }
     }
 }

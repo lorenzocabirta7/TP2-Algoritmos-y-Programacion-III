@@ -14,14 +14,13 @@ public class TestsRespuestasVerdaderoFalsoClasico {
         int puntajeEsperado  = 1;
 
         Jugador jugador1 = new Jugador("Riquelme");
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico();
+        RespuestaCorrectaVerdaderoFalsoClasico respuesta = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
         respuestas.add(respuesta);
-        respuesta.setJugador(jugador1);
 
-        PreguntaVerdaderoFalsoClasico pregunta = new PreguntaVerdaderoFalsoClasico("es 2024?", respuestas);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico("es 2024?", respuestas);
         jugador1.responder(pregunta);
-        pregunta.puntuar(respuestas);
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
 
         int puntajeObtenido =  jugador1.obtenerPuntos();
 

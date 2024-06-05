@@ -4,33 +4,23 @@ import java.util.ArrayList;
 
 public class RespuestaCorrectaVerdaderoFalsoClasico implements Respuesta{
     private String enunciadoRespuesta;
-    private ArrayList<Jugador> jugadores;
 
-    public RespuestaCorrectaVerdaderoFalsoClasico(){
-        this.jugadores = new ArrayList<Jugador>();
+    public RespuestaCorrectaVerdaderoFalsoClasico(String enunciadoRespuesta){
+        this.enunciadoRespuesta = enunciadoRespuesta;
     }
 
     @Override
-    public void actualizarPuntaje(int puntaje) {
-        for (Jugador jugador : jugadores) {
-            jugador.modificarPuntaje(puntaje);
-        }
-
+    public int actualizarPuntaje(int puntaje) {
+        return puntaje;
     }
 
-    @Override
-    public void setJugador(Jugador unJugador){
-        this.jugadores.add(unJugador);
-    }
-
-    public String NombreDeJugador(){
-        for (Jugador jugador : jugadores) {
-            return jugador.obtenerNombre();
-        }
-        return "";
-    }
     @Override
     public String getEnunciadoRespuesta(){
         return enunciadoRespuesta;
+    }
+
+    @Override
+    public Boolean EsCorrecta(){
+        return true;
     }
 }

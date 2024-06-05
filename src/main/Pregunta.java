@@ -12,11 +12,7 @@ public abstract class Pregunta {
         this.respuestas = respuestasPosibles;
     }
 
-    public void puntuar(ArrayList<Respuesta> respuestas) {
-        for (Respuesta respuesta: respuestas) {
-            respuesta.actualizarPuntaje(1);
-        }
-    }
+    public abstract void puntuar(ArrayList<Respuesta> respuestas, Jugador unjugador);
 
     public ArrayList<Respuesta> respuestasPosibles(){
         return this.respuestas;
@@ -27,6 +23,17 @@ public abstract class Pregunta {
         return this.enunciado;
     }
 
+    protected ArrayList<Respuesta> obtenerRespuestasCorrectas() {
+
+        ArrayList<Respuesta> respuestasCorrectas = new ArrayList<>();
+
+        for (Respuesta respuestaPosible : respuestas) {
+            if (respuestaPosible.EsCorrecta()) {
+                respuestasCorrectas.add(respuestaPosible);
+            }
+        }
+        return respuestasCorrectas;
+    }
 }
 
 
