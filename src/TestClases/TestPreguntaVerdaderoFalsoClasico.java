@@ -1,9 +1,6 @@
 package TestClases;
 
-import main.PreguntaVerdaderoFalsoClasico;
-import main.Respuesta;
-import main.RespuestaCorrectaVerdaderoFalsoClasico;
-import main.RespuestaIncorrectaVerdaderoFalsoClasico;
+import main.*;
 
 
 import java.util.ArrayList;
@@ -17,8 +14,8 @@ public class TestPreguntaVerdaderoFalsoClasico {
 
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
-        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("No");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new RespuestaClasica());
 
         respuestas.add(respuesta1);
         respuestas.add(respuesta2);
@@ -32,7 +29,6 @@ public class TestPreguntaVerdaderoFalsoClasico {
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());
-
 
     }
 }

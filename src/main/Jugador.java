@@ -10,14 +10,12 @@ public class Jugador {
     private int puntos;
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
-    private FormasDeResponder formaDeResponder;
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
         this.puntos = 0;
         multiplicadorPorDos = new MultiplicadorPorDos();
-        this.formaDeResponder = new RespuestaVerdaderoFalsoStrategy(new Responder1Vez());
         respuestasDelJugador = new ArrayList<>();
         //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
@@ -44,9 +42,6 @@ public class Jugador {
         this.multiplicadorPorDos.activar();
     }
 
-    public void cambiarFormaDeResponder(){
-        this.formaDeResponder = new RespuestaChoiceStrategy(new Responder2Veces());
-    }
 
     public ArrayList<Respuesta> obtenerRespuestas(){
         return this.respuestasDelJugador;

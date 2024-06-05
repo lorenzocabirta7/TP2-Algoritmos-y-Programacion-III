@@ -19,8 +19,8 @@ public class TestEntrega01 {
 
         String enunciado = "Estamos en el año 2024?";
 
-        RespuestaCorrectaVerdaderoFalsoClasico respuesta1 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
-        RespuestaIncorrectaVerdaderoFalsoClasico respuesta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("No");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new RespuestaClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -32,8 +32,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaCorrectaVerdaderoFalsoClasico respuestaDelJugador1 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
-        RespuestaCorrectaVerdaderoFalsoClasico respuestaDelJugador2 = new RespuestaCorrectaVerdaderoFalsoClasico("Si");
+        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Si");
+        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Si");
 
 
         jugador1.responder(pregunta, respuestaDelJugador1);
@@ -61,8 +61,8 @@ public class TestEntrega01 {
 
             String enunciado = "Estamos en el año 2000?";
 
-            RespuestaCorrectaVerdaderoFalsoClasico respuestaDeLaPregunta1 = new RespuestaCorrectaVerdaderoFalsoClasico("No");
-            RespuestaIncorrectaVerdaderoFalsoClasico respuestaDeLaPregunta2 = new RespuestaIncorrectaVerdaderoFalsoClasico("Si");
+            RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("No");
+            RespuestaIncorrecta respuestaDeLaPregunta2 = new RespuestaIncorrecta("SI", new RespuestaClasica());
 
             ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -75,8 +75,8 @@ public class TestEntrega01 {
             Jugador jugador1 = new Jugador("Jugador 1");
             Jugador jugador2 = new Jugador("Jugador 2");
 
-            RespuestaIncorrectaVerdaderoFalsoClasico respuestaDelJugador1 = new RespuestaIncorrectaVerdaderoFalsoClasico("Si");
-            RespuestaIncorrectaVerdaderoFalsoClasico respuestaDelJugador2 = new RespuestaIncorrectaVerdaderoFalsoClasico("Si");
+            RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new RespuestaClasica());
+            RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new RespuestaClasica());
 
 
             jugador1.responder(pregunta, respuestaDelJugador1);
@@ -103,10 +103,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrectaMultipleChoiceClasico respuestaDeLaPregunta1 = new RespuestaCorrectaMultipleChoiceClasico("1");
-        RespuestaCorrectaMultipleChoiceClasico respuestaDeLaPregunta2 = new RespuestaCorrectaMultipleChoiceClasico("2");
-        RespuestaIncorrectaMultipleChoiceClasico respuestaDeLaPregunta3 = new RespuestaIncorrectaMultipleChoiceClasico("3");
-        RespuestaIncorrectaMultipleChoiceClasico respuestaDeLaPregunta4 = new RespuestaIncorrectaMultipleChoiceClasico("4");
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -121,10 +121,10 @@ public class TestEntrega01 {
         Jugador jugador2 = new Jugador("Palermo");
 
 
-        RespuestaCorrectaMultipleChoiceClasico respuesta1DelJugador1 = new RespuestaCorrectaMultipleChoiceClasico("1");
-        RespuestaCorrectaMultipleChoiceClasico respuesta2DelJugador1 = new RespuestaCorrectaMultipleChoiceClasico("2");
-        RespuestaCorrectaMultipleChoiceClasico respuesta1DelJugador2 = new RespuestaCorrectaMultipleChoiceClasico("1");
-        RespuestaCorrectaMultipleChoiceClasico respuesta2DelJugador2 = new RespuestaCorrectaMultipleChoiceClasico("2");
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -152,10 +152,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrectaMultipleChoiceClasico respuesta1 = new RespuestaCorrectaMultipleChoiceClasico("1");
-        RespuestaCorrectaMultipleChoiceClasico respuesta2 = new RespuestaCorrectaMultipleChoiceClasico("2");
-        RespuestaIncorrectaMultipleChoiceClasico respuesta3 = new RespuestaIncorrectaMultipleChoiceClasico("3");
-        RespuestaIncorrectaMultipleChoiceClasico respuesta4 = new RespuestaIncorrectaMultipleChoiceClasico("4");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -169,10 +169,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaIncorrectaMultipleChoiceClasico respuesta1DelJugador1 = new RespuestaIncorrectaMultipleChoiceClasico("3");
-        RespuestaIncorrectaMultipleChoiceClasico respuesta2DelJugador1 = new RespuestaIncorrectaMultipleChoiceClasico("4");
-        RespuestaIncorrectaMultipleChoiceClasico respuesta1DelJugador2 = new RespuestaIncorrectaMultipleChoiceClasico("3");
-        RespuestaIncorrectaMultipleChoiceClasico respuesta2DelJugador2 = new RespuestaIncorrectaMultipleChoiceClasico("4");
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new RespuestaClasica());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new RespuestaClasica());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -201,8 +201,8 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia No");
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -214,8 +214,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuestaDelJugador1 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia No");
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuestaDelJugador2 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia No");
+        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Todavia No");
+        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Todavia No");
 
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
@@ -239,21 +239,21 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrectaVerdaderoFalsoPenalidad respuesta1 = new RespuestaCorrectaVerdaderoFalsoPenalidad("Todavia no");
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuesta2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
+        RespuestaCorrecta respuestaALaPregunta1 = new RespuestaCorrecta("Todavia no");
+        RespuestaIncorrecta respuestaALaPregunta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
-        respuestasPosibles.add(respuesta1);
-        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuestaALaPregunta1);
+        respuestasPosibles.add(respuestaALaPregunta2);
 
         Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuestaDelJugador1 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
-        RespuestaIncorrectaVerdaderoFalsoPenalidad respuestaDelJugador2 = new RespuestaIncorrectaVerdaderoFalsoPenalidad("Si");
+        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
 
 
         jugador1.responder(pregunta, respuestaDelJugador1);
@@ -280,10 +280,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrectaMultipleChoicePenalidad respuesta1 = new RespuestaCorrectaMultipleChoicePenalidad("1");
-        RespuestaCorrectaMultipleChoicePenalidad respuesta2 = new RespuestaCorrectaMultipleChoicePenalidad("2");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta3 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta4 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -297,10 +297,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaCorrectaMultipleChoicePenalidad respuesta1DelJugador1 = new RespuestaCorrectaMultipleChoicePenalidad("1");
-        RespuestaCorrectaMultipleChoicePenalidad respuesta2DelJugador1 = new RespuestaCorrectaMultipleChoicePenalidad("2");
-        RespuestaCorrectaMultipleChoicePenalidad respuesta1DelJugador2 = new RespuestaCorrectaMultipleChoicePenalidad("1");
-        RespuestaCorrectaMultipleChoicePenalidad respuesta2DelJugador2 = new RespuestaCorrectaMultipleChoicePenalidad("2");
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -329,10 +329,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina?";
 
-        RespuestaCorrectaMultipleChoicePenalidad respuesta1 = new RespuestaCorrectaMultipleChoicePenalidad("1");
-        RespuestaCorrectaMultipleChoicePenalidad respuesta2 = new RespuestaCorrectaMultipleChoicePenalidad("2");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta3 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta4 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -346,10 +346,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta1DelJugador1 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta2DelJugador1 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta1DelJugador2 = new RespuestaIncorrectaMultipleChoicePenalidad("3");
-        RespuestaIncorrectaMultipleChoicePenalidad respuesta2DelJugador2 = new RespuestaIncorrectaMultipleChoicePenalidad("4");
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);

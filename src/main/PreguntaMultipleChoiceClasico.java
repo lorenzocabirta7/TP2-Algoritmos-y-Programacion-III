@@ -19,7 +19,7 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
         ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
 
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
-                if (respuestaDelJugador instanceof RespuestaCorrectaMultipleChoiceClasico){
+                if (respuestaDelJugador instanceof RespuestaCorrecta){
                     CantidadDeRespuestasCorrectas += 1;
             }
         }

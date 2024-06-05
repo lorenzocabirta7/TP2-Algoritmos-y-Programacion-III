@@ -1,17 +1,17 @@
 package main;
 
-import java.util.ArrayList;
-
-public class RespuestaIncorrectaMultipleChoiceClasico implements Respuesta{
+public class RespuestaIncorrecta implements Respuesta{
     private String enunciadoRespuesta;
+    private TipoDeRespuesta tipoDePenalidad;
 
-    public RespuestaIncorrectaMultipleChoiceClasico(String respuesta){
+    public RespuestaIncorrecta(String respuesta, TipoDeRespuesta tipoDePenalidad){
         this.enunciadoRespuesta = respuesta;
+        this.tipoDePenalidad = tipoDePenalidad;
     }
 
     @Override
     public int actualizarPuntaje(int puntaje) {
-        return 0;
+        return tipoDePenalidad.actualizarPuntaje(puntaje);
     }
 
     @Override
@@ -23,4 +23,5 @@ public class RespuestaIncorrectaMultipleChoiceClasico implements Respuesta{
     public Boolean EsCorrecta(){
         return false;
     }
+
 }
