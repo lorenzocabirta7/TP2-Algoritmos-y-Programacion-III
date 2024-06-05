@@ -368,4 +368,151 @@ public class TestEntrega01 {
 
     }
 
+    @org.junit.jupiter.api.Test
+    public void test09unaPreguntaDeMultipleChoiceParcialRecibeUnaListaDeRespuestaDeJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaCorrecta(){
+        //Una Pregunta de MúltipleChoiceParcial recibe una lista de respuestas de 2 jugadores
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta ✅.
+
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 2;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("Franco Armani");
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test10unaPreguntaDeMultipleChoiceParcialRecibeUnaListaDeRespuestaDe1JugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+        //Una Pregunta de MúltipleChoiceParcial recibe una lista de respuestas de 2 jugadores
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Incorrecta ❌.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("Franco Armani", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("Emiliano Martinez", new RespuestaClasica());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("Geronimo Rulli", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Franco Armani", new RespuestaClasica());
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void test11unaPreguntaDeMultipleChoiceParcialRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaCorrecta(){
+        //Una Pregunta de MúltipleChoiceParcial recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta e incorrectamente ✅❌.
+
+        int puntajeEsperadoJugador1 = 3;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoicePenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Sergio Romero", new RespuestaConPenalidad());
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
 }
