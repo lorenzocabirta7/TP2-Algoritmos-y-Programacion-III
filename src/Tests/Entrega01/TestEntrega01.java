@@ -78,7 +78,6 @@ public class TestEntrega01 {
             RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new RespuestaClasica());
             RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new RespuestaClasica());
 
-
             jugador1.responder(pregunta, respuestaDelJugador1);
             jugador2.responder(pregunta, respuestaDelJugador2);
 
