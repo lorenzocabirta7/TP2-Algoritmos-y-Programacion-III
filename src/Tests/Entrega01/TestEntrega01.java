@@ -18,9 +18,12 @@ public class TestEntrega01 {
         int puntajeEsperadoJugador2 = 1;
 
         String enunciado = "Estamos en el año 2024?";
+        String enunciadoRespuestaCorrecta = "SI";
+        String enunciadoRespuestaIncorrecta = "NO";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new RespuestaClasica());
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new OrdenParcial(enunciadoRespuestaCorrecta, "0"));
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaCorrecta, new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -32,8 +35,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Si");
-        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Si");
+        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new OrdenParcial(enunciadoRespuestaCorrecta, "0"));
+        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new OrdenParcial(enunciadoRespuestaCorrecta, "0"));
 
 
         jugador1.responder(pregunta, respuestaDelJugador1);
@@ -45,51 +48,54 @@ public class TestEntrega01 {
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
     }
 
 
     @org.junit.jupiter.api.Test
-    public void test02unaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+    public void test02unaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta() {
 
         //Una PreguntadeVerdadero/Falso clásico recibe una lista de respuestas
         //y asigna correctamente puntos a los jugadores que respondieron de forma incorrecta❌.
 
-            int puntajeEsperadoJugador1 = 0;
-            int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
 
-            String enunciado = "Estamos en el año 2000?";
+        String enunciado = "Estamos en el año 2000?";
 
-            RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("No");
-            RespuestaIncorrecta respuestaDeLaPregunta2 = new RespuestaIncorrecta("SI", new RespuestaClasica());
+        String enunciadoRespuestaCorrecta = "NO";
+        String enunciadoRespuestaIncorrecta = "SI";
 
-            ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new OrdenParcial(enunciadoRespuestaCorrecta, "0"));
+        RespuestaIncorrecta respuestaDeLaPregunta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
 
-
-            respuestasPosibles.add(respuestaDeLaPregunta1);
-            respuestasPosibles.add(respuestaDeLaPregunta2);
-
-            Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
-
-            Jugador jugador1 = new Jugador("Jugador 1");
-            Jugador jugador2 = new Jugador("Jugador 2");
-
-            RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new RespuestaClasica());
-            RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new RespuestaClasica());
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
 
-            jugador1.responder(pregunta, respuestaDelJugador1);
-            jugador2.responder(pregunta, respuestaDelJugador2);
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
 
-            pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-            pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
 
-            int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
-            int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
 
-            assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-            assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+
+
+        jugador1.responder(pregunta, respuestaDelJugador1);
+        jugador2.responder(pregunta, respuestaDelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
     }
 
     @org.junit.jupiter.api.Test
@@ -103,10 +109,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -121,10 +127,10 @@ public class TestEntrega01 {
         Jugador jugador2 = new Jugador("Palermo");
 
 
-        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
-        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -152,10 +158,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
-        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -169,10 +175,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new RespuestaClasica());
-        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new RespuestaClasica());
-        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new RespuestaClasica());
-        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new RespuestaClasica());
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new PenalidadClasica());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new PenalidadClasica());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -201,8 +207,8 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No", new OrdenParcial("Todavia No", "0"));
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new PenalidadConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -214,8 +220,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Todavia No");
-        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Todavia No");
+        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Todavia No", new OrdenParcial("Todavia No", "0"));
+        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Todavia No", new OrdenParcial("Todavia No", "0"));
 
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
@@ -239,8 +245,8 @@ public class TestEntrega01 {
 
         String enunciado = "Gano la seleccion la copa america?";
 
-        RespuestaCorrecta respuestaALaPregunta1 = new RespuestaCorrecta("Todavia no");
-        RespuestaIncorrecta respuestaALaPregunta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+        RespuestaCorrecta respuestaALaPregunta1 = new RespuestaCorrecta("Todavia No", new OrdenParcial("Todavia No", "0"));
+        RespuestaIncorrecta respuestaALaPregunta2 = new RespuestaIncorrecta("Si", new PenalidadConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -252,8 +258,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("Si", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("Si", new PenalidadConPenalidad());
 
 
         jugador1.responder(pregunta, respuestaDelJugador1);
@@ -280,10 +286,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
-        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new PenalidadConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -297,10 +303,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
-        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -329,10 +335,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuantas patas puede tener una gallina?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2");
-        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("1", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("2", new OrdenParcial("2", "0"));
+        RespuestaIncorrecta respuesta3 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("4", new PenalidadConPenalidad());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -346,10 +352,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
 
-        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new RespuestaConPenalidad());
-        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new RespuestaConPenalidad());
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("4", new PenalidadConPenalidad());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -378,10 +384,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
-        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -395,10 +401,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
 
-        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani");
-        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez");
-        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("Franco Armani",new OrdenParcial("1", "0"));
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -426,10 +432,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
-        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -443,10 +449,10 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
 
-        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("Franco Armani", new RespuestaClasica());
-        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("Emiliano Martinez", new RespuestaClasica());
-        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("Geronimo Rulli", new RespuestaClasica());
-        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Franco Armani", new RespuestaClasica());
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("Franco Armani", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("Emiliano Martinez", new PenalidadClasica());
+        RespuestaIncorrecta respuesta1DelJugador2 = new RespuestaIncorrecta("Geronimo Rulli", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Franco Armani", new PenalidadClasica());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
@@ -475,10 +481,10 @@ public class TestEntrega01 {
 
         String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
-        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
-        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -492,17 +498,194 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
 
-        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani");
-        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez");
-        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli");
-        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Sergio Romero", new RespuestaConPenalidad());
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("Franco Armani",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("Emiliano Martinez",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("Geronimo Rulli",new OrdenParcial("1", "0"));
+        RespuestaIncorrecta respuesta2DelJugador2 = new RespuestaIncorrecta("Sergio Romero", new PenalidadConPenalidad());
 
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
         jugador1.responder(pregunta, respuesta3DelJugador1);
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test12unaPreguntaDeOrderedChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaCorrecta(){
+        //Una Pregunta de OrderedChoice recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta ✅.
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 1;
+
+        String enunciado = "Colocar estas letras en orden alfabetico, [E, A ,Z, F]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("Z", new OrdenParcial("Z", "4"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test13unaPreguntaDeOrderedChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+        //Una Pregunta de MúltipleChoiceParcial recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de incorrecta ❌.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Colocar estas letras en orden alfabetico, [E, A ,Z, F]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("Z", new OrdenParcial("Z", "4"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("E",new OrdenParcial("F", "2"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("F",new OrdenParcial("E", "3"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("E",new OrdenParcial("F", "2"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("F",new OrdenParcial("E", "3"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test14unaPreguntaDeOrderedChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieron(){
+        //Una Pregunta de MúltipleChoiceParcial recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta e incorrectamente ✅❌.
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Colocar estas letras en orden alfabetico, [E, A ,Z, F]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("Z", new OrdenParcial("Z", "4"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("E",new OrdenParcial("E", "2"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("F",new OrdenParcial("F", "3"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "1"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("E",new OrdenParcial("F", "2"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("F",new OrdenParcial("E", "3"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
 
         pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
         pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);

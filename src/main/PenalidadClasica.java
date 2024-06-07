@@ -1,6 +1,6 @@
 package main;
 
-public class RespuestaClasica implements TipoDeRespuesta{
+public class PenalidadClasica implements TipoDePenalidad {
     @Override
     public int actualizarPuntaje(int puntaje){
         return 0;

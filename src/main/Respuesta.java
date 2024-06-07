@@ -6,7 +6,11 @@ public interface Respuesta {
 
     public int actualizarPuntaje(int puntaje);
 
-    public String getEnunciadoRespuesta();
-
     public Boolean EsCorrecta();
+
+    public int TieneOrdenCorrecto(Respuesta respuestaPosible);
+
+    public String getEnunciado();
+
+    public String getOrdenParcial();
 }

@@ -1,7 +1,5 @@
 package main;
 
-public interface TipoDeRespuesta {
+public interface TipoDePenalidad {
     public int actualizarPuntaje(int puntaje);
-
-
 }
