@@ -1,6 +1,7 @@
 package TestClases;
 
 import main.*;
+import main.exceptions.AnuladorSeUsaMasDeUnaVez;
 import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import org.junit.jupiter.api.Disabled;
 
@@ -39,7 +40,7 @@ public class TestsJugador {
 
     @org.junit.jupiter.api.Test
 
-    public void test03JugadorEnUnGrupoUtilizaAnuladorDePuntajeEnPreguntaVerdaderoFalsoClasiocYSeAnulaLaPregunta(){
+    public void test03JugadorEnUnGrupoUtilizaAnuladorDePuntajeEnPreguntaVerdaderoFalsoClasiocYSeAnulaLaPregunta() throws AnuladorSeUsaMasDeUnaVez {
         //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
         //correctamente puntos a los jugadores que respondieron correctamente
 
