@@ -2,11 +2,11 @@ package main;
 
 import java.util.ArrayList;
 
-public class PreguntaOrderedChoice extends Pregunta{
+public class PreguntaOrdenada extends Pregunta{
     private String enunciado;
     private ArrayList<Respuesta> respuestas;
 
-    public PreguntaOrderedChoice(String enunciado, ArrayList<Respuesta> respuestasPosibles) {
+    public PreguntaOrdenada(String enunciado, ArrayList<Respuesta> respuestasPosibles) {
         super(enunciado, respuestasPosibles);
         this.enunciado = enunciado;
         this.respuestas = respuestasPosibles;

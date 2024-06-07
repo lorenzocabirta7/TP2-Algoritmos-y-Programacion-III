@@ -543,7 +543,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -602,7 +602,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -661,7 +661,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new PreguntaOrderedChoice(enunciado, respuestasPosibles);
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -681,6 +681,183 @@ public class TestEntrega01 {
         RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("E",new OrdenParcial("F", "2"));
         RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("F",new OrdenParcial("E", "3"));
         RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("Z",new OrdenParcial("Z", "4"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test15unaPreguntaDeGroupChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaCorrecta(){
+        //Una Pregunta de GroupChoice recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta ✅.
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 1;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("2", new OrdenParcial("2", "Numeros"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("2",new OrdenParcial("2", "Numeros"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("2",new OrdenParcial("2", "Numeros"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test16unaPreguntaDeGroupChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta(){
+        //Una Pregunta de GroupChoice recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Incorrecta ❌.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("2", new OrdenParcial("2", "Numeros"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("0", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("0",new OrdenParcial("A", "Numeros"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("2",new OrdenParcial("2", "Numeros"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("0",new OrdenParcial("0", "Letras"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("2",new OrdenParcial("2", "Letras"));
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test17unaPreguntaDeGroupChoiceRecibeUnaListaDeRespuestaDeUnJugadorYAsignaCorrectamentePuntosALosJugadoresQueRespondieron(){
+        //Una Pregunta de GroupChoice recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Incorrecta ✅❌.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 1;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("2", new OrdenParcial("2", "Numeros"));
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaOrdenada(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("A",new OrdenParcial("0", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("0",new OrdenParcial("A", "Numeros"));
+        RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("2",new OrdenParcial("2", "Numeros"));
+
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("A",new OrdenParcial("A", "Letras"));
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("M",new OrdenParcial("M", "Letras"));
+        RespuestaCorrecta respuesta3DelJugador2 = new RespuestaCorrecta("0",new OrdenParcial("0", "Numeros"));
+        RespuestaCorrecta respuesta4DelJugador2 = new RespuestaCorrecta("2",new OrdenParcial("2", "Numeros"));
 
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
