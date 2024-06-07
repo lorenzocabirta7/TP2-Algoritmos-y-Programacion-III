@@ -1,27 +1,27 @@
 package main;
 
-public class OrdenParcial {
+public class ConOrdenParcial implements TipoDeOrden{
     private String respuesta;
     private String ordenParcial;
 
-    public OrdenParcial(String enunciado, String ordenParcial) {
+    public ConOrdenParcial(String enunciado, String ordenParcial) {
         this.respuesta = enunciado;
         this.ordenParcial = ordenParcial;
     }
 
-    public int TieneOrdenCorrecto(Respuesta unaRespuesta){
-        int valor = 0;
+    @Override
+    public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta){
         if (this.EsLaMismaRespuesta(unaRespuesta)){
-            valor = 1;
+            return puntaje;
         }
-        return valor;
+        return 0;
     }
 
     public String getOrdenParcial(){
         return this.ordenParcial;
     }
 
-    private Boolean EsLaMismaRespuesta(Respuesta unaRespuesta){
+    public Boolean EsLaMismaRespuesta(Respuesta unaRespuesta){
         return(this.respuesta.equals(unaRespuesta.getEnunciado()) && (this.ordenParcial.equals( unaRespuesta.getOrdenParcial())));
     }
 }

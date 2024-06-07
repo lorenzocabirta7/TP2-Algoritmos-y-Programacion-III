@@ -18,7 +18,7 @@ public class PreguntaOrdenada extends Pregunta{
 
         for (Respuesta respuesta : respuestasDelJugador) {
             for(Respuesta respuestaPosible : respuestas){
-                RespuestasCorrectas += respuesta.TieneOrdenCorrecto(respuestaPosible);
+                RespuestasCorrectas += respuesta.actualizarPuntaje(1, respuestaPosible);
             }
         }
         if (RespuestasCorrectas == RespuestasCorrectasEsperadas) {

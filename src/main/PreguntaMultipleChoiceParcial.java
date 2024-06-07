@@ -19,7 +19,7 @@ public class PreguntaMultipleChoiceParcial extends Pregunta {
         ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
 
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
-                PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1);
+                PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
         }
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
             if (!respuestaDelJugador.EsCorrecta()){

@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 public interface Respuesta {
 
-    public int actualizarPuntaje(int puntaje);
+    public int actualizarPuntaje(int puntaje,Respuesta unaRespuesta);
 
     public Boolean EsCorrecta();
-
-    public int TieneOrdenCorrecto(Respuesta respuestaPosible);
 
     public String getEnunciado();
 

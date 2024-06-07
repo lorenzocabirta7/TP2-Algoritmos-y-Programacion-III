@@ -10,18 +10,13 @@ public class RespuestaIncorrecta implements Respuesta{
     }
 
     @Override
-    public int actualizarPuntaje(int puntaje) {
+    public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta) {
         return tipoDePenalidad.actualizarPuntaje(puntaje);
     }
 
     @Override
     public Boolean EsCorrecta(){
         return false;
-    }
-
-    @Override
-    public int TieneOrdenCorrecto(Respuesta unaRespuesta){
-        return 0;
     }
 
     @Override

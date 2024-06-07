@@ -20,7 +20,7 @@ public class PreguntaVerdaderoFalsoClasico extends Pregunta {
     @Override
     public void puntuar(ArrayList<Respuesta> respuestas, Jugador unJugador) {
         Respuesta respuestaDelJugador = respuestas.getFirst(); //sabemos que para verdadero falso solo nos llega una respuesta por eso agarramos la primera.
-        int puntosObtenidos = respuestaDelJugador.actualizarPuntaje(1);
+        int puntosObtenidos = respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
         unJugador.modificarPuntaje(puntosObtenidos);
     }
 }

@@ -14,7 +14,7 @@ public class TestPreguntaVerdaderoFalsoClasico {
 
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", new OrdenParcial("Si", "0"));
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", new ConOrdenParcial("Si", "0"));
         RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
 
         respuestas.add(respuesta1);
