@@ -10,6 +10,7 @@ public class Jugador {
     private int puntos;
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
+
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
@@ -46,4 +47,6 @@ public class Jugador {
     public ArrayList<Respuesta> obtenerRespuestas(){
         return this.respuestasDelJugador;
     }
+
+    public void activarAnuladorDePuntaje() {}
 }
