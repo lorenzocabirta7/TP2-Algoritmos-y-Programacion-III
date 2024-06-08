@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 public abstract class Pregunta {
 
-    private String enunciado;
-    private ArrayList<Respuesta> respuestas;
+    protected String enunciado;
+    protected ArrayList<Respuesta> respuestas;
+    protected boolean anulada;
+    protected ArrayList<Jugador> jugaodoresQueUsaronAnulador;
 
     public Pregunta(String enunciado, ArrayList<Respuesta> respuestasPosibles) {
         this.enunciado = enunciado;
         this.respuestas = respuestasPosibles;
+        this.jugaodoresQueUsaronAnulador =  new ArrayList<>();
+        this.anulada = false;
     }
 
     public abstract void puntuar(ArrayList<Respuesta> respuestas, Jugador unjugador);
@@ -17,7 +21,6 @@ public abstract class Pregunta {
     public ArrayList<Respuesta> respuestasPosibles(){
         return this.respuestas;
     }
-
 
     public String getEnunciado() {
         return this.enunciado;
@@ -34,6 +37,11 @@ public abstract class Pregunta {
         }
         return respuestasCorrectas;
     }
+    public void jugadorUsoAnulador(Jugador jugador) {
+        this.jugaodoresQueUsaronAnulador.add(jugador);
+        this.anulate();
+    }
+    public void anulate(){this.anulada = true;}
 }
 
 

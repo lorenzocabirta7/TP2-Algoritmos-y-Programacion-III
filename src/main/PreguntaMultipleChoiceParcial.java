@@ -3,14 +3,14 @@ package main;
 import java.util.ArrayList;
 
 public class PreguntaMultipleChoiceParcial extends Pregunta {
-    private String enunciado;
+    //private String enunciado;
 
-    private ArrayList<Respuesta> respuestas;
+    //private ArrayList<Respuesta> respuestas;
 
     public PreguntaMultipleChoiceParcial(String enunciado, ArrayList<Respuesta> respuestas){
         super(enunciado, respuestas);
-        this.enunciado = enunciado;
-        this.respuestas = respuestas;
+        //this.enunciado = enunciado;
+        //this.respuestas = respuestas;
     }
 
     @Override

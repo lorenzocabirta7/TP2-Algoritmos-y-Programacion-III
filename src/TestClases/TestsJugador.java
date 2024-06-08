@@ -64,7 +64,7 @@ public class TestsJugador {
         RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Si");
         RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Si");
 
-        jugador1.activarAnuladorDePuntaje();
+        jugador1.activarAnuladorDePuntaje(pregunta);
 
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);

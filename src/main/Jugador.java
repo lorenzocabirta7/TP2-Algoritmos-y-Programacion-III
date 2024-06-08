@@ -45,7 +45,8 @@ public class Jugador {
         this.multiplicadorPorDos.activar();
     }
 
-    public void activarAnuladorDePuntaje() throws AnuladorSeUsaMasDeUnaVez {
+    public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
+        pregunta.jugadorUsoAnulador(this);
         this.anuladorDePuntaje.activar();
     }
 
