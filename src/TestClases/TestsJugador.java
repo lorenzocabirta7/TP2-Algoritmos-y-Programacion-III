@@ -168,6 +168,7 @@ public class TestsJugador {
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
         assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
     }
+
     @org.junit.jupiter.api.Test
     public void test06JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoPenalidad__() throws AnuladorSeUsaMasDeUnaVez {
 
@@ -246,9 +247,6 @@ public class TestsJugador {
         int puntajeEsperadoJugador3 = 0;
         int puntajeEsperadoJugador4 = -1;
 
-
-
-
         String enunciado = "Gano la seleccion la copa america?";
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
         RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
@@ -264,8 +262,6 @@ public class TestsJugador {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
         Jugador jugador4 = new Jugador("Jugador 4");
-
-
 
         jugador1.activarAnuladorDePuntaje(pregunta);
         jugador2.activarAnuladorDePuntaje(pregunta);
@@ -293,4 +289,191 @@ public class TestsJugador {
 
     }
 
+    @org.junit.jupiter.api.Test
+    public void test09JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = -1;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta1DelJugador3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador3 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test010JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
+
+        int puntajeEsperadoJugador1 = -1;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = -1;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+
+        RespuestaIncorrecta respuesta1DelJugador1 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador1 = new RespuestaIncorrecta("4", new RespuestaClasica());
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta1DelJugador3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador3 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+
+    }
+    @org.junit.jupiter.api.Test
+    public void test11VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = -1;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+
+        RespuestaCorrecta respuesta1DelJugador1 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador1 = new RespuestaCorrecta("2");
+        RespuestaCorrecta respuesta1DelJugador2 = new RespuestaCorrecta("1");
+        RespuestaCorrecta respuesta2DelJugador2 = new RespuestaCorrecta("2");
+        RespuestaIncorrecta respuesta1DelJugador3 = new RespuestaIncorrecta("3", new RespuestaClasica());
+        RespuestaIncorrecta respuesta2DelJugador3 = new RespuestaIncorrecta("4", new RespuestaClasica());
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+        jugador2.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+
+    }
 }
