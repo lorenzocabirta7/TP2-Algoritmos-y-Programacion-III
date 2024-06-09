@@ -3,7 +3,6 @@ package TestClases;
 import main.*;
 import main.exceptions.AnuladorSeUsaMasDeUnaVez;
 import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
-import org.junit.jupiter.api.Disabled;
 
 import java.util.ArrayList;
 
@@ -39,12 +38,13 @@ public class TestsJugador {
     }
 
     @org.junit.jupiter.api.Test
-    public void test03JugadorEnUnGrupoUtilizaAnuladorDePuntajeEnPreguntaVerdaderoFalsoClasiocYSeAnulaLaPregunta() throws AnuladorSeUsaMasDeUnaVez {
+    public void test03JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoClasico__() throws AnuladorSeUsaMasDeUnaVez {
         //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
         //correctamente puntos a los jugadores que respondieron correctamente
 
         int puntajeEsperadoJugador1 = 1;
         int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
 
         String enunciado = "Estamos en el año 2024?";
 
@@ -60,14 +60,138 @@ public class TestsJugador {
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
-
-        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("Si");
-        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta("Si");
+        Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarAnuladorDePuntaje(pregunta);
 
-        jugador1.responder(pregunta, respuestaDelJugador1);
-        jugador2.responder(pregunta, respuestaDelJugador2);
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta1);
+        jugador3.responder(pregunta, respuesta1);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test04JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoClasico__() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Estamos en el año 2024?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta2);
+        jugador2.responder(pregunta, respuesta1);
+        jugador3.responder(pregunta, respuesta1);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test05VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaVerdaderoFalsoClasico__() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Estamos en el año 2024?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+        jugador2.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta1);
+        jugador3.responder(pregunta, respuesta1);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
+
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test06JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoPenalidad__() throws AnuladorSeUsaMasDeUnaVez {
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta1);
 
         pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
         pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
@@ -78,8 +202,95 @@ public class TestsJugador {
         assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
+    }
+    @org.junit.jupiter.api.Test
+    public void test07JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoPenalidad__() throws AnuladorSeUsaMasDeUnaVez {
 
+        int puntajeEsperadoJugador1 = -1;
+        int puntajeEsperadoJugador2 = 0;
 
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta2);
+        jugador2.responder(pregunta, respuesta1);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
     }
+    @org.junit.jupiter.api.Test
+    public void test08VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaVerdaderoFalsoPenalidad__() throws AnuladorSeUsaMasDeUnaVez {
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = -1;
+        int puntajeEsperadoJugador3 = 0;
+        int puntajeEsperadoJugador4 = -1;
+
+
+
+
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Todavia No");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("Si", new RespuestaConPenalidad());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new PreguntaVerdaderoFalsoPenalidad(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+        Jugador jugador4 = new Jugador("Jugador 4");
+
+
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+        jugador2.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta2);
+        jugador3.responder(pregunta, respuesta1);
+        jugador4.responder(pregunta, respuesta2);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        pregunta.puntuar(jugador4.obtenerRespuestas(), jugador4);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+        int puntajeObtenidoJugador4 = jugador4.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+        assertEquals(puntajeEsperadoJugador4,puntajeObtenidoJugador4);
+
+    }
+
 }
