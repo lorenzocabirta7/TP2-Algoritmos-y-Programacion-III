@@ -8,7 +8,7 @@ public abstract class Pregunta {
     protected ArrayList<Respuesta> respuestas;
     protected boolean anulada;
     protected ArrayList<Jugador> jugaodoresQueUsaronAnulador;
-
+    //protected GestorAnulador gestor;
     public Pregunta(String enunciado, ArrayList<Respuesta> respuestasPosibles) {
         this.enunciado = enunciado;
         this.respuestas = respuestasPosibles;

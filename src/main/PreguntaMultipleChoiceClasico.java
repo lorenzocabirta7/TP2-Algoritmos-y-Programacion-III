@@ -34,7 +34,7 @@ public class PreguntaMultipleChoiceClasico extends Pregunta{
                 }
             } else puntosObtenidos = 1;
         }else {
-            puntosObtenidos = -1;
+            puntosObtenidos = 0;
         }
         unJugador.modificarPuntaje(puntosObtenidos);
     }

@@ -3,14 +3,9 @@ package main;
 import java.util.ArrayList;
 
 public class PreguntaMultipleChoiceParcial extends Pregunta {
-    //private String enunciado;
-
-    //private ArrayList<Respuesta> respuestas;
 
     public PreguntaMultipleChoiceParcial(String enunciado, ArrayList<Respuesta> respuestas){
         super(enunciado, respuestas);
-        //this.enunciado = enunciado;
-        //this.respuestas = respuestas;
     }
 
     @Override
@@ -26,6 +21,17 @@ public class PreguntaMultipleChoiceParcial extends Pregunta {
                 PuntajeObtenido = 0;
             }
         }
-        unJugador.modificarPuntaje(PuntajeObtenido);
+        if (this.anulada) {
+            if (jugaodoresQueUsaronAnulador.size() == 1) {
+                for (Jugador jugador : jugaodoresQueUsaronAnulador) {
+                    if (jugador == unJugador) {
+                        break;
+                    } else PuntajeObtenido = 0;
+                }
+            }else {
+                PuntajeObtenido = 0;
+            }
         }
+        unJugador.modificarPuntaje(PuntajeObtenido);
     }
+}

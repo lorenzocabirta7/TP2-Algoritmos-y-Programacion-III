@@ -19,14 +19,11 @@ public class Jugador {
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.respuestasDelJugador = new ArrayList<>();
         this.anuladorDePuntaje = new Anulador();
-        //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
 
     public  void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
         respuestasDelJugador.add(respuestaElegida);
-        //pregunta.esPreguntaAnulada(this.anuladorDePuntaje.estado());
     }
-
 
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
@@ -49,8 +46,6 @@ public class Jugador {
         pregunta.jugadorUsoAnulador(this);
         this.anuladorDePuntaje.activar();
     }
-
-
 
     public ArrayList<Respuesta> obtenerRespuestas(){
         return this.respuestasDelJugador;

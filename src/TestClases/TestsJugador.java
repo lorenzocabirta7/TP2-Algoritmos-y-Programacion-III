@@ -200,8 +200,8 @@ public class TestsJugador {
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
 
     }
     @org.junit.jupiter.api.Test
@@ -235,8 +235,8 @@ public class TestsJugador {
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
 
     }
     @org.junit.jupiter.api.Test
@@ -282,21 +282,18 @@ public class TestsJugador {
         int puntajeObtenidoJugador4 = jugador4.obtenerPuntos();
 
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
-        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
-        assertEquals(puntajeEsperadoJugador4,puntajeObtenidoJugador4);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+        assertEquals(puntajeEsperadoJugador4, puntajeObtenidoJugador4);
 
     }
 
     @org.junit.jupiter.api.Test
     public void test09JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
-        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
-        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
-
         int puntajeEsperadoJugador1 = 1;
         int puntajeEsperadoJugador2 = 0;
-        int puntajeEsperadoJugador3 = -1;
+        int puntajeEsperadoJugador3 = 0;
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
@@ -347,18 +344,18 @@ public class TestsJugador {
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
 
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
-        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
     }
     @org.junit.jupiter.api.Test
-    public void test010JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
+    public void test10JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws AnuladorSeUsaMasDeUnaVez {
         //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
         // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
 
-        int puntajeEsperadoJugador1 = -1;
+        int puntajeEsperadoJugador1 = 0;
         int puntajeEsperadoJugador2 = 0;
-        int puntajeEsperadoJugador3 = -1;
+        int puntajeEsperadoJugador3 = 0;
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
@@ -409,9 +406,9 @@ public class TestsJugador {
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
 
 
-        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
-        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
-        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
 
     }
     @org.junit.jupiter.api.Test
@@ -421,7 +418,7 @@ public class TestsJugador {
 
         int puntajeEsperadoJugador1 = 0;
         int puntajeEsperadoJugador2 = 0;
-        int puntajeEsperadoJugador3 = -1;
+        int puntajeEsperadoJugador3 = 0;
 
         String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
 
@@ -471,9 +468,152 @@ public class TestsJugador {
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
 
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test12JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceParcial__() throws AnuladorSeUsaMasDeUnaVez {
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceParcial(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta2);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
         assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
         assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test13JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceParcial__() throws AnuladorSeUsaMasDeUnaVez{
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
 
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceParcial(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta4);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test14VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaMultipleChoiceParcial__() throws AnuladorSeUsaMasDeUnaVez {
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new RespuestaClasica());
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new PreguntaMultipleChoiceParcial(enunciado, respuestasPosibles);
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarAnuladorDePuntaje(pregunta);
+        jugador2.activarAnuladorDePuntaje(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta2);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
+        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
     }
 }
