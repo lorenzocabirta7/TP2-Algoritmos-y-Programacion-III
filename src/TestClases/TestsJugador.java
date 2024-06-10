@@ -38,6 +38,21 @@ public class TestsJugador {
     }
 
     @org.junit.jupiter.api.Test
+    public void test02_5JugadorUtilizaAnuladorVecesYTiraExcepcion() throws AnuladorSeUsaMasDeUnaVez {
+        int cantidadCatchesEsperador = 0;
+        int cantidadCatchesObtenidos = 1;
+        Jugador jugador1 = new Jugador("Spirulina");
+        Pregunta pregunta = new PreguntaVerdaderoFalsoClasico("ejemplo",null);
+        jugador1.activarAnuladorDePuntaje(pregunta);
+        try {
+            jugador1.activarAnuladorDePuntaje(pregunta);
+        } catch (AnuladorSeUsaMasDeUnaVez error) {
+            cantidadCatchesEsperador++;
+        }
+        assertEquals(cantidadCatchesEsperador,cantidadCatchesObtenidos);
+    }
+
+    @org.junit.jupiter.api.Test
     public void test03JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoClasico__() throws AnuladorSeUsaMasDeUnaVez {
         //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
         //correctamente puntos a los jugadores que respondieron correctamente
