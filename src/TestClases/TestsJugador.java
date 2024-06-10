@@ -21,13 +21,43 @@ public class TestsJugador {
     }
 
     @org.junit.jupiter.api.Test
-
-    public void test02JugadorSeLeModificaElPuntajeDespuesDeUsarUnBonificador() throws ModificadorSeUsaMasDeUnaVezException {
+    public void test02JugadorSeLeModificaElPuntajePorDosDespuesDeUsarUnBonificador() throws ModificadorSeUsaMasDeUnaVezException {
 
         int puntajeEsperado = 2;
         Jugador jugador1 = new Jugador("Spirulina");
 
         jugador1.activarDuplicadorDePuntaje();
+        jugador1.modificarPuntaje(1);
+
+        int puntosJugador = jugador1.obtenerPuntos();
+
+        assertEquals(puntajeEsperado, puntosJugador);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test03JugadorSeLeModificaElPuntajePorTresDespuesDeUsarUnBonificador() throws ModificadorSeUsaMasDeUnaVezException {
+
+        int puntajeEsperado = 3;
+        Jugador jugador1 = new Jugador("Spirulina");
+
+        jugador1.activarTriplicadorDePuntaje();
+        jugador1.modificarPuntaje(1);
+
+        int puntosJugador = jugador1.obtenerPuntos();
+
+        assertEquals(puntajeEsperado, puntosJugador);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test04JugadorSeLeModificaElPuntajePorSeisDespuesDeUsarUnBonificador() throws ModificadorSeUsaMasDeUnaVezException {
+
+        int puntajeEsperado = 6;
+        Jugador jugador1 = new Jugador("Spirulina");
+
+        jugador1.activarDuplicadorDePuntaje();
+        jugador1.activarTriplicadorDePuntaje();
         jugador1.modificarPuntaje(1);
 
         int puntosJugador = jugador1.obtenerPuntos();

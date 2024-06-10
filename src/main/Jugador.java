@@ -1,6 +1,9 @@
 package main;
 
 import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
+import main.modificadores.MultiplicadorPorDos;
+import main.modificadores.MultiplicadorPorTres;
+import main.preguntas.Pregunta;
 
 import java.util.ArrayList;
 
@@ -10,12 +13,14 @@ public class Jugador {
     private int puntos;
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
+    private MultiplicadorPorTres multiplicadorPorTres;
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
         this.puntos = 0;
         multiplicadorPorDos = new MultiplicadorPorDos();
+        multiplicadorPorTres = new MultiplicadorPorTres();
         respuestasDelJugador = new ArrayList<>();
         //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
@@ -27,6 +32,7 @@ public class Jugador {
 
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
+        puntajeModificado = multiplicadorPorTres.modificarPuntaje(puntajeModificado);
         this.puntos += puntajeModificado;
     }
 
@@ -42,6 +48,9 @@ public class Jugador {
         this.multiplicadorPorDos.activar();
     }
 
+    public void activarTriplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+        this.multiplicadorPorTres.activar();
+    }
 
     public ArrayList<Respuesta> obtenerRespuestas(){
         return this.respuestasDelJugador;

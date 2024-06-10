@@ -1,6 +1,8 @@
 package TestClases;
 
 import main.*;
+import main.preguntas.PenalidadClasica;
+import main.preguntas.PreguntaVerdaderoFalsoClasico;
 
 
 import java.util.ArrayList;

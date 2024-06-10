@@ -1,6 +1,7 @@
 package Tests.Entrega01;
 
 import main.*;
+import main.preguntas.*;
 
 import java.util.ArrayList;
 
