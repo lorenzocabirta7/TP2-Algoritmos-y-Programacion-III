@@ -10,28 +10,34 @@ public class PreguntaMultipleChoiceParcial extends Pregunta {
 
     @Override
     public void puntuar(ArrayList<Respuesta> respuestasDelJugador, Jugador unJugador) {
-        int PuntajeObtenido = 0;
+        int puntajeCorrespondiente = 0;
         ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
 
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
-                PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1);
+            puntajeCorrespondiente += respuestaDelJugador.actualizarPuntaje(1);
         }
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
             if (!respuestaDelJugador.EsCorrecta()){
-                PuntajeObtenido = 0;
+                puntajeCorrespondiente = 0;
             }
         }
         if (this.anulada) {
+            boolean jugadorEncontrado = false;
             if (jugaodoresQueUsaronAnulador.size() == 1) {
                 for (Jugador jugador : jugaodoresQueUsaronAnulador) {
                     if (jugador == unJugador) {
+                        jugadorEncontrado = true;
                         break;
-                    } else PuntajeObtenido = 0;
+                    }
                 }
+                if (jugadorEncontrado){
+                    puntajeCorrespondiente = puntajeCorrespondiente;
+                }else puntajeCorrespondiente = 0;
             }else {
-                PuntajeObtenido = 0;
+                puntajeCorrespondiente = 0;
             }
         }
-        unJugador.modificarPuntaje(PuntajeObtenido);
+        //en actualizar puntaje esta la logica sobre si respondio bien
+        unJugador.modificarPuntaje(puntajeCorrespondiente);
     }
 }
