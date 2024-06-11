@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+
 title Responder Pregunta Verdadero Falso
 
 participant Actor as Actor

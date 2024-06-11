@@ -1,9 +1,5 @@
 package TestClases;
 
-import main.Respuesta;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 /*
 public class TestPreguntaMultipleChoiceClasico {
@@ -29,7 +25,7 @@ public class TestPreguntaMultipleChoiceClasico {
         String enunciadoEsperado = enunciado;
         ArrayList<Respuesta> respuestasEsperadas = respuestas;
 
-        PreguntaMultipleChoiceClasico pregunta = new PreguntaMultipleChoiceClasico(enunciado, respuestas);
+        PreguntaMultipleChoiceClasico.java pregunta = new PreguntaMultipleChoiceClasico.java(enunciado, respuestas);
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());

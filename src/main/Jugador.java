@@ -1,5 +1,6 @@
 package main;
 
+import main.Respuestas.Respuesta;
 import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import main.modificadores.MultiplicadorPorDos;
 import main.modificadores.MultiplicadorPorTres;
