@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/class-diagram'
+hide circle
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class Jugador {
+
+    -nombre
+    +{static}Jugador(nombre)
+    +responder(Pregunta pregunta)
+    -elegirRespuesta(ArrayList<Respuesta> respuestas)
+    +modificarPuntaje(puntaje)
+    +activarDuplicadorDePuntaje()
+}
+Jugador -> MultiplicadorPorDos
+Jugador --> MultiplicadorPorTres
+
+class MultiplicadorPorDos {
+    -multiplicador: int
+    +activar()
+    +modificarPuntaje(puntaje: int): int
+}
+MultiplicadorPorDos *-> MultiplicadorDePuntaje
+
+class MultiplicadorPorTres{
+    -multiplicador: int
+    +activar()
+    +modificarPuntaje(puntaje: int): int
+}
+MultiplicadorPorTres *-> MultiplicadorDePuntaje
+
+interface MultiplicadorDePuntaje {
+    +modificarPuntaje(puntaje: int, multiplicador: int): int
+}
+
+class MultiplicadorDePuntajeActivado implements MultiplicadorDePuntaje {
+
+}
+
+class MultiplicadorDePuntajeDesactivado implements MultiplicadorDePuntaje {
+
+}
+
+
+@enduml

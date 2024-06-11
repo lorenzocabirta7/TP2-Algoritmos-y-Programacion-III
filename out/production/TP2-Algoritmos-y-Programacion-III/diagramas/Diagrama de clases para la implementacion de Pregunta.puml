@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam nodesep 100
+skinparam ranksep 100
+
+class Pregunta {
+    - String: enunciado
+    - ArrayList: respuestas
+
+    +{static}Pregunta(String: enunciado, ArrayList: respuestas, FormaDePuntuar: tipoDePregunta)
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+    + respuestasPosibles() ArrayList: respuestas
+    + getEnunciado() String: enunciado
+}
+
+interface FormaDePuntuar {
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarDeFormaOrdenada implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoicePenalidad implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarVerdaderoFalsoClasico implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarVerdaderoFalsoPenalidad implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+Pregunta *- FormaDePuntuar
+
+@enduml
