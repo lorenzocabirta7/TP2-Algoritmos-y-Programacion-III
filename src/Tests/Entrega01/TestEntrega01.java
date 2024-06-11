@@ -395,7 +395,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -443,7 +443,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -492,7 +492,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");

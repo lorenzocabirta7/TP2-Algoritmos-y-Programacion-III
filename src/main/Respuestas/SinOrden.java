@@ -10,6 +10,6 @@ public class SinOrden implements TipoDeOrden{
     @Override
     public String getOrdenParcial(){
         return "0";
-    }
+    } //No tener orden lo definimos asi
 
 }
