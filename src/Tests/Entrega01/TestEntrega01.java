@@ -39,12 +39,11 @@ public class TestEntrega01 {
         RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new SinOrden());
         RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, new SinOrden());
 
-
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -85,12 +84,11 @@ public class TestEntrega01 {
         RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
         RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
 
-
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -139,8 +137,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -186,8 +184,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -227,8 +225,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -266,8 +264,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -314,15 +312,14 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
 
         assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
-
 
     }
 
@@ -363,8 +360,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -412,8 +409,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -460,8 +457,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -511,8 +508,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta1DelJugador2);
         jugador2.responder(pregunta, respuesta2DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -570,8 +567,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -629,8 +626,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -688,8 +685,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -747,8 +744,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -806,8 +803,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -849,7 +846,6 @@ public class TestEntrega01 {
         RespuestaCorrecta respuesta3DelJugador1 = new RespuestaCorrecta("0",new ConOrdenParcial("A", "Numeros"));
         RespuestaCorrecta respuesta4DelJugador1 = new RespuestaCorrecta("2",new ConOrdenParcial("2", "Numeros"));
 
-
         jugador1.responder(pregunta, respuesta1DelJugador1);
         jugador1.responder(pregunta, respuesta2DelJugador1);
         jugador1.responder(pregunta, respuesta3DelJugador1);
@@ -865,8 +861,8 @@ public class TestEntrega01 {
         jugador2.responder(pregunta, respuesta3DelJugador2);
         jugador2.responder(pregunta, respuesta4DelJugador2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();

@@ -29,7 +29,6 @@ public class Jugador {
         respuestasDelJugador.add(respuestaElegida);
         }
 
-
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
         puntajeModificado = multiplicadorPorTres.modificarPuntaje(puntajeModificado);
@@ -54,5 +53,9 @@ public class Jugador {
 
     public ArrayList<Respuesta> obtenerRespuestas(){
         return this.respuestasDelJugador;
+    }
+
+    public void confirmarRespuesta(Pregunta pregunta){
+        pregunta.puntuar(respuestasDelJugador, this);
     }
 }
