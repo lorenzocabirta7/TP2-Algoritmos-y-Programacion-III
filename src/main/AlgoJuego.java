@@ -20,13 +20,32 @@ public class AlgoJuego {
         return instance;
     }
 
-    public void agregarJugador(Jugador unJugador){
-        jugadores.add(unJugador);
+    public void agregarJugador(String unJugador){
+        Jugador jugador = new Jugador(unJugador);
+        jugadores.add(jugador);
     }
 
     public void asignarPregunta(Pregunta unaPregunta){
         preguntaActual = unaPregunta;
     }
-    
 
+    public void asignarNumeroDeJugadores(int cantidadDeJugadores){
+        this.cantidadDeJugadores = cantidadDeJugadores;
+    }
+
+    public void iniciarJuego(){
+        //Alguien tiene que llamar a asignarNumeroDeJugadores(int)
+        //while (jugadores.size() < cantidadDeJugadores){
+        //    //esperar a que se agreguen jugadores
+        //}
+        //for (pregunta : preguntas){
+        //    asignarPregunta(pregunta);
+        //    for (jugador : jugadores){
+        //        jugadorActual = jugador;
+        //        //esperar a que el jugador responda
+        //        jugador.confirmarRespuesta(preguntaActual);
+        //    }
+        //}
+        //algoJuego.mostrarGanador();
+    }
 }
