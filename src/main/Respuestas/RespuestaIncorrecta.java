@@ -1,6 +1,8 @@
 package main.Respuestas;
 
-public class RespuestaIncorrecta implements Respuesta{
+import main.Respuestas.Penalidad.TipoDePenalidad;
+
+public class RespuestaIncorrecta implements Respuesta {
     private TipoDePenalidad tipoDePenalidad;
     private String enunciado;
 
@@ -15,7 +17,7 @@ public class RespuestaIncorrecta implements Respuesta{
     }
 
     @Override
-    public Boolean EsCorrecta(){
+    public Boolean EsCorrecta(Respuesta unaRespuesta){
         return false;
     }
 

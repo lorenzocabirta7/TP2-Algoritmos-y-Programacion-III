@@ -1,3 +1,4 @@
+/*
 package main.Anulador;
 
 import main.Pregunta;
@@ -7,3 +8,4 @@ public interface AnuladorDePuntaje {
     public void anulaPregunta(Pregunta pregunta);
     public boolean estaActivo();
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package main.Anulador;
 
 import main.Pregunta;
@@ -13,3 +14,4 @@ public class AnuladorDePuntajeActivado implements AnuladorDePuntaje{
     public boolean estaActivo() {return true;}
 
 }
+*/

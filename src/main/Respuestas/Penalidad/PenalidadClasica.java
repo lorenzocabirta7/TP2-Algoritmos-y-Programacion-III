@@ -1,4 +1,4 @@
-package main.Respuestas;
+package main.Respuestas.Penalidad;
 
 public class PenalidadClasica implements TipoDePenalidad {
     @Override

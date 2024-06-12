@@ -15,7 +15,7 @@ public class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
             PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
         }
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
-            if (!respuestaDelJugador.EsCorrecta()){
+            if (!respuestaDelJugador.EsCorrecta(respuestaDelJugador)){
                 PuntajeObtenido = 0;
             }
         }

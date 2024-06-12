@@ -1,21 +1,21 @@
 package main.Respuestas;
 
-public class RespuestaCorrecta implements Respuesta{
+public class RespuestaCorrecta implements Respuesta {
     private String enunciado;
-    private TipoDeOrden unOrden;
+    private String ordenParcial;
 
-    public RespuestaCorrecta(String enunciadoRespuesta, TipoDeOrden unOrden){
-        this.unOrden = unOrden;
+    public RespuestaCorrecta(String enunciadoRespuesta, String unOrden){
         this.enunciado = enunciadoRespuesta;
+        this.ordenParcial = unOrden;
     }
 
     @Override
     public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta) {
-        return unOrden.actualizarPuntaje(puntaje, unaRespuesta);
+        return puntaje;
     }
 
     @Override
-    public Boolean EsCorrecta(){
+    public Boolean EsCorrecta(Respuesta unaRespuesta){
         return true;
     }
 
@@ -26,6 +26,6 @@ public class RespuestaCorrecta implements Respuesta{
 
     @Override
     public String getOrdenParcial(){
-        return unOrden.getOrdenParcial();
+        return this.ordenParcial;
     }
 }
