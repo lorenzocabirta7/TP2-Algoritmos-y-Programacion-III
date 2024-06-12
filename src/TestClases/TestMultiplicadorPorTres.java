@@ -17,6 +17,7 @@ public class TestMultiplicadorPorTres {
         assertEquals(puntajeObtenido, PuntajeEsperado);
 
     }
+
     @org.junit.jupiter.api.Test
     public void test02TriplicadorSeActivaYDuplicaUnPuntajeDado() throws ModificadorSeUsaMasDeUnaVezException {
         int puntajeEsperado = 6;

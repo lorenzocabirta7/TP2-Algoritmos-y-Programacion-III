@@ -10,7 +10,7 @@ public class GeneradorDePreguntas {
         return instance;
     }
 
-    public void generarPreguntas() {
+    public void generarPreguntas(String path){
 
     }
 }

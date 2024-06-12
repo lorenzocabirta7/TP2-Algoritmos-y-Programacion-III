@@ -592,7 +592,7 @@ public class TestEntrega01 {
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("A",new ConOrdenParcial("A", "1"));
         RespuestaCorrecta respuesta2 = new RespuestaCorrecta("E",new ConOrdenParcial("E", "2"));
         RespuestaCorrecta respuesta3 = new RespuestaCorrecta("F",new ConOrdenParcial("F", "3"));
-        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("Z", new ConOrdenParcial("Z", "4"));
+        RespuestaCorrecta respuesta4 = new RespuestaCorrecta("Z",new ConOrdenParcial("Z", "4"));
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 

@@ -17,6 +17,8 @@ public class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
         int RespuestasCorrectas = 0;
         ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
 
+        //respuestasDelJugador.stream().mapToInt().sum()
+
         for (Respuesta respuestaDelJugador : respuestasDelJugador) {
             if (respuestaDelJugador.EsCorrecta()){
                 RespuestasCorrectas += 1;
@@ -27,7 +29,7 @@ public class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
         }
     }
 
-    public ArrayList<Respuesta> obtenerRespuestasCorrectas() {
+    private ArrayList<Respuesta> obtenerRespuestasCorrectas() {
 
         ArrayList<Respuesta> respuestasCorrectas = new ArrayList<>();
 

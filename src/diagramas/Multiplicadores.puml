@@ -11,8 +11,10 @@ class Jugador {
     +responder(Pregunta pregunta)
     -elegirRespuesta(ArrayList<Respuesta> respuestas)
     +modificarPuntaje(puntaje)
+    +activarTriplicadorDePuntaje()
     +activarDuplicadorDePuntaje()
 }
+
 Jugador -> MultiplicadorPorDos
 Jugador --> MultiplicadorPorTres
 

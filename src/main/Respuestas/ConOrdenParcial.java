@@ -22,6 +22,6 @@ public class ConOrdenParcial implements TipoDeOrden{
     }
 
     private Boolean EsLaMismaRespuesta(Respuesta unaRespuesta){
-        return(this.respuesta.equals(unaRespuesta.getEnunciado()) && (this.ordenParcial.equals( unaRespuesta.getOrdenParcial())));
+        return(this.respuesta.equals(unaRespuesta.getEnunciado()) && (this.ordenParcial.equals(unaRespuesta.getOrdenParcial())));
     }
 }

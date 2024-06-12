@@ -5,11 +5,10 @@ import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
 public class MultiplicadorPorTres {
     private int usosDisponibles;
     private int multiplicador = 3;
-    private MultiplicadorDePuntaje estado = new MultiplicadorDePuntajeDesactivado();;
+    private MultiplicadorDePuntaje estado = new MultiplicadorDePuntajeDesactivado();
 
     public MultiplicadorPorTres() {
         this.usosDisponibles = 1;
-
     }
 
     public void activar() throws ModificadorSeUsaMasDeUnaVezException {

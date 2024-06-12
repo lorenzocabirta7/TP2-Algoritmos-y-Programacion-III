@@ -45,6 +45,8 @@ public class AlgoJuego {
         //        //esperar a que el jugador responda
         //        jugador.confirmarRespuesta(preguntaActual);
         //    }
+        //     pregunta.puntarRespuestas(jugadores);
+        //
         //}
         //algoJuego.mostrarGanador();
     }
