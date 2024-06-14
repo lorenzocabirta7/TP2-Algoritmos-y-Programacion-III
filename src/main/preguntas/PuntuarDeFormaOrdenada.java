@@ -11,18 +11,20 @@ public class PuntuarDeFormaOrdenada implements FormaDePuntuar{
     public PuntuarDeFormaOrdenada(ArrayList<Respuesta> respuestasPosibles) {
         this.respuestas = respuestasPosibles;
     }
-
-    public void puntuar(ArrayList<Respuesta> respuestasDelJugador, Jugador unjugador){
+    @Override
+    public int puntuar(ArrayList<Respuesta> respuestas) {
         int RespuestasCorrectas = 0;
         int RespuestasCorrectasEsperadas = respuestas.size();
+        int puntosObtenidos = 0;
 
-        for (Respuesta respuesta : respuestasDelJugador) {
-            for(Respuesta respuestaPosible : respuestas){
+        for (Respuesta respuesta : respuestas) {
+            for(Respuesta respuestaPosible : this.respuestas){
                 RespuestasCorrectas += respuesta.actualizarPuntaje(1, respuestaPosible);
             }
         }
         if (RespuestasCorrectas == RespuestasCorrectasEsperadas) {
-            unjugador.modificarPuntaje(1);
+            puntosObtenidos = 1;
         }
+        return puntosObtenidos;
     }
 }

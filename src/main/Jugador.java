@@ -28,7 +28,7 @@ public class Jugador {
 
     public  void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
         respuestasDelJugador.add(respuestaElegida);
-        }
+    }
 
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);

@@ -12,23 +12,6 @@ public class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
         this.respuestas = respuestasPosibles;
     }
 
-    @Override
-    public void puntuar(ArrayList<Respuesta> respuestasDelJugador, Jugador unJugador) {
-        int RespuestasCorrectas = 0;
-        ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
-
-        //respuestasDelJugador.stream().mapToInt().sum()
-
-        for (Respuesta respuestaDelJugador : respuestasDelJugador) {
-            if (respuestaDelJugador.EsCorrecta(respuestaDelJugador)){
-                RespuestasCorrectas += 1;
-            }
-        }
-        if (RespuestasCorrectas == respuestasCorrectas.size()){
-            unJugador.modificarPuntaje(1);
-        }
-    }
-
     private ArrayList<Respuesta> obtenerRespuestasCorrectas() {
 
         ArrayList<Respuesta> respuestasCorrectas = new ArrayList<>();
@@ -39,5 +22,22 @@ public class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
             }
         }
         return respuestasCorrectas;
+    }
+
+    @Override
+    public int puntuar(ArrayList<Respuesta> respuestas) {
+        int RespuestasCorrectas = 0;
+        int puntosObtenidos = 0;
+        ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
+
+        for (Respuesta respuestaDelJugador : respuestas) {
+            if (respuestaDelJugador.EsCorrecta(respuestaDelJugador)){
+                RespuestasCorrectas += 1;
+            }
+        }
+        if (RespuestasCorrectas == respuestasCorrectas.size()){
+            puntosObtenidos = 1;
+        }
+        return puntosObtenidos;
     }
 }

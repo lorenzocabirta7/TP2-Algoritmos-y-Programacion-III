@@ -1,5 +1,5 @@
 package main.Anulador;
-/*
+
 import main.exceptions.AnuladorSeUsaMasDeUnaVez;
 
 public class Anulador {
@@ -23,4 +23,3 @@ public class Anulador {
     }
 
 }
-*/

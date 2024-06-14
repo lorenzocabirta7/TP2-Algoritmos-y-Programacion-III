@@ -1,5 +1,6 @@
 package TestClases;
 
+import main.Anulador.AnuladorClasico;
 import main.Respuestas.*;
 import main.Respuestas.Penalidad.PenalidadClasica;
 import main.preguntas.Pregunta;
@@ -28,7 +29,7 @@ public class TestPuntuarVerdaderoFalsoClasico {
         String enunciadoEsperado = enunciado;
         ArrayList<Respuesta> respuestasEsperadas = respuestas;
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());

@@ -6,19 +6,18 @@ import main.Respuestas.Respuesta;
 import java.util.ArrayList;
 
 public class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
-
     @Override
-    public void puntuar(ArrayList<Respuesta> respuestasDelJugador, Jugador unJugador) {
+    public int puntuar(ArrayList<Respuesta> respuestas) {
         int PuntajeObtenido = 0;
 
-        for (Respuesta respuestaDelJugador : respuestasDelJugador) {
+        for (Respuesta respuestaDelJugador : respuestas) {
             PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
         }
-        for (Respuesta respuestaDelJugador : respuestasDelJugador) {
+        for (Respuesta respuestaDelJugador : respuestas) {
             if (!respuestaDelJugador.EsCorrecta(respuestaDelJugador)){
                 PuntajeObtenido = 0;
             }
         }
-        unJugador.modificarPuntaje(PuntajeObtenido);
+        return PuntajeObtenido;
     }
 }
