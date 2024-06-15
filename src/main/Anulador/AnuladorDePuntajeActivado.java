@@ -1,7 +1,7 @@
-/*
+
 package main.Anulador;
 
-import main.Pregunta;
+import main.preguntas.*;
 
 public class AnuladorDePuntajeActivado implements AnuladorDePuntaje{
     @Override
@@ -14,4 +14,3 @@ public class AnuladorDePuntajeActivado implements AnuladorDePuntaje{
     public boolean estaActivo() {return true;}
 
 }
-*/

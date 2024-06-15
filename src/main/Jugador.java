@@ -1,10 +1,11 @@
 package main;
 
 import main.Respuestas.Respuesta;
-import main.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import main.modificadores.MultiplicadorPorDos;
 import main.modificadores.MultiplicadorPorTres;
 import main.preguntas.Pregunta;
+import main.Anulador.*;
+import main.exceptions.*;
 
 import java.util.ArrayList;
 
@@ -15,20 +16,22 @@ public class Jugador {
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
+    private Anulador anuladorDePuntaje;
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
         this.puntos = 0;
-        multiplicadorPorDos = new MultiplicadorPorDos();
-        multiplicadorPorTres = new MultiplicadorPorTres();
-        respuestasDelJugador = new ArrayList<>();
+        this.multiplicadorPorDos = new MultiplicadorPorDos();
+        this.multiplicadorPorTres = new MultiplicadorPorTres();
+        this.respuestasDelJugador = new ArrayList<>();
+        this.anuladorDePuntaje = new Anulador();
         //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
 
-    public  void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
+    public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
         respuestasDelJugador.add(respuestaElegida);
-        }
+    }
 
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
@@ -58,5 +61,10 @@ public class Jugador {
 
     public void confirmarRespuesta(Pregunta pregunta){
         pregunta.puntuar(respuestasDelJugador, this);
+    }
+
+    public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
+        pregunta.jugadorUsoAnulador(this);
+        this.anuladorDePuntaje.activar();
     }
 }

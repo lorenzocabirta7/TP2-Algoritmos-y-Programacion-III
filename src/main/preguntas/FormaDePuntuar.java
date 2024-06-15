@@ -1,10 +1,11 @@
 package main.preguntas;
 
+import main.Anulador.GestorAnulador;
 import main.Jugador;
 import main.Respuestas.Respuesta;
 
 import java.util.ArrayList;
 
 public interface FormaDePuntuar {
-    public void puntuar(ArrayList<Respuesta> respuestas, Jugador unJugador);
+    public int puntuar(ArrayList<Respuesta> respuestas);
 }

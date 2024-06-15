@@ -1,6 +1,8 @@
 package Tests.Entrega01;
 
 import main.*;
+import main.Anulador.AnuladorClasico;
+import main.Anulador.AnuladorPenalidad;
 import main.Respuestas.*;
 import main.Respuestas.Penalidad.PenalidadClasica;
 import main.Respuestas.Penalidad.PenalidadConPenalidad;
@@ -34,7 +36,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -79,7 +81,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuestaDeLaPregunta1);
         respuestasPosibles.add(respuestaDeLaPregunta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -123,7 +125,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -172,7 +174,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -217,7 +219,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoPenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoPenalidad(), new AnuladorPenalidad());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -255,7 +257,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuestaALaPregunta1);
         respuestasPosibles.add(respuestaALaPregunta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoPenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoPenalidad(), new AnuladorPenalidad());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -300,7 +302,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad(), new AnuladorPenalidad());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -348,7 +350,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad(), new AnuladorPenalidad());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -397,7 +399,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -445,7 +447,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -494,7 +496,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial(), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -544,7 +546,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -603,14 +605,14 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles),new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
 
         Respuesta respuesta1DelJugador1 = new RespuestaAVerificar("A","1");
-        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("E","3");
         Respuesta respuesta3DelJugador1 = new RespuestaAVerificar("F","2");
+        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("E","3");
         Respuesta respuesta4DelJugador1 = new RespuestaAVerificar("Z","4");
 
 
@@ -620,8 +622,8 @@ public class TestEntrega01 {
         jugador1.responder(pregunta, respuesta4DelJugador1);
 
         Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","4");
-        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("E","3");
         Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("F", "2");
+        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("E","3");
         Respuesta respuesta4DelJugador2 = new RespuestaAVerificar("Z","1");
 
         jugador2.responder(pregunta, respuesta1DelJugador2);
@@ -662,7 +664,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -721,7 +723,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles),new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -780,7 +782,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -839,7 +841,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
