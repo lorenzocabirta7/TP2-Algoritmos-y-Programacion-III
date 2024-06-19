@@ -1,12 +1,15 @@
-package Tests.Entrega01;
+package edu.fiuba.algo3.entrega_1;
 
-import main.*;
-import main.Anulador.AnuladorClasico;
-import main.Anulador.AnuladorPenalidad;
-import main.Respuestas.*;
-import main.Respuestas.Penalidad.PenalidadClasica;
-import main.Respuestas.Penalidad.PenalidadConPenalidad;
-import main.preguntas.*;
+
+import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
+import edu.fiuba.algo3.modelo.Anulador.AnuladorPenalidad;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
+import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
+import edu.fiuba.algo3.modelo.preguntas.*;
 
 import java.util.ArrayList;
 
