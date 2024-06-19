@@ -36,9 +36,6 @@ respuestaElegida --> pregunta: true
 
 pregunta -> respuestaElegida: actualizarPuntaje(1)
 
-
-
-
 'respuesta = seleccionarOpcion(Opciones): Respuesta'
 'pregunta puntuar(respuesta, jugador1)'
 

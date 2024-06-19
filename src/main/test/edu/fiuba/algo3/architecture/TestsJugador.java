@@ -53,7 +53,7 @@ public class TestsJugador {
     }
 
     @Test
-    public void test04JugadorSeLeModificaElPuntajePorSeisDespuesDeUsarUnBonificador() throws ModificadorSeUsaMasDeUnaVezException {
+    public void test04JugadorSeLeModificaElPuntajePorSeisDespuesDeUsarDosBonificadores() throws ModificadorSeUsaMasDeUnaVezException {
 
         int puntajeEsperado = 6;
         Jugador jugador1 = new Jugador("Spirulina");
