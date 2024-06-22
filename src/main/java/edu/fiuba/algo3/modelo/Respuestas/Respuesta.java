@@ -6,7 +6,7 @@ public interface Respuesta {
 
     public Boolean EsCorrecta(Respuesta unaRespuesta);
 
-    public String getEnunciado();
+    public String getRespuesta();
 
     public String getOrdenParcial();
 }

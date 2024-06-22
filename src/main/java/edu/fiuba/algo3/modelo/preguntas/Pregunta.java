@@ -44,6 +44,15 @@ public class Pregunta {
     }
 
     public void anulate(){this.gestor.activar();}
+
+    @Override
+    public String toString() {
+        return "Pregunta {" +
+                "enunciado = '" + enunciado + '\'' +
+                "Respuestas = " + respuestas +
+                ", FormaDePuntuar = '" + unaFormaDePuntuar + '\'' +
+                '}';
+    }
 }
 
 

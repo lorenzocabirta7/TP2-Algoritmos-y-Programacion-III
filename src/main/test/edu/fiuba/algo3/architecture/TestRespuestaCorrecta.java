@@ -13,7 +13,7 @@ public class TestRespuestaCorrecta {
 
         Respuesta respuesta1 = new RespuestaCorrecta("enunciado De Prueba", "0");
 
-        String enunciadoObtenido = respuesta1.getEnunciado();
+        String enunciadoObtenido = respuesta1.getRespuesta();
         String ordenObtenido = respuesta1.getOrdenParcial();
 
         assertEquals(enunciadoEsperado, enunciadoObtenido);

@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Respuestas;
 
 public class RespuestaCorrecta implements Respuesta {
-    private String enunciado;
+    private String respuesta;
     private String ordenParcial;
 
     public RespuestaCorrecta(String enunciadoRespuesta, String unOrden){
-        this.enunciado = enunciadoRespuesta;
+        this.respuesta = enunciadoRespuesta;
         this.ordenParcial = unOrden;
     }
 
@@ -20,12 +20,21 @@ public class RespuestaCorrecta implements Respuesta {
     }
 
     @Override
-    public String getEnunciado(){
-        return enunciado;
+    public String getRespuesta(){
+        return respuesta;
     }
 
     @Override
     public String getOrdenParcial(){
         return this.ordenParcial;
     }
+
+    @Override
+    public String toString() {
+        return "Respuesta{" +
+                "enunciado='" + respuesta + '\'' +
+                ", ordenParcial='" + ordenParcial + '\'' +
+                '}';
+    }
+
 }

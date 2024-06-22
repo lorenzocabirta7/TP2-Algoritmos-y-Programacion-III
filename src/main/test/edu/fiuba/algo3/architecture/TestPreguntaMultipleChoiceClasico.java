@@ -27,7 +27,7 @@ public class TestPreguntaMultipleChoiceClasico {
 
         PreguntaMultipleChoiceClasico.java pregunta = new PreguntaMultipleChoiceClasico.java(enunciado, respuestas);
 
-        assertEquals(enunciadoEsperado, pregunta.getEnunciado());
+        assertEquals(enunciadoEsperado, pregunta.getOrdenParcial());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());
     }
 }

@@ -22,13 +22,21 @@ public class RespuestaIncorrecta implements Respuesta {
     }
 
     @Override
-    public String getEnunciado(){
+    public String getRespuesta(){
         return enunciado;
     }
 
     @Override
     public String getOrdenParcial(){
         return "0"; //el cero indica que NO hay orden parcial.
+    }
+
+    @Override
+    public String toString() {
+        return "Respuesta{" +
+                "enunciado='" + enunciado + '\'' +
+                ", tipoDePenalidad='" + tipoDePenalidad + '\'' +
+                '}';
     }
 
 }
