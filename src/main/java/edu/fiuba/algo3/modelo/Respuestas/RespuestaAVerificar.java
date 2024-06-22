@@ -31,7 +31,7 @@ public class RespuestaAVerificar implements Respuesta{
     }
 
     private Boolean EsLaMismaRespuesta(Respuesta unaRespuesta){
-        return(this.respuesta.equals(unaRespuesta.getEnunciado()) && (this.OrdenParcial.equals(unaRespuesta.getOrdenParcial())));
+        return(this.respuesta.equals(unaRespuesta.getRespuesta()) && (this.OrdenParcial.equals(unaRespuesta.getOrdenParcial())));
     }
 
     @Override
@@ -40,7 +40,16 @@ public class RespuestaAVerificar implements Respuesta{
     }
 
     @Override
-    public String getEnunciado(){
+    public String getRespuesta(){
         return this.respuesta;
     }
+
+    @Override
+    public String toString() {
+        return "Respuesta{" +
+                "enunciado='" + respuesta + '\'' +
+                ", ordenParcial='" + OrdenParcial + '\'' +
+                '}';
+    }
+
 }

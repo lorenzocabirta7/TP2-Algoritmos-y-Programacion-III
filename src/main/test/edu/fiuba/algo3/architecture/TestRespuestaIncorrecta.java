@@ -17,7 +17,7 @@ public class TestRespuestaIncorrecta {
 
         Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
 
-        String enunciadoObtenido = respuesta1.getEnunciado();
+        String enunciadoObtenido = respuesta1.getRespuesta();
         String ordenObtenido = respuesta1.getOrdenParcial();
 
         assertEquals(enunciadoEsperado, enunciadoObtenido);

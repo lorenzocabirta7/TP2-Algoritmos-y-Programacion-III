@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PuntuarVerdaderoFalsoClasico implements FormaDePuntuar {
     @Override
     public int puntuar(ArrayList<Respuesta> respuestas) {
-        Respuesta respuestaDelJugador = respuestas.get(0); //sabemos que para verdadero falso solo nos llega una respuesta por eso agarramos la primera.
+        Respuesta respuestaDelJugador = respuestas.get(0); //sabemos que para verdadero falso solo nos llega una ordenParcial por eso agarramos la primera.
         return respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
     }
 }
