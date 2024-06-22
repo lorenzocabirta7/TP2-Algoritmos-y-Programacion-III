@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.DTO;
 
 import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
@@ -56,10 +55,10 @@ public class ProcesarDTO {
 
         for (int i = 1; i <= opcionesTotales; i++) {
             String indice = String.valueOf(i);
-            String opcion = ObtenerOpcionPorOrdenParcial(pregunta, indice);
+            String opcion = ObtenerOpcionPorPosicion(pregunta, indice);
             if (opcion != null) {
                 if (indicesDeRespuestasCorrectas.contains(indice)) { //si la respuesta es de tipo correcta.
-                    Respuesta respuestaCorrecta = new RespuestaCorrecta(opcion, indice);
+                    Respuesta respuestaCorrecta = new RespuestaCorrecta(opcion, String.valueOf(indicesDeRespuestasCorrectas.indexOf(indice)+ 1));
                     respuestasTotales.add(respuestaCorrecta);
                 } else {
                     TipoDePenalidadDTO tipoDePenalidad = new TipoDePenalidadDTO();
@@ -89,8 +88,7 @@ public class ProcesarDTO {
            String[] indices = respuestasDelGrupo.split(",");
 
            for (String indice : indices) {
-               String unaRespuesta = ObtenerOpcionPorOrdenParcial(pregunta, indice);
-
+               String unaRespuesta = ObtenerOpcionPorPosicion(pregunta, indice);
                Respuesta respuesta = new RespuestaCorrecta(unaRespuesta, grupoEspecifico);
                respuestas.add(respuesta);
            }
@@ -99,8 +97,8 @@ public class ProcesarDTO {
    }
 
 
-    private static String ObtenerOpcionPorOrdenParcial(PreguntaDTO pregunta, String ordenParcial) {
-        switch (ordenParcial) {
+    private static String ObtenerOpcionPorPosicion(PreguntaDTO pregunta, String numeroOpcion) {
+        switch (numeroOpcion) {
             case "1":
                 return pregunta.getOpcion1();
             case "2":
@@ -114,7 +112,7 @@ public class ProcesarDTO {
             case "6":
                 return pregunta.getOpcion6();
             default:
-                return null;
+                return null; //lanzar excepcion
         }
     }
 }
