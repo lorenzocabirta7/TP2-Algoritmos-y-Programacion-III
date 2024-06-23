@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;

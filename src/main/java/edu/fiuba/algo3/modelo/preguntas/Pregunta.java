@@ -32,7 +32,6 @@ public class Pregunta {
 
     public void jugadorUsoAnulador(Jugador jugador) {
         unaFormaDePuntuar.agregarJugadorQueUsoAnulador(jugador);
-        //this.anuladoresDeJugadores.add(anulador);
     }
 
     @Override

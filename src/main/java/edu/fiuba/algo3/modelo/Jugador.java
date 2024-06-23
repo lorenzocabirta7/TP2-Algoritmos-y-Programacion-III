@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Anulador.*;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
 import edu.fiuba.algo3.modelo.exceptions.*;
+import edu.fiuba.algo3.modelo.Exclusividad.*;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,8 @@ public class Jugador {
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
-    private GestorAnulador gestor;
+    private GestorAnulador gestorAnulador;
+    private GestorExclusividad gestorExclusividad;
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
@@ -25,7 +27,8 @@ public class Jugador {
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
-        this.gestor = new GestorAnulador();
+        this.gestorAnulador = new GestorAnulador();
+        this.gestorExclusividad = new GestorExclusividad();
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
@@ -63,6 +66,10 @@ public class Jugador {
     }
 
     public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
-        this.gestor.gestarActivacion(pregunta,this);
+        this.gestorAnulador.gestarActivacion(pregunta,this);
+    }
+
+    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces {
+        this.gestorExclusividad.gestarActivacion(pregunta,this);
     }
 }

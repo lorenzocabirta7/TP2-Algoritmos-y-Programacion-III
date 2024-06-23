@@ -14,4 +14,5 @@ public abstract class FormaDePuntuar {
     public void agregarJugadorQueUsoAnulador(Jugador jugador){
         this.jugadoresQueUsaronAnulador.add(jugador);
     }
+
 }

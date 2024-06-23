@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 
-import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
-import edu.fiuba.algo3.modelo.Anulador.AnuladorPenalidad;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;

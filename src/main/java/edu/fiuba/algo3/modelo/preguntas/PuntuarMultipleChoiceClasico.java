@@ -4,8 +4,6 @@ import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
-import java.util.ArrayList;
-
 public class PuntuarMultipleChoiceClasico extends FormaDePuntuar{
     private ArrayList<Respuesta> respuestas;
     private Anulador anulador = new AnuladorClasico();

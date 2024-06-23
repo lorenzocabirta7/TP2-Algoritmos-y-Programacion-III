@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.DTO;
 
-import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
