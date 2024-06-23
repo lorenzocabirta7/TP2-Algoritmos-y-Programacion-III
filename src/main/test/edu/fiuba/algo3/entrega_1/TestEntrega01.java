@@ -33,7 +33,7 @@ public class TestEntrega01 {
 
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaCorrecta, new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -879,6 +879,165 @@ public class TestEntrega01 {
         assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
 
+    }
+
+    @org.junit.jupiter.api.Test
+    public void Test18DosJugadoresJueganUnaPartidaDe3Preguntas(){
+
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 2;
+
+
+
+        //Preparamos un arreglo con las preguntas que se van a jugar
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        Respuesta respuesta1 = new RespuestaCorrecta("A","Letras");
+        Respuesta respuesta2 = new RespuestaCorrecta("M","Letras");
+        Respuesta respuesta3 = new RespuestaCorrecta("0","Numeros");
+        Respuesta respuesta4 = new RespuestaCorrecta("2","Numeros");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta1 = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
+
+        String enunciado2 = "Colocar estas letras en orden alfabetico, [E, A ,Z, F]";
+
+        Respuesta respuesta1Pregunta2 = new RespuestaCorrecta("A", "1");
+        Respuesta respuesta2Pregunta2 = new RespuestaCorrecta("E","2");
+        Respuesta respuesta3Pregunta2 = new RespuestaCorrecta("F", "3");
+        Respuesta respuesta4Pregunta2 = new RespuestaCorrecta("Z", "4");
+
+        ArrayList<Respuesta> respuestasPosibles2 = new ArrayList<Respuesta>();
+
+        respuestasPosibles2.add(respuesta1Pregunta2);
+        respuestasPosibles2.add(respuesta2Pregunta2);
+        respuestasPosibles2.add(respuesta3Pregunta2);
+        respuestasPosibles2.add(respuesta4Pregunta2);
+
+        Pregunta pregunta2 = new Pregunta(enunciado2, respuestasPosibles2, new PuntuarDeFormaOrdenada(respuestasPosibles2), new AnuladorClasico());
+
+        String enunciado3 = "Estamos en el año 2024?";
+        String enunciadoRespuestaCorrecta = "SI";
+        String enunciadoRespuestaIncorrecta = "NO";
+
+        RespuestaCorrecta respuesta1Pregunta3 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
+        RespuestaIncorrecta respuesta2Pregunta3 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+
+
+
+        ArrayList<Respuesta> respuestasPosibles3 = new ArrayList<>();
+
+
+        respuestasPosibles3.add(respuesta1Pregunta3);
+        respuestasPosibles3.add(respuesta2Pregunta3);
+
+        Pregunta pregunta3 = new Pregunta(enunciado3, respuestasPosibles3, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+
+
+        ArrayList<Pregunta> preguntasDelJuego = new ArrayList<>();
+
+        preguntasDelJuego.add(pregunta1);
+        preguntasDelJuego.add(pregunta2);
+        preguntasDelJuego.add(pregunta3);
+
+
+
+        //empieza el juego ahora
+
+
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+
+
+        Pregunta preguntaAResponder = preguntasDelJuego.get(0);
+
+        Respuesta respuesta1DelJugador1 = new RespuestaAVerificar("A","Numeros");
+        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("M","Numeros");
+        Respuesta respuesta3DelJugador1 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador1 = new RespuestaAVerificar("2","Numeros");
+
+        jugador1.responder(preguntaAResponder, respuesta1DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta2DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta3DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta4DelJugador1);
+
+        Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador2 = new RespuestaAVerificar("2","Numeros");
+
+        jugador2.responder(preguntaAResponder, respuesta1DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta2DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta3DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta4DelJugador2);
+
+        jugador1.confirmarRespuesta(preguntaAResponder);
+        jugador2.confirmarRespuesta(preguntaAResponder);
+
+        //se mostrarian aca los puntajes
+        //int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        //int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+
+        preguntaAResponder = preguntasDelJuego.get(1);
+
+        jugador1.ResetRespuestas();
+        jugador2.ResetRespuestas();
+
+        respuesta1DelJugador1 = new RespuestaAVerificar("A","1");
+        respuesta2DelJugador1 = new RespuestaAVerificar("E","2");
+        respuesta3DelJugador1 = new RespuestaAVerificar("F","3");
+        respuesta4DelJugador1 = new RespuestaAVerificar("Z","4");
+
+        jugador1.responder(preguntaAResponder, respuesta1DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta2DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta3DelJugador1);
+        jugador1.responder(preguntaAResponder, respuesta4DelJugador1);
+
+        respuesta1DelJugador2 = new RespuestaAVerificar("A","1");
+        respuesta2DelJugador2 = new RespuestaAVerificar("E","3");
+        respuesta3DelJugador2 = new RespuestaAVerificar("F","2");
+        respuesta4DelJugador2 = new RespuestaAVerificar("Z","4");
+
+        jugador2.responder(preguntaAResponder, respuesta1DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta2DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta3DelJugador2);
+        jugador2.responder(preguntaAResponder, respuesta4DelJugador2);
+
+        jugador1.confirmarRespuesta(preguntaAResponder);
+        jugador2.confirmarRespuesta(preguntaAResponder);
+
+        //se mostrarian aca los puntajes
+        //int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        //int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        preguntaAResponder = preguntasDelJuego.get(2);
+
+        jugador1.ResetRespuestas();
+        jugador2.ResetRespuestas();
+
+        Respuesta respuestaDelJugador1 = new RespuestaCorrecta("SI", "0");
+        Respuesta respuestaDelJugador2 = new RespuestaCorrecta("SI", "0");
+
+        jugador1.responder(preguntaAResponder, respuestaDelJugador1);
+        jugador2.responder(preguntaAResponder, respuestaDelJugador2);
+
+        jugador1.confirmarRespuesta(preguntaAResponder);
+        jugador2.confirmarRespuesta(preguntaAResponder);
+
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
     }
 
 }

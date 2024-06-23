@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.Juego;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,8 +13,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage scene) {
+        Juego juego = new Juego();
+        juego.iniciar();
+
         // Crear los elementos de la interfaz
 
+/*
         Label labelEnunciado = new Label("[Enunciado]");
         Label labelTipoDePregunta = new Label("[Tipo de Pregunta]");
 
@@ -58,6 +63,10 @@ public class Main extends Application {
         scene.setScene(layoutPregunta);
         scene.setTitle("Algo Preguntados");
         scene.show();
+
+
+ */
+
     }
 
     public static void main(String[] args) {

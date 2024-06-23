@@ -68,4 +68,8 @@ public class Jugador {
         pregunta.jugadorUsoAnulador(this);
         this.anuladorDePuntaje.activar();
     }
+
+    public void ResetRespuestas(){
+        this.respuestasDelJugador = new ArrayList<>();
+    }
 }
