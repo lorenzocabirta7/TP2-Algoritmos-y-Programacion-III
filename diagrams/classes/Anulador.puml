@@ -1,0 +1,33 @@
+@startuml
+interface Anulador {
+    +activar(): void
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+class AnuladorClasico implements Anulador{
+    -estado: EstadoAnulador
+    +activar(): void
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+class AnuladorClasicoActivado implements EstadoAnulador {
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+class AnuladorDesactivado implements EstadoAnulador{
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+
+class AnuladorPenalidad implements Anulador {
+    -estado: EstadoAnulador
+    +activar(): void
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+class AnuladorActivado implements EstadoAnulador{
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+interface EstadoAnulador {
+    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
+}
+
+AnuladorClasico --> EstadoAnulador
+AnuladorPenalidad --> EstadoAnulador
+
+@enduml
