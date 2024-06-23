@@ -64,9 +64,9 @@ public class TestAnulador {
         jugador2.responder(pregunta, respuesta1);
         jugador3.responder(pregunta, respuesta2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -106,9 +106,9 @@ public class TestAnulador {
         jugador2.responder(pregunta, respuesta1);
         jugador3.responder(pregunta, respuesta1);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -150,10 +150,9 @@ public class TestAnulador {
         jugador2.responder(pregunta, respuesta1);
         jugador3.responder(pregunta, respuesta1);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador2);
-
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -189,8 +188,8 @@ public class TestAnulador {
         jugador1.responder(pregunta, respuesta1);
         jugador2.responder(pregunta, respuesta1);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -224,8 +223,8 @@ public class TestAnulador {
         jugador1.responder(pregunta, respuesta2);
         jugador2.responder(pregunta, respuesta1);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -266,10 +265,10 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuesta1);
         jugador4.responder(pregunta, respuesta2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
-        pregunta.puntuar(jugador4.obtenerRespuestas(), jugador4);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+        jugador4.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -321,14 +320,13 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta3);
         jugador3.responder(pregunta, respuestaDeLaPregunta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
-
 
         assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
@@ -374,9 +372,9 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta3);
         jugador3.responder(pregunta, respuestaDeLaPregunta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -430,9 +428,9 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta3);
         jugador3.responder(pregunta, respuestaDeLaPregunta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -479,9 +477,9 @@ public class TestAnulador {
         jugador3.responder(pregunta,respuesta1);
         jugador3.responder(pregunta,respuesta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -526,9 +524,9 @@ public class TestAnulador {
         jugador3.responder(pregunta,respuesta1);
         jugador3.responder(pregunta,respuesta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -574,9 +572,9 @@ public class TestAnulador {
         jugador3.responder(pregunta,respuesta1);
         jugador3.responder(pregunta,respuesta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
@@ -625,14 +623,13 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta3);
         jugador3.responder(pregunta, respuestaDeLaPregunta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
-
 
         assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
@@ -675,14 +672,13 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta3);
         jugador3.responder(pregunta, respuestaDeLaPregunta4);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
-
 
         assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
@@ -726,14 +722,13 @@ public class TestAnulador {
         jugador3.responder(pregunta, respuestaDeLaPregunta1);
         jugador3.responder(pregunta, respuestaDeLaPregunta2);
 
-        pregunta.puntuar(jugador1.obtenerRespuestas(), jugador1);
-        pregunta.puntuar(jugador2.obtenerRespuestas(), jugador2);
-        pregunta.puntuar(jugador3.obtenerRespuestas(), jugador3);
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
 
         int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
         int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
         int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
-
 
         assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
