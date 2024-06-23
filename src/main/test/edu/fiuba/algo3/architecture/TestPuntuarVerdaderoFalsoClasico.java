@@ -32,7 +32,7 @@ public class TestPuntuarVerdaderoFalsoClasico {
         String enunciadoEsperado = enunciado;
         ArrayList<Respuesta> respuestasEsperadas = respuestas;
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico());
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());

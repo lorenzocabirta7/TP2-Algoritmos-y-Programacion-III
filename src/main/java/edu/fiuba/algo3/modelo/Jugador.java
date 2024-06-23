@@ -1,12 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Anulador.Anulador;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
-import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
-import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorDos;
-import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorTres;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+
+import edu.fiuba.algo3.modelo.modificadores.*;
+import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Respuestas.*;
+import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.modelo.exceptions.*;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class Jugador {
     //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
-    private Anulador anuladorDePuntaje;
+    private GestorAnulador gestor;
     private ArrayList<Respuesta> respuestasDelJugador;
 
     public Jugador(String nombreJugador) {
@@ -26,8 +25,7 @@ public class Jugador {
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
-        this.anuladorDePuntaje = new Anulador();
-        //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
+        this.gestor = new GestorAnulador();
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
@@ -65,7 +63,6 @@ public class Jugador {
     }
 
     public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
-        pregunta.jugadorUsoAnulador(this);
-        this.anuladorDePuntaje.activar();
+        this.gestor.gestarActivacion(pregunta,this);
     }
 }

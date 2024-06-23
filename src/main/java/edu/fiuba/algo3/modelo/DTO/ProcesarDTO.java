@@ -22,14 +22,14 @@ public class ProcesarDTO {
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar , new AnuladorClasico());
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            } else {
                ArrayList<Respuesta> respuestasPregunta = procesarPreguntasNormales(pregunta);
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar, new AnuladorClasico());
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            }
        }

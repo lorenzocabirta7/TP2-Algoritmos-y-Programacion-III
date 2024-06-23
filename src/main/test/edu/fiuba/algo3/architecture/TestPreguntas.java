@@ -30,7 +30,7 @@ public class TestPreguntas {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciadoEsperado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+        Pregunta pregunta = new Pregunta(enunciadoEsperado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico());
 
         String enunciadoObtenido = pregunta.getEnunciado();
         ArrayList<Respuesta> respuestasObtenidas = pregunta.respuestasPosibles();
@@ -51,7 +51,7 @@ public class TestPreguntas {
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico());
 
         Jugador jugador = new Jugador("Jugador 1");
         RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
@@ -75,7 +75,7 @@ public class TestPreguntas {
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarVerdaderoFalsoClasico());
 
         Jugador jugador = new Jugador("Jugador 1");
         RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta(enunciadoRespuestaCorrecta, new PenalidadClasica());

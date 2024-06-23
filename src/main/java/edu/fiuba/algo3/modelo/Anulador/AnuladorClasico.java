@@ -1,29 +1,18 @@
 package edu.fiuba.algo3.modelo.Anulador;
 
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.*;
 
 import java.util.ArrayList;
 
-public class AnuladorClasico extends GestorAnulador {
-    @Override
-    public int puntosLuegoDeEvaluacion(int puntajeNoAnulado, ArrayList<Jugador> jugaodoresQueUsaronAnulador, Jugador unJugador){
-        int puntosObtenidos = puntajeNoAnulado;
-        if (this.activado) {
-            boolean jugadorEncontrado = false;
-            if (jugaodoresQueUsaronAnulador.size() == 1) {
-                for (Jugador jugador : jugaodoresQueUsaronAnulador) {
-                    if (jugador == unJugador) {
-                        jugadorEncontrado = true;
-                        break;
-                    }
-                }
-                if (!jugadorEncontrado){
-                    puntosObtenidos = 0;
-                }
-            }else {
-                puntosObtenidos = 0;
-            }
-        }
-        return puntosObtenidos;
+public class AnuladorClasico implements Anulador{
+    private EstadoAnulador estado = new AnuladorDesactivado();
+
+    public void activar() {
+        this.estado = new AnuladorClasicoActivado();
     }
+
+    public int puntosLuegoDeEvaluacion(int puntajeNoAnulado, ArrayList<Jugador> jugaodoresQueUsaronAnulador, Jugador unJugador) {
+        return estado.puntosLuegoDeEvaluacion(puntajeNoAnulado,jugaodoresQueUsaronAnulador, unJugador);
+    }
+
 }
