@@ -14,7 +14,6 @@ public class Jugador {
 
     private String nombre;
     private int puntos;
-    //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
     private GestorAnulador gestorAnulador;

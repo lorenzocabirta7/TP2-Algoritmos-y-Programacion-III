@@ -37,11 +37,11 @@ interface MultiplicadorDePuntaje {
 }
 
 class MultiplicadorDePuntajeActivado implements MultiplicadorDePuntaje {
-
+    +modificarPuntaje(puntaje: int, multiplicador: int): int
 }
 
 class MultiplicadorDePuntajeDesactivado implements MultiplicadorDePuntaje {
-
+    +modificarPuntaje(puntaje: int, multiplicador: int): int
 }
 
 

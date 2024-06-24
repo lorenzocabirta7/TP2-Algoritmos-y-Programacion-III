@@ -26,8 +26,53 @@ class AnuladorActivado implements EstadoAnulador{
 interface EstadoAnulador {
     +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
 }
+class Pregunta {
+    - String: enunciado
+    - ArrayList: respuestas
+
+    +{static}Pregunta(String: enunciado, ArrayList: respuestas, FormaDePuntuar: tipoDePregunta)
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+    + respuestasPosibles() ArrayList: respuestas
+    + getEnunciado() String: enunciado
+}
+
+interface FormaDePuntuar {
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarDeFormaOrdenada implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarMultipleChoicePenalidad implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarVerdaderoFalsoClasico implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+class PuntuarVerdaderoFalsoPenalidad implements FormaDePuntuar{
+    + puntuar(ArrayList: respuestas, Jugador: unJugador)
+}
+
+PuntuarDeFormaOrdenada --> Anulador
+PuntuarMultipleChoiceClasico --> Anulador
+PuntuarMultipleChoiceParcial  --> Anulador
+PuntuarMultipleChoicePenalidad  --> Anulador
+PuntuarVerdaderoFalsoPenalidad  --> Anulador
+PuntuarVerdaderoFalsoClasico  --> Anulador
+PuntuarDeFormaOrdenada  --> Anulador
 
 AnuladorClasico --> EstadoAnulador
 AnuladorPenalidad --> EstadoAnulador
-
+Pregunta *- FormaDePuntuar
 @enduml
