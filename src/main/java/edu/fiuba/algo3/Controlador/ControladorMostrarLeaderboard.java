@@ -18,14 +18,16 @@ public class ControladorMostrarLeaderboard {
     }
 
     public ArrayList<Label> MostrarLeaderboard() {
-        ArrayList<String> arregloJugadores = modelo.ConseguirJugadores();
-        ArrayList<Label> nombresJugadores = new ArrayList<>();
+        ArrayList<String> arregloJugadores = modelo.ConseguirTodosLosJugadores();
+        ArrayList<Integer> arregloPuntajeJugadores = modelo.ConseguirTodosLosPuntajes();
+        ArrayList<Label> jugadores = new ArrayList<>();
 
-        for (String jugador : arregloJugadores) {
-            nombresJugadores.add(new Label(jugador));
 
+        for (int i = 0; i < arregloJugadores.size(); i++) {
+            String jugadorConPuntaje = arregloJugadores.get(i) + (" " + (arregloPuntajeJugadores.get(i)) );
+            jugadores.add(new Label(jugadorConPuntaje));
         }
-    return nombresJugadores;
+    return jugadores;
     }
 
 }

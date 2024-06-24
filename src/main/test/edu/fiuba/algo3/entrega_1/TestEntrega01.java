@@ -968,6 +968,8 @@ public class TestEntrega01 {
         jugador1.responder(preguntaAResponder, respuesta3DelJugador1);
         jugador1.responder(preguntaAResponder, respuesta4DelJugador1);
 
+        jugador1.confirmarRespuesta(preguntaAResponder);
+
         Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","Letras");
         Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("M","Letras");
         Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("0","Numeros");
@@ -978,7 +980,7 @@ public class TestEntrega01 {
         jugador2.responder(preguntaAResponder, respuesta3DelJugador2);
         jugador2.responder(preguntaAResponder, respuesta4DelJugador2);
 
-        jugador1.confirmarRespuesta(preguntaAResponder);
+
         jugador2.confirmarRespuesta(preguntaAResponder);
 
         //se mostrarian aca los puntajes

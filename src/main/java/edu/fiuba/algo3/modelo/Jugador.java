@@ -19,6 +19,7 @@ public class Jugador {
     private MultiplicadorPorTres multiplicadorPorTres;
     private Anulador anuladorDePuntaje;
     private ArrayList<Respuesta> respuestasDelJugador;
+    private String ordenParcialRespuestas;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
@@ -27,6 +28,7 @@ public class Jugador {
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
         this.anuladorDePuntaje = new Anulador();
+        this.ordenParcialRespuestas = "1";
         //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
     }
 
@@ -71,5 +73,14 @@ public class Jugador {
 
     public void ResetRespuestas(){
         this.respuestasDelJugador = new ArrayList<>();
+        this.ordenParcialRespuestas = "1";
+    }
+
+    public String obtenerOrdenParcial(){
+        String ordenActual = ordenParcialRespuestas;
+        int ordenNumerico = Integer.parseInt(this.ordenParcialRespuestas);
+        ordenNumerico = ordenNumerico + 1;
+        ordenParcialRespuestas = ordenNumerico + "";
+        return ordenActual;
     }
 }
