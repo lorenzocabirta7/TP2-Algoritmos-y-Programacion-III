@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import java.util.ArrayList;
 
 public class Pregunta {
-
     private String enunciado;
     private ArrayList<Respuesta> respuestas;
     private ArrayList<Jugador> jugaodoresQueUsaronAnulador;

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import com.google.gson.Gson;
 import edu.fiuba.algo3.modelo.DTO.PreguntaDTO;
 import edu.fiuba.algo3.modelo.DTO.ProcesarDTO;
+import edu.fiuba.algo3.modelo.exceptions.YaJugaronTodosLosJugadores;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.Random;
 public class Modelo {
     private ArrayList<Jugador> jugadores;
     private ArrayList<Pregunta> preguntas;
-    private Jugador jugadorActual;
     private Pregunta preguntaActual;
     private Jugada jugadaActual;
 
@@ -23,6 +23,10 @@ public class Modelo {
         this.jugadores = new ArrayList<>();
         this.procesarPreguntas();
         this.jugadaActual = iniciarJugada();
+    }
+
+    public Jugada iniciarJugada(){
+        return new Jugada(jugadores, preguntaActual);
     }
 
     public void agregarJugador(String nombreJugador) {
@@ -58,15 +62,6 @@ public class Modelo {
         preguntaActual = preguntas.get(indiceRandom);
     }
 
-    private void conseguirJugadorInicial(){
-        Random random = new Random();
-
-        int indiceRandom = random.nextInt(jugadores.size());
-
-        this.jugadorActual = jugadores.get(indiceRandom);
-
-    }
-
     public Pregunta ConseguirPregunta(){
         Pregunta pregunta1 = preguntaActual;
         this.BuscarPregunta();
@@ -74,12 +69,7 @@ public class Modelo {
     }
 
     public Jugador conseguirJugador(){
-        if (jugadorActual == null){
-            this.conseguirJugadorInicial();
-        }
-        Jugador jugador1 = jugadorActual;
-        this.conseguirJugadorInicial();
-        return jugadorActual;
+        return jugadaActual.conseguirJugador();
     }
 
     public ArrayList<String> ConseguirTodosLosJugadores(){
@@ -98,13 +88,7 @@ public class Modelo {
         return puntajesADevolver;
     }
 
-    public Jugada iniciarJugada(){
-        Jugada jugadaActual = new Jugada(jugadorActual, preguntaActual);
-        return jugadaActual;
+    public Jugador SiguienteJugador() throws YaJugaronTodosLosJugadores {
+        return jugadaActual.siguienteJugador();
     }
-
-
-//    public Jugador conseguirUnJugador(){
-//
-//    }
 }

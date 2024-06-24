@@ -4,11 +4,12 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.Controlador.ControladorCrearJugadores;
 import edu.fiuba.algo3.Controlador.ControladorMostrarLeaderboard;
-import edu.fiuba.algo3.Controlador.ControladorPreguntaParaUnJugador;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
+import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
+import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
+import edu.fiuba.algo3.modelo.exceptions.YaJugaronTodosLosJugadores;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,6 +24,7 @@ public class Juego {
     public static final int LARGO_PANTALLA = 750;
 
     Modelo modelo;
+    Jugador jugadorActual;
 
     public void iniciar(){
         modelo = new Modelo();
@@ -60,11 +62,11 @@ public class Juego {
 
         Scene scene = new Scene(root, ANCHO_PANTALLA, LARGO_PANTALLA);
 
-        Stage Stage = new Stage();
+        Stage stage = new Stage();
 
-        Stage.setScene(scene);
-        Stage.setTitle("Preguntados");
-        Stage.show();
+        stage.setScene(scene);
+        stage.setTitle("Preguntados");
+        stage.show();
 
         Button empezarPartida = new Button("Avanzar");
 
@@ -76,7 +78,9 @@ public class Juego {
                     "        -fx-padding: 5px;");
 
             Pregunta preguntaAMostrar = modelo.ConseguirPregunta();
-            Jugador jugadorActual = modelo.conseguirJugador();
+
+            this.jugadorActual = modelo.conseguirJugador();
+
             Label jugadorJugando = new Label(jugadorActual.obtenerNombre());
             jugadorJugando.setStyle("-fx-background-color: black;\n" +
                     "        -fx-text-fill: white; \n" +
@@ -90,13 +94,13 @@ public class Juego {
             botonConfirmar.setOnAction(f -> {
                 jugadorActual.confirmarRespuesta(preguntaAMostrar);
 
-                ControladorMostrarLeaderboard controladorLeaderboard = new ControladorMostrarLeaderboard(modelo, this);
-                VBox vBoxJugadores = new VBox(empezarPartida);
-                ArrayList<Label> nombresJugadores = controladorLeaderboard.MostrarLeaderboard();
+                try {
+                    jugadorActual = modelo.SiguienteJugador();
+                } catch (YaJugaronTodosLosJugadores ex) {
+                    ControladorMostrarLeaderboard controladorLeaderboard = new ControladorMostrarLeaderboard(modelo, this);
+                    controladorLeaderboard.MostrarLeaderboard(stage, empezarPartida);
+                }
 
-                vBoxJugadores.getChildren().addAll(nombresJugadores);
-                Scene escenaJugadores = new Scene(vBoxJugadores, ANCHO_PANTALLA, LARGO_PANTALLA);
-                Stage.setScene(escenaJugadores);
             });
 
 
@@ -113,7 +117,7 @@ public class Juego {
 
             for (Respuesta respuesta : respuestasPosibles) {
                 RadioButton opcion = new RadioButton(respuesta.getRespuesta());
-                //ControladorPreguntaParaUnJugador controladorRespuesta = new ControladorPreguntaParaUnJugador(modelo, this);
+                //JugadaControlador controladorRespuesta = new JugadaControlador(modelo, this);
 
                 opcion.setOnAction(g -> {jugadorActual.responder(preguntaAMostrar, new RespuestaAVerificar(respuesta.getRespuesta(),
                         jugadorActual.obtenerOrdenParcial()));
@@ -126,13 +130,38 @@ public class Juego {
 
 
 
-
-
             Button botonMultiplicadorPorDos = new Button("Multiplicador X2");
-            Button botonMultiplicadorPorTres = new Button("Multiplicador X3");
-            Button botonExclusividad = new Button("Exclusividad");
-            Button botonAnulador = new Button("Anulador");
+            botonMultiplicadorPorDos.setOnAction(event -> {
+                Jugador unJugador = modelo.conseguirJugador();
+                try {
+                    unJugador.activarDuplicadorDePuntaje();
+                } catch (ModificadorSeUsaMasDeUnaVezException ex) {
+                    throw new RuntimeException(ex);
+                }
 
+            });
+            Button botonMultiplicadorPorTres = new Button("Multiplicador X3");
+            botonMultiplicadorPorTres.setOnAction(event -> {
+                Jugador unJugador = modelo.conseguirJugador();
+                try {
+                    unJugador.activarDuplicadorDePuntaje();
+                } catch (ModificadorSeUsaMasDeUnaVezException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            });
+            Button botonExclusividad = new Button("Exclusividad");
+
+            Button botonAnulador = new Button("Anulador");
+            botonAnulador.setOnAction(event -> {
+                Jugador unJugador = modelo.conseguirJugador();
+                try {
+                    unJugador.activarAnuladorDePuntaje(preguntaAMostrar);
+                } catch (AnuladorSeUsaMasDeUnaVez ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            });
             botonMultiplicadorPorDos.setDisable(true); //Para tener despues, cuando haya que implementarlo
 
             VBox cajaDeBonificadores = new VBox(10, botonMultiplicadorPorDos, botonMultiplicadorPorTres, botonExclusividad, botonAnulador);
@@ -153,21 +182,15 @@ public class Juego {
             //mainPane.setBottom(botonConfirmar);
 
             Scene escenaPregunta = new Scene(mainPane, ANCHO_PANTALLA, LARGO_PANTALLA);
-            Stage.setScene(escenaPregunta);
+            stage.setScene(escenaPregunta);
         });
 
 
         MostrarLeaderBoardBoton.setOnAction(e -> {
             ControladorMostrarLeaderboard controladorLeaderboard = new ControladorMostrarLeaderboard(modelo, this);
-            VBox vBoxJugadores = new VBox(empezarPartida);
-            ArrayList<Label> nombresJugadores = controladorLeaderboard.MostrarLeaderboard();
-
-            vBoxJugadores.getChildren().addAll(nombresJugadores);
-            Scene escenaJugadores = new Scene(vBoxJugadores, ANCHO_PANTALLA, LARGO_PANTALLA);
-            Stage.setScene(escenaJugadores);
+            controladorLeaderboard.MostrarLeaderboard(stage, empezarPartida);
         });
     }
-
 
     //public void iniciarJuego(){
         //Alguien tiene que llamar a asignarNumeroDeJugadores(int)

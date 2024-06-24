@@ -19,7 +19,6 @@ public class Anulador {
         }
         else {
             throw new AnuladorSeUsaMasDeUnaVez("No hay usos disponibles");
-
         }
     }
 
