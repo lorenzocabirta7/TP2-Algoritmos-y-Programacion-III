@@ -66,7 +66,8 @@ public class TestExclusividad {
 
     @Test
     public void test01UnUnicoJugadorUtilizaExclusividadRespondeCorrectamenteYSeLeDuplicaElPuntaje() throws ExclusividadSeUsaMasdeDosVeces {
-        int puntosEsperados = 2;
+        int puntosEsperados = 4;
+        int puntosPregunta = 2;
 
         jugador1.activarExclusividad(pregunta);
 

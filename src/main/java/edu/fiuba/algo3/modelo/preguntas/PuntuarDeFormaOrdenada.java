@@ -37,5 +37,10 @@ public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
         puntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(puntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
         return puntajeObtenido;
     }
+
+    @Override
+    public void agregarJugadorQueUsoExclusividad(Jugador jugador) {
+
+    }
 }
 
