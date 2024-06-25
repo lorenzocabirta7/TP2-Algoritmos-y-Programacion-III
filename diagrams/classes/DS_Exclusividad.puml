@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+participant TestCase as TestCase
+participant "jugador1:Jugador" as jugador
+participant "preguntaActual: Pregunta" as pregunta
+participant "clasico:UnaFormaDePuntuar" as formaClasica
+
+participant EstadoActivado as EstadoActivado
+
+create jugador
+TestCase -> jugador : activarExclusividad()
+jugador -> pregunta : activarExclusividad(jugador1)
+pregunta -> pregunta : jugadoresQueActivaronExclusividad.add(jugador1)
+pregunta -> formaClasica : ActivarExclusividad()
+
+
+create EstadoActivado
+formaClasica -> EstadoActivado : new EstadoActivado() <<Create>>
+
+note right TestCase
+    Termina la Ronda
+end note
+
+TestCase -> pregunta :ObtenerResultados()
+pregunta -> formaClasica : obtenerResultados(jugadoresQueActivaronExclusividad,respuestas: Array<Respuesta>)
+
+
+
+@enduml
