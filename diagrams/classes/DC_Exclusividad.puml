@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class Jugador{
+    +activarExclusividad(this)
+}
+
+class Pregunta{
+    -jugadoresQueActivaronExclusividad: Array<Jugador>
+    +activarExclusividad(jugador: Jugador)
+}
+Pregunta -> UnaFormaDePuntuar
+
+class UnaFormaDePuntuar{
+    +activarExclusividad( jugadores: Array<Jugador>)
+}
+
+class FormaClasica implements UnaFormaDePuntuar{
+    +activarExclusividad( jugadores: Array<Jugador>)
+    +puntuar(pre)
+}
+FormaClasica -> Exclusividad
+
+
+class FormaPenalidad implements UnaFormaDePuntuar{
+    +activarExclusividad( jugadores: Array<Jugador>)
+
+}
+
+note right
++activarExclusividad()
+ //no hace nada
+end note
+
+
+class Exclusividad{
+
+}
+Exclusividad o-> EstadoExclusividad
+
+interface EstadoExclusividad {
+
+}
+
+class ExclusividadActivado implements EstadoExclusividad{
+    puntuar()
+}
+
+class ExclusividadDesctivado implements EstadoExclusividad{
+
+}
+note right
++activarExclusividad()
+ //no hace nada
+end note
+@enduml
