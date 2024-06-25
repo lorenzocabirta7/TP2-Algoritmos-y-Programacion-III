@@ -19,14 +19,18 @@ public class Jugada {
 
 
     public Jugador conseguirJugador() {
+        if (IndiceUltimoJugador >= jugadores.size()){
+            IndiceUltimoJugador = 0; //reset
+        }
         return jugadores.get(IndiceUltimoJugador);
     }
 
-    public Jugador siguienteJugador() throws YaJugaronTodosLosJugadores {
+    public void siguienteJugador() throws YaJugaronTodosLosJugadores {
+        Jugador jugadorActual = jugadores.get(IndiceUltimoJugador);
+        jugadorActual.confirmarRespuesta(preguntaActual);
         IndiceUltimoJugador++;
-        if (IndiceUltimoJugador < jugadores.size()) {
-            return jugadores.get(IndiceUltimoJugador);
-        }
+        if (IndiceUltimoJugador >= jugadores.size()) {
         throw new YaJugaronTodosLosJugadores("Ya jugaron todos los jugadores");
+        }
     }
 }

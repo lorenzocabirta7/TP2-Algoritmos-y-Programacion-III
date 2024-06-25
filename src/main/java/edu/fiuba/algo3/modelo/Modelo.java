@@ -10,14 +10,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Observable;
+
 import java.util.Random;
 
 
-public class Modelo {
+public class Modelo extends Observable {
     private ArrayList<Jugador> jugadores;
     private ArrayList<Pregunta> preguntas;
     private Pregunta preguntaActual;
     private Jugada jugadaActual;
+
 
     public Modelo() {
         this.jugadores = new ArrayList<>();
@@ -63,9 +66,7 @@ public class Modelo {
     }
 
     public Pregunta ConseguirPregunta(){
-        Pregunta pregunta1 = preguntaActual;
-        this.BuscarPregunta();
-        return pregunta1;
+        return preguntaActual;
     }
 
     public Jugador conseguirJugador(){
@@ -88,7 +89,17 @@ public class Modelo {
         return puntajesADevolver;
     }
 
-    public Jugador SiguienteJugador() throws YaJugaronTodosLosJugadores {
-        return jugadaActual.siguienteJugador();
+    public void SiguientePregunta(){
+        BuscarPregunta();
+        this.jugadaActual = iniciarJugada();
+        setChanged();
+        notifyObservers();
     }
+
+    public void SiguienteJugador()  throws YaJugaronTodosLosJugadores{
+        jugadaActual.siguienteJugador();
+        setChanged();
+        notifyObservers();
+    }
+
 }

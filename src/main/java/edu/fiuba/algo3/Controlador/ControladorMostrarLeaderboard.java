@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.Controlador;
 
+import edu.fiuba.algo3.Vista.VentanaLeaderboard;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Modelo;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,35 +17,31 @@ import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
 
 public class ControladorMostrarLeaderboard {
     Modelo modelo;
-    Juego vista;
+    private VentanaLeaderboard vista;
+    private Button BotonproximaPregunta;
 
-
-    public ControladorMostrarLeaderboard(Modelo modelo, Juego vista) {
+    public ControladorMostrarLeaderboard(Modelo modelo, VentanaLeaderboard vista, Button BotonproximaPregunta) {
         this.modelo = modelo;
         this.vista = vista;
+        this.BotonproximaPregunta = BotonproximaPregunta;
+        modelo.addObserver(vista);
+    }
+    public void initialize() {
+        updateLabel();
 
+        BotonproximaPregunta.setOnAction(this::ApretarBotonSiguientePregunta);
     }
 
-    public void MostrarLeaderboard(Stage stage, Button botonEmpezarPartida) {
-
-        VBox vBoxJugadores = new VBox(botonEmpezarPartida);
-        ArrayList<Label> nombresJugadores = this.ConseguirJugadores();
-
-        vBoxJugadores.getChildren().addAll(nombresJugadores);
-        Scene escenaJugadores = new Scene(vBoxJugadores, ANCHO_PANTALLA, LARGO_PANTALLA);
-        stage.setScene(escenaJugadores);
+    private void ApretarBotonSiguientePregunta(ActionEvent event)  {
+        modelo.SiguientePregunta();
+        updateLabel();
     }
 
-   private ArrayList<Label> ConseguirJugadores(){
-       ArrayList<String> arregloJugadores = modelo.ConseguirTodosLosJugadores();
-       ArrayList<Integer> arregloPuntajeJugadores = modelo.ConseguirTodosLosPuntajes();
-       ArrayList<Label> jugadores = new ArrayList<>();
+    private void updateLabel() {
+        vista.update(modelo, null);
+    }
 
 
-       for (int i = 0; i < arregloJugadores.size(); i++) {
-           String jugadorConPuntaje = arregloJugadores.get(i) + (" " + (arregloPuntajeJugadores.get(i)) );
-           jugadores.add(new Label(jugadorConPuntaje));
-       }
-       return jugadores;
-   }
+
+
 }

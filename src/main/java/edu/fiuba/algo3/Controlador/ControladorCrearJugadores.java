@@ -7,12 +7,10 @@ import edu.fiuba.algo3.modelo.Modelo;
 
 public class ControladorCrearJugadores {
     Modelo modelo;
-    Juego vista;
 
 
-    public ControladorCrearJugadores(Modelo modelo, Juego vista) {
+    public ControladorCrearJugadores(Modelo modelo) {
         this.modelo = modelo;
-        this.vista = vista;
 
     }
 
