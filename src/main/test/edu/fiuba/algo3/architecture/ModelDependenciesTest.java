@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34d219b9453522c049dc262b1b5823048cd15648
 package edu.fiuba.algo3.architecture;
 
 import com.tngtech.archunit.core.domain.JavaClasses;

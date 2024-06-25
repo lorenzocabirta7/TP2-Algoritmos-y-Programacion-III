@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Create TestCase
+
+create "jugador1:Jugador"
+TestCase -> "jugador1:Jugador" : new Jugador("pirulo") <<Create>>
+TestCase -> TestCase : jugadores.add(jugador1)
+
+
+
+
+TestCase -> GeneradorDePreguntas : GenerarPreguntas(ruta: String)
+
+activate GeneradorDePreguntas
+loop for each pregunta
+    create Pregunta
+    GeneradorDePreguntas -> Pregunta : Pregunta() <<Create>>
+    create FormaDePuntuar
+    Pregunta -> FormaDePuntuar : FormaDePuntuar() <<Create>>
+    Create Respuesta
+    Pregunta -> Respuesta : Respuesta() <<Create>>
+end
+GeneradorDePreguntas --> TestCase : ArrayList<Pregunta>
+deactivate GeneradorDePreguntas
+
+
+loop for pregunta in preguntas
+
+    loop for jugador in jugadores
+        TestCase -> "jugador1:Jugador" : responder(pregunta: Pregunta, respuesta: Respuesta)
+        activate "jugador1:Jugador"
+        "jugador1:Jugador" -> "jugador1:Jugador" : respuestas.add(respuesta)
+        deactivate "jugador1:Jugador"
+        TestCase -> "jugador1:Jugador" : confirmarRespuesta(pregunta: Pregunta)
+        "jugador1:Jugador" -> Pregunta : puntuar(respuestas: Respuesta)
+        activate Pregunta
+        Pregunta -> FormaDePuntuar : puntuar(respuestas: ArrayList<Respuesta>)
+        activate FormaDePuntuar
+        deactivate Pregunta
+        FormaDePuntuar --> Pregunta: unPuntaje
+        deactivate FormaDePuntuar
+        Pregunta -> "jugador1:Jugador" : modificarPuntaje(unPuntaje)
+
+        note right of "jugador1:Jugador"
+            Ver Secuencia de Multiplicadores
+        end note
+
+        pregunta -> pregunta : validarRespuesta()
+        deactivate pregunta
+        deactivate jugador
+    end
+
+end
+
+@enduml
