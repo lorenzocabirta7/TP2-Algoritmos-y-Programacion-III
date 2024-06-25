@@ -50,19 +50,19 @@ public class Modelo extends Observable {
 
             this.preguntas = procesador.procesarPreguntas(listaPreguntas);
 
-            this.BuscarPregunta();
+            this.preguntaActual = this.BuscarPregunta();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void BuscarPregunta() {
+    private Pregunta BuscarPregunta() {
         Random random = new Random();
 
         int indiceRandom = random.nextInt(preguntas.size());
 
-        preguntaActual = preguntas.get(indiceRandom);
+        return preguntas.get(indiceRandom);
     }
 
     public Pregunta ConseguirPregunta(){
@@ -89,8 +89,14 @@ public class Modelo extends Observable {
         return puntajesADevolver;
     }
 
+    public void confirmarRespuestas(){
+        jugadaActual.confirmarRespuestas();
+        setChanged();
+        notifyObservers();
+    }
+
     public void SiguientePregunta(){
-        BuscarPregunta();
+        this.preguntaActual = BuscarPregunta();
         this.jugadaActual = iniciarJugada();
         setChanged();
         notifyObservers();

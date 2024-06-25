@@ -9,4 +9,6 @@ public interface Respuesta {
     public String getRespuesta();
 
     public String getOrdenParcial();
+
+    public Boolean EsDeOrdenParcial(Respuesta respuesta);
 }

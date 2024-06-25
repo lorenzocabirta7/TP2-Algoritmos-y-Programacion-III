@@ -5,10 +5,8 @@ import edu.fiuba.algo3.modelo.Modelo;
 import edu.fiuba.algo3.modelo.exceptions.YaJugaronTodosLosJugadores;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 
 import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
 
 public class ControladorMostrarPregunta extends MouseAdapter {
     private Modelo modelo;
@@ -22,29 +20,41 @@ public class ControladorMostrarPregunta extends MouseAdapter {
         this.vista = vista;
         this.BotonProximoJugador = BotonProximoJugador;
         this.BotonproximaPregunta = BotonproximaPregunta;
-        modelo.addObserver(vista);
+
+        ActualizarVista();
+
+        modelo.addObserver((o, arg) -> {
+            ActualizarVista();
+        });
+
+        this.BotonproximaPregunta.setOnAction(this::ApretarBotonSiguientePregunta);
+        this.BotonProximoJugador.setOnAction(this::ApretarBotonProximoJugador);
     }
 
-    public void initialize() {
-        updateLabel();
 
-        BotonproximaPregunta.setOnAction(this::ApretarBotonSiguientePregunta);
-        BotonProximoJugador.setOnAction(this::ApretarBotonProximoJugador);
-    }
 
     private void ApretarBotonSiguientePregunta(ActionEvent event)  {
         modelo.SiguientePregunta();
+
+        modelo.notifyObservers();
     }
 
     private void ApretarBotonProximoJugador(ActionEvent event) {
         try {
+            modelo.confirmarRespuestas();
             modelo.SiguienteJugador();
+            //modelo.notifyObservers(vista);
         } catch (YaJugaronTodosLosJugadores e) {
             BotonproximaPregunta.fire();
         }
     }
 
-    private void updateLabel() {
-        vista.update(modelo, null);
+
+    private void ActualizarVista() {
+        vista.updatePlayerLabel(modelo.conseguirJugador().obtenerNombre());
+        vista.resetAnswerButtons();
+        vista.updatePreguntaLabel(modelo.ConseguirPregunta());
+        vista.siguienteJugador(modelo.conseguirJugador());
     }
+
 }

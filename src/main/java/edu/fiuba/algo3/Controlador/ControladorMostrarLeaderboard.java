@@ -20,28 +20,33 @@ public class ControladorMostrarLeaderboard {
     private VentanaLeaderboard vista;
     private Button BotonproximaPregunta;
 
-    public ControladorMostrarLeaderboard(Modelo modelo, VentanaLeaderboard vista, Button BotonproximaPregunta) {
+    public ControladorMostrarLeaderboard(Modelo modelo, VentanaLeaderboard vista) {
         this.modelo = modelo;
         this.vista = vista;
-        this.BotonproximaPregunta = BotonproximaPregunta;
-        modelo.addObserver(vista);
-    }
-    public void initialize() {
-        updateLabel();
 
-        BotonproximaPregunta.setOnAction(this::ApretarBotonSiguientePregunta);
+        this.modelo.addObserver((o, arg) -> {
+            // Update view when model notifies of changes
+            updateView();
+        });
     }
+//    public void initialize() {
+//        updateLabel();
+//
+//    }
 
-    private void ApretarBotonSiguientePregunta(ActionEvent event)  {
+    public void ApretarBotonSiguientePregunta()  {
         modelo.SiguientePregunta();
-        updateLabel();
+        modelo.notifyObservers();
     }
 
     private void updateLabel() {
         vista.update(modelo, null);
     }
 
-
+    private void updateView() {
+        // Update view with current model state
+        vista.updateLabelJugadores(modelo);
+    }
 
 
 }
