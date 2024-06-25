@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Anulador.Anulador;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
-import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
-import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorDos;
-import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorTres;
-import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+
+import edu.fiuba.algo3.modelo.modificadores.*;
+import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Respuestas.*;
+import edu.fiuba.algo3.modelo.preguntas.*;
+import edu.fiuba.algo3.modelo.exceptions.*;
+import edu.fiuba.algo3.modelo.Exclusividad.*;
 
 import java.util.ArrayList;
 
@@ -14,10 +14,10 @@ public class Jugador {
 
     private String nombre;
     private int puntos;
-    //private modificador;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
-    private Anulador anuladorDePuntaje;
+    private GestorAnulador gestorAnulador;
+    private GestorExclusividad gestorExclusividad;
     private ArrayList<Respuesta> respuestasDelJugador;
     private String ordenParcialRespuestas;
 
@@ -27,9 +27,9 @@ public class Jugador {
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
-        this.anuladorDePuntaje = new Anulador();
-        this.ordenParcialRespuestas = "1";
-        //siempre inicializamos con la idea de responder primero una pregunta de verdadero/falso
+        this.gestorAnulador = new GestorAnulador();
+        this.gestorExclusividad = new GestorExclusividad();
+
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
@@ -67,8 +67,11 @@ public class Jugador {
     }
 
     public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
-        pregunta.jugadorUsoAnulador(this);
-        this.anuladorDePuntaje.activar();
+        this.gestorAnulador.gestarActivacion(pregunta,this);
+    }
+
+    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces {
+        this.gestorExclusividad.gestarActivacion(pregunta,this);
     }
 
     public void ResetRespuestas(){

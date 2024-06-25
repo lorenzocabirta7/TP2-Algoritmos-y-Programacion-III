@@ -1,15 +1,21 @@
 package edu.fiuba.algo3.modelo.preguntas;
 
+import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-
 import java.util.ArrayList;
 
-public class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
-    @Override
-    public int puntuar(ArrayList<Respuesta> respuestas) {
-        int PuntajeObtenido = 0;
+public class PuntuarMultipleChoiceParcial extends PuntuarConPenalidad{
+    private void verificarActivacionAnulador(){
+        if (!jugadoresQueUsaronAnulador.isEmpty()){
+            this.anulador.activar();
+        }
+    }
 
+    @Override
+    public int puntuar(ArrayList<Respuesta> respuestas,Jugador unjugador) {
+        this.verificarActivacionAnulador();
+        int PuntajeObtenido = 0;
         for (Respuesta respuestaDelJugador : respuestas) {
             PuntajeObtenido += respuestaDelJugador.actualizarPuntaje(1, respuestaDelJugador);
         }
@@ -18,6 +24,8 @@ public class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
                 PuntajeObtenido = 0;
             }
         }
+        PuntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(PuntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
         return PuntajeObtenido;
     }
 }
+

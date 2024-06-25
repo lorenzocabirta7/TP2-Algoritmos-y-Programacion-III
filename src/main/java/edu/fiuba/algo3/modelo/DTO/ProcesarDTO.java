@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.DTO;
 
-import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
@@ -22,14 +21,14 @@ public class ProcesarDTO {
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar , new AnuladorClasico());
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            } else {
                ArrayList<Respuesta> respuestasPregunta = procesarPreguntasNormales(pregunta);
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar, new AnuladorClasico());
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            }
        }

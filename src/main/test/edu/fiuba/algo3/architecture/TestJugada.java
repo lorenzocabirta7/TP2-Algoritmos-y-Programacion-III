@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Anulador.AnuladorClasico;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
@@ -34,7 +33,7 @@ public class TestJugada {
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico(),new AnuladorClasico());
+        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");

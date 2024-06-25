@@ -1,22 +1,30 @@
 package edu.fiuba.algo3.modelo.preguntas;
 
 
-
-import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-
+import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Respuestas.*;
+import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
-public class PuntuarDeFormaOrdenada implements FormaDePuntuar{
+public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
     private ArrayList<Respuesta> respuestas;
+    private void verificarActivacionAnulador(){
+        if (!jugadoresQueUsaronAnulador.isEmpty()){
+            this.anulador.activar();
+        }
+    }
 
     public PuntuarDeFormaOrdenada(ArrayList<Respuesta> respuestasPosibles) {
         this.respuestas = respuestasPosibles;
     }
+
     @Override
-    public int puntuar(ArrayList<Respuesta> respuestas) {
+    public int puntuar(ArrayList<Respuesta> respuestas,Jugador unjugador) {
+        this.verificarActivacionAnulador();
+
         int RespuestasCorrectas = 0;
         int RespuestasCorrectasEsperadas = respuestas.size();
-        int puntosObtenidos = 0;
+        int puntajeObtenido = 0;
 
         for (Respuesta respuesta : respuestas) {
             for(Respuesta respuestaPosible : this.respuestas){
@@ -24,8 +32,10 @@ public class PuntuarDeFormaOrdenada implements FormaDePuntuar{
             }
         }
         if (RespuestasCorrectas == RespuestasCorrectasEsperadas) {
-            puntosObtenidos = 1;
+            puntajeObtenido = 1;
         }
-        return puntosObtenidos;
+        puntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(puntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
+        return puntajeObtenido;
     }
 }
+
