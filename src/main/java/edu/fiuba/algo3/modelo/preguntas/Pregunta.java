@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
 public class Pregunta {
-
     private String enunciado;
     private ArrayList<Respuesta> respuestas;
     private FormaDePuntuar unaFormaDePuntuar;
