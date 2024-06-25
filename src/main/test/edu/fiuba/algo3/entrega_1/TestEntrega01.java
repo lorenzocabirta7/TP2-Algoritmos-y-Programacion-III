@@ -30,8 +30,8 @@ public class TestEntrega01 {
         String enunciadoRespuestaIncorrecta = "NO";
 
 
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
+        Respuesta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -43,8 +43,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
-        RespuestaCorrecta respuestaDelJugador2 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
+        Respuesta respuestaDelJugador1 = new RespuestaAVerificar(enunciadoRespuestaCorrecta, "0");
+        Respuesta respuestaDelJugador2 = new RespuestaAVerificar(enunciadoRespuestaCorrecta, "0");
 
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
@@ -58,7 +58,6 @@ public class TestEntrega01 {
         assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
         assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
     }
-
 
     @org.junit.jupiter.api.Test
     public void test02unaPreguntaDeVerdaderoFalsoClasicoRecibeUnaListaDeRespuestasYAsignaCorrectamentePuntosALosJugadoresQueRespondieronDeFormaIncorrecta() {
@@ -988,8 +987,8 @@ public class TestEntrega01 {
 
         preguntaAResponder = preguntasDelJuego.get(1);
 
-        jugador1.ResetRespuestas();
-        jugador2.ResetRespuestas();
+        jugador1.resetRespuestas();
+        jugador2.resetRespuestas();
 
         respuesta1DelJugador1 = new RespuestaAVerificar("A","1");
         respuesta2DelJugador1 = new RespuestaAVerificar("E","2");
@@ -1020,8 +1019,8 @@ public class TestEntrega01 {
 
         preguntaAResponder = preguntasDelJuego.get(2);
 
-        jugador1.ResetRespuestas();
-        jugador2.ResetRespuestas();
+        jugador1.resetRespuestas();
+        jugador2.resetRespuestas();
 
         Respuesta respuestaDelJugador1 = new RespuestaCorrecta("SI", "0");
         Respuesta respuestaDelJugador2 = new RespuestaCorrecta("SI", "0");

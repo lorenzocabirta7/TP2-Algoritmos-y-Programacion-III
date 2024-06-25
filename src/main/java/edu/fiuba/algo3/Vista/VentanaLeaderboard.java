@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.Vista;
 
-
 import edu.fiuba.algo3.Controlador.ControladorMostrarLeaderboard;
-import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
 import edu.fiuba.algo3.modelo.Modelo;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,41 +17,53 @@ import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
 
 public class VentanaLeaderboard implements Ventana, Observer {
 
-    private final Scene escenaJugadores;
-    private final Button siguienteVentana;
+
+    private Scene escenaJugadores;
+    private Button siguienteVentana;
+    private ControladorMostrarLeaderboard controlador;
+    private Modelo modelo;
+    private ArrayList<Label> nombresJugadores;
     private VBox jugadoresBox;
 
     public VentanaLeaderboard(Modelo modelo) {
+        this.modelo = modelo;
+
         jugadoresBox = new VBox();
-        ArrayList<Label> nombresJugadores = this.ConseguirJugadores(modelo);
+        nombresJugadores = this.ConseguirJugadores(modelo);
 
         jugadoresBox.getChildren().addAll(nombresJugadores);
 
         siguienteVentana = new Button("Siguiente");
-        ControladorMostrarLeaderboard controlador = new ControladorMostrarLeaderboard(modelo, this, siguienteVentana);
-        controlador.initialize();
+
+
+        controlador = new ControladorMostrarLeaderboard(modelo, this);
+       //controlador.initialize();
 
 
         jugadoresBox.getChildren().add(siguienteVentana);
-
 
 
         escenaJugadores = new Scene(jugadoresBox, ANCHO_PANTALLA, LARGO_PANTALLA);
 
     }
 
-    public void inicializarVentana(Stage stage){
+//    private void ApretarBotonSiguientePregunta(Modelo modelo)  {
+//        modelo.SiguientePregunta();
+//        modelo.notifyObservers();
+//    }
+
+    public void inicializarVentana(Stage stage) {
         stage.setScene(escenaJugadores);
     }
 
-    private ArrayList<Label> ConseguirJugadores(Modelo modelo){
+    private ArrayList<Label> ConseguirJugadores(Modelo modelo) {
         ArrayList<String> arregloJugadores = modelo.ConseguirTodosLosJugadores();
         ArrayList<Integer> arregloPuntajeJugadores = modelo.ConseguirTodosLosPuntajes();
         ArrayList<Label> jugadores = new ArrayList<>();
 
 
         for (int i = 0; i < arregloJugadores.size(); i++) {
-            String jugadorConPuntaje = arregloJugadores.get(i) + (" " + (arregloPuntajeJugadores.get(i)) );
+            String jugadorConPuntaje = arregloJugadores.get(i) + ("  Puntaje: " + (arregloPuntajeJugadores.get(i)));
             jugadores.add(new Label(jugadorConPuntaje));
         }
         return jugadores;
@@ -61,17 +71,32 @@ public class VentanaLeaderboard implements Ventana, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof Modelo) {
-            Modelo modelo = (Modelo) o;
-            jugadoresBox = new VBox();
-            ArrayList<Label> nombresJugadores = this.ConseguirJugadores(modelo);
-
-            jugadoresBox.getChildren().addAll(nombresJugadores);
-        }
+//        if (o instanceof Modelo) {
+//            modelo = (Modelo) o;
+//
+//            }
+//            //nombresJugadores = this.ConseguirJugadores(modelo);
+//            //jugadoresBox.getChildren().addAll(nombresJugadores);
+//        }
     }
 
+    public void updateLabelJugadores(Modelo modelo) {
+        this.modelo = modelo;
+
+        ArrayList<String> arregloJugadores = this.modelo.ConseguirTodosLosJugadores();
+        ArrayList<Integer> arregloPuntajeJugadores = this.modelo.ConseguirTodosLosPuntajes();
+        Integer indice = 0;
+        for (Label jugador : nombresJugadores) {
+            String jugadorConPuntaje = arregloJugadores.get(indice) + ("  Puntaje: " + (arregloPuntajeJugadores.get(indice)));
+            jugador.setText(jugadorConPuntaje);
+            indice++;
+        }
+    }
     @Override
     public void AlCambiarVentana(Runnable runnable) {
-        siguienteVentana.setOnAction(e -> runnable.run());
+        siguienteVentana.setOnAction(e -> {
+            controlador.ApretarBotonSiguientePregunta();
+            runnable.run();
+        });
     }
 }

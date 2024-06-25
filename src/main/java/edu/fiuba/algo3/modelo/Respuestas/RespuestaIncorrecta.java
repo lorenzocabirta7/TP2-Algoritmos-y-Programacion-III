@@ -32,6 +32,11 @@ public class RespuestaIncorrecta implements Respuesta {
     }
 
     @Override
+    public Boolean EsDeOrdenParcial(Respuesta respuesta){
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "Respuesta{" +
                 "enunciado='" + enunciado + '\'' +

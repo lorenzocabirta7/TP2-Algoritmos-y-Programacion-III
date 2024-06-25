@@ -64,6 +64,7 @@ public class Jugador {
 
     public void confirmarRespuesta(Pregunta pregunta){
         pregunta.puntuar(respuestasDelJugador, this);
+        this.resetRespuestas();
     }
 
     public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
@@ -74,7 +75,7 @@ public class Jugador {
         this.gestorExclusividad.gestarActivacion(pregunta,this);
     }
 
-    public void ResetRespuestas(){
+    public void resetRespuestas(){
         this.respuestasDelJugador = new ArrayList<>();
         this.ordenParcialRespuestas = "1";
     }

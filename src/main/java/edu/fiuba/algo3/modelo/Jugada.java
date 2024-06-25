@@ -19,17 +19,23 @@ public class Jugada {
 
 
     public Jugador conseguirJugador() {
-        if (IndiceUltimoJugador >= jugadores.size()){
-            IndiceUltimoJugador = 0; //reset
-        }
+//        if (IndiceUltimoJugador >= jugadores.size()){
+//            IndiceUltimoJugador = 0; //reset
+//        }
         return jugadores.get(IndiceUltimoJugador);
     }
 
+    public void confirmarRespuestas(){
+        this.conseguirJugador().confirmarRespuesta(preguntaActual);
+    }
+
     public void siguienteJugador() throws YaJugaronTodosLosJugadores {
-        Jugador jugadorActual = jugadores.get(IndiceUltimoJugador);
+        Jugador jugadorActual = this.conseguirJugador();
         jugadorActual.confirmarRespuesta(preguntaActual);
+        System.out.println(jugadorActual.obtenerPuntos());
         IndiceUltimoJugador++;
         if (IndiceUltimoJugador >= jugadores.size()) {
+            IndiceUltimoJugador = 0; //reset
         throw new YaJugaronTodosLosJugadores("Ya jugaron todos los jugadores");
         }
     }

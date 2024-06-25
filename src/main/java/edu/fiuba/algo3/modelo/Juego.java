@@ -18,7 +18,7 @@ public class Juego {
     Modelo modelo;
 
 
-    public void iniciar(){
+    public void iniciar() {
         modelo = new Modelo();
         stage = new Stage();
         crearVentanas();
@@ -31,25 +31,23 @@ public class Juego {
         ventanaInicio.inicializarVentana(stage);
 
         ventanaInicio.AlCambiarVentana(() -> {
-            ventanaLeaderboard =  new VentanaLeaderboard(modelo);
+            ventanaLeaderboard = new VentanaLeaderboard(modelo);
 
             ventanaLeaderboard.AlCambiarVentana(() -> {
 
-                ventanaPregunta =  new VentanaPregunta(modelo);
+                ventanaPregunta = new VentanaPregunta(modelo);
 
                 ventanaPregunta.AlCambiarVentana(() -> {
-
                     ventanaLeaderboard.inicializarVentana(stage);
-
                 });
 
                 ventanaPregunta.inicializarVentana(stage);
 
             });
-
             ventanaLeaderboard.inicializarVentana(stage);
+
+
         });
 
     }
-
-    }
+}

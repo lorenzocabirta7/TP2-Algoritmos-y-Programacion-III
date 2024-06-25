@@ -29,6 +29,12 @@ public class RespuestaCorrecta implements Respuesta {
         return this.ordenParcial;
     }
 
+
+    @Override
+    public Boolean EsDeOrdenParcial(Respuesta respuesta){
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Respuesta{" +
