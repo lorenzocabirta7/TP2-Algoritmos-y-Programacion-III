@@ -9,7 +9,7 @@ public class GestorExclusividad {
 
         public void gestarActivacion(Pregunta pregunta, Jugador jugador) throws ExclusividadSeUsaMasdeDosVeces {
         if (this.usosDisponiblesAnulador > 0) {
-            pregunta.;
+            //pregunta.;
             this.usosDisponiblesAnulador--;
         }
         else {

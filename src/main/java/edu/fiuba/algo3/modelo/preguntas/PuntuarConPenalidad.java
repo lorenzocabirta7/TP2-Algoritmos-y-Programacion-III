@@ -12,5 +12,5 @@ public abstract class PuntuarConPenalidad implements FormaDePuntuar {
     public void agregarJugadorQueUsoAnulador(Jugador jugador){
         this.jugadoresQueUsaronAnulador.add(jugador);
     }
-    public abstract
+    //public abstract
 }
