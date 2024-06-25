@@ -34,6 +34,8 @@ public class Pregunta {
         unaFormaDePuntuar.agregarJugadorQueUsoAnulador(jugador);
     }
 
+
+
     @Override
     public String toString() {
         return "Pregunta {" +

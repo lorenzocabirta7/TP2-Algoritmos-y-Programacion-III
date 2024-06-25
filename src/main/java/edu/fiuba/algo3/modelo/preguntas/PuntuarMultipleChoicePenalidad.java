@@ -7,8 +7,7 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
 
-public class PuntuarMultipleChoicePenalidad extends FormaDePuntuar{
-    private Anulador anulador = new AnuladorPenalidad();
+public class PuntuarMultipleChoicePenalidad extends PuntuarConPenalidad{
     private void verificarActivacionAnulador(){
         if (!jugadoresQueUsaronAnulador.isEmpty()){
             this.anulador.activar();

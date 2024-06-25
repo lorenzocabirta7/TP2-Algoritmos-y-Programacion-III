@@ -6,8 +6,7 @@ import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
-public class PuntuarDeFormaOrdenada extends FormaDePuntuar{
-    private Anulador anulador = new AnuladorClasico();
+public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
     private ArrayList<Respuesta> respuestas;
     private void verificarActivacionAnulador(){
         if (!jugadoresQueUsaronAnulador.isEmpty()){

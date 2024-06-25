@@ -23,5 +23,9 @@ public class TestExlusividad {
         }
         assertEquals(cantidadCatchesEsperador,cantidadCatchesObtenidos);
     }
+    @Test
+    public void test02(){
+
+    }
 
 }
