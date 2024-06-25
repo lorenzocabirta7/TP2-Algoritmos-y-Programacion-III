@@ -8,4 +8,6 @@ import java.util.ArrayList;
 public interface FormaDePuntuar {
     public int puntuar(ArrayList<Respuesta> respuestas, Jugador unjugador);
     public void agregarJugadorQueUsoAnulador(Jugador jugador);
+
+    void agregarJugadorQueUsoExclusividad(Jugador jugador);
 }

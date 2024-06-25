@@ -43,6 +43,11 @@ public class Pregunta {
                 ", FormaDePuntuar = '" + unaFormaDePuntuar + '\'' +
                 '}';
     }
+
+    public void activarExclusividad(Jugador jugador) {
+        unaFormaDePuntuar.agregarJugadorQueUsoExclusividad(jugador);
+
+    }
 }
 
 

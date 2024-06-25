@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 public abstract class PuntuarConPenalidad implements FormaDePuntuar {
     protected ArrayList<Jugador> jugadoresQueUsaronAnulador = new ArrayList<Jugador>();
+    protected ArrayList<Jugador> jugadoresQueUsaronExclusividad = new ArrayList<Jugador>();
     protected Anulador anulador = new AnuladorPenalidad();
     public void agregarJugadorQueUsoAnulador(Jugador jugador){
-        this.jugadoresQueUsaronAnulador.add(jugador);
+        throw new RuntimeException();
+        //this.jugadoresQueUsaronAnulador.add(jugador);
     }
     //public abstract
 }
