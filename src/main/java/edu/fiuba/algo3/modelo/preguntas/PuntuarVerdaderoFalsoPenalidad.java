@@ -22,4 +22,9 @@ public class PuntuarVerdaderoFalsoPenalidad extends PuntuarConPenalidad {
         PuntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(PuntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
         return PuntajeObtenido;
     }
+
+    @Override
+    public void agregarJugadorQueUsoExclusividad(Jugador jugador) {
+
+    }
 }

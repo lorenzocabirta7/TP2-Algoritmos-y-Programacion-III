@@ -45,4 +45,9 @@ public class PuntuarMultipleChoiceClasico extends PuntuarSinPenalidad{
         PuntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(PuntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
         return PuntajeObtenido;
     }
+
+    @Override
+    public void agregarJugadorQueUsoExclusividad(Jugador jugador) {
+
+    }
 }

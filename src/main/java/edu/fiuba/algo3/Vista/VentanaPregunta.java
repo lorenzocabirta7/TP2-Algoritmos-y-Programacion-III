@@ -29,6 +29,7 @@ import static edu.fiuba.algo3.modelo.Juego.ANCHO_PANTALLA;
 import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
 
 public class VentanaPregunta implements Ventana, Observer {
+    private ControladorMostrarPregunta controlador;
     private Scene escenaPregunta;
     private Button mostrarLeaderBoardBoton;
     private Button botonConfirmar;
@@ -61,8 +62,8 @@ public class VentanaPregunta implements Ventana, Observer {
 
         Label labelTipoDePregunta = new Label("[Tipo de Pregunta]");
 
-        ControladorMostrarPregunta controlador = new ControladorMostrarPregunta(modelo, this, botonConfirmar, mostrarLeaderBoardBoton);
-        //controlador.initialize();
+
+        controlador = new ControladorMostrarPregunta(modelo, this, botonConfirmar);
 
 
 
@@ -174,7 +175,9 @@ public class VentanaPregunta implements Ventana, Observer {
 
     @Override
     public void AlCambiarVentana(Runnable funcion) {
-        mostrarLeaderBoardBoton.setOnAction(e -> funcion.run());
+        mostrarLeaderBoardBoton.setOnAction(e -> {
+            funcion.run();
+        });
     }
 
     public void updatePlayerLabel(String nombreJugador) {
@@ -183,16 +186,18 @@ public class VentanaPregunta implements Ventana, Observer {
 
     public void resetAnswerButtons() {
         for (RadioButton button : BotonesDeRespuestas) {
-            button.setDisable(false); // Enable all buttons
+            button.setDisable(false);
+            button.setSelected(false);// Enable all buttons
         }
     }
     public void siguienteJugador(Jugador unJugador) {
         jugadorActual = unJugador;
     }
 
-    public void resetModificadores(Pregunta pregunta){
+    public void resetModificadores(){
         for (Button button : botonesDeModificadores) {
-            button.setDisable(false); // Poner la logica aca de que si ya uso modificador, tiene que estar deshabilitado.
+            button.setDisable(false);
+            // Poner la logica aca de que si ya uso modificador, tiene que estar deshabilitado.
         }
     }
 
@@ -202,13 +207,16 @@ public class VentanaPregunta implements Ventana, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof Modelo) {
-//            Modelo modelo = (Modelo) o;
-//
-//            Jugador currentPlayer = modelo.conseguirJugador();
-//            playerLabel.setText("Jugador Actual: " + currentPlayer.obtenerNombre());
-//            preguntaActual = modelo.ConseguirPregunta();
-//            labelEnunciado.setText(preguntaActual.getEnunciado());
+        if (arg.equals("Siguiente Jugador")) {
+            Modelo modelo = (Modelo) o;
+            this.updatePlayerLabel(modelo.conseguirJugador().obtenerNombre());
+            this.resetAnswerButtons();
+            this.resetModificadores();
+            this.updatePreguntaLabel(modelo.ConseguirPregunta());
+            this.siguienteJugador(modelo.conseguirJugador());
+        }
+        if (arg.equals("Siguiente Pregunta")) {
+            mostrarLeaderBoardBoton.fire();
         }
     }
 }
