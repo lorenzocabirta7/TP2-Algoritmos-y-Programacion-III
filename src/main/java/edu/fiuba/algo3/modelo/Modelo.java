@@ -91,21 +91,20 @@ public class Modelo extends Observable {
 
     public void confirmarRespuestas(){
         jugadaActual.confirmarRespuestas();
-        setChanged();
-        notifyObservers();
     }
 
     public void SiguientePregunta(){
         this.preguntaActual = BuscarPregunta();
         this.jugadaActual = iniciarJugada();
         setChanged();
-        notifyObservers();
+        notifyObservers("Siguiente Pregunta");
     }
 
     public void SiguienteJugador()  throws YaJugaronTodosLosJugadores{
-        jugadaActual.siguienteJugador();
-        setChanged();
-        notifyObservers();
+            jugadaActual.siguienteJugador();
+            setChanged();
+            notifyObservers("Siguiente Jugador");
+
     }
 
 }

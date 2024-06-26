@@ -37,7 +37,6 @@ public class VentanaLeaderboard implements Ventana, Observer {
 
 
         controlador = new ControladorMostrarLeaderboard(modelo, this);
-       //controlador.initialize();
 
 
         jugadoresBox.getChildren().add(siguienteVentana);
@@ -47,10 +46,6 @@ public class VentanaLeaderboard implements Ventana, Observer {
 
     }
 
-//    private void ApretarBotonSiguientePregunta(Modelo modelo)  {
-//        modelo.SiguientePregunta();
-//        modelo.notifyObservers();
-//    }
 
     public void inicializarVentana(Stage stage) {
         stage.setScene(escenaJugadores);
@@ -71,17 +66,13 @@ public class VentanaLeaderboard implements Ventana, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-//        if (o instanceof Modelo) {
-//            modelo = (Modelo) o;
-//
-//            }
-//            //nombresJugadores = this.ConseguirJugadores(modelo);
-//            //jugadoresBox.getChildren().addAll(nombresJugadores);
-//        }
+        if (arg.equals("Siguiente Pregunta")){
+            this.modelo = (Modelo) o;
+            updateLabelJugadores();
+        }
     }
 
-    public void updateLabelJugadores(Modelo modelo) {
-        this.modelo = modelo;
+    public void updateLabelJugadores() {
 
         ArrayList<String> arregloJugadores = this.modelo.ConseguirTodosLosJugadores();
         ArrayList<Integer> arregloPuntajeJugadores = this.modelo.ConseguirTodosLosPuntajes();

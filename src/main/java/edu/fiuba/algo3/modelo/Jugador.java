@@ -29,7 +29,7 @@ public class Jugador {
         this.respuestasDelJugador = new ArrayList<>();
         this.gestorAnulador = new GestorAnulador();
         this.gestorExclusividad = new GestorExclusividad();
-
+        this.ordenParcialRespuestas = "1";
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta

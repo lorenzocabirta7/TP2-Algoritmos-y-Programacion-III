@@ -12,49 +12,32 @@ public class ControladorMostrarPregunta extends MouseAdapter {
     private Modelo modelo;
     private VentanaPregunta vista;
     private Button BotonProximoJugador;
-    private Button BotonproximaPregunta;
 
 
-    public ControladorMostrarPregunta(Modelo modelo, VentanaPregunta vista, Button BotonProximoJugador, Button BotonproximaPregunta) {
+    public ControladorMostrarPregunta(Modelo modelo, VentanaPregunta vista, Button BotonProximoJugador) {
         this.modelo = modelo;
         this.vista = vista;
         this.BotonProximoJugador = BotonProximoJugador;
-        this.BotonproximaPregunta = BotonproximaPregunta;
 
-        ActualizarVista();
 
-        modelo.addObserver((o, arg) -> {
-            ActualizarVista();
-        });
+        modelo.addObserver(this.vista);
 
-        this.BotonproximaPregunta.setOnAction(this::ApretarBotonSiguientePregunta);
         this.BotonProximoJugador.setOnAction(this::ApretarBotonProximoJugador);
     }
 
 
-
-    private void ApretarBotonSiguientePregunta(ActionEvent event)  {
+    public void ApretarBotonSiguientePregunta()  {
         modelo.SiguientePregunta();
-
-        modelo.notifyObservers();
     }
 
     private void ApretarBotonProximoJugador(ActionEvent event) {
         try {
             modelo.confirmarRespuestas();
             modelo.SiguienteJugador();
-            //modelo.notifyObservers(vista);
         } catch (YaJugaronTodosLosJugadores e) {
-            BotonproximaPregunta.fire();
+            modelo.SiguientePregunta();
         }
     }
 
-
-    private void ActualizarVista() {
-        vista.updatePlayerLabel(modelo.conseguirJugador().obtenerNombre());
-        vista.resetAnswerButtons();
-        vista.updatePreguntaLabel(modelo.ConseguirPregunta());
-        vista.siguienteJugador(modelo.conseguirJugador());
-    }
 
 }
