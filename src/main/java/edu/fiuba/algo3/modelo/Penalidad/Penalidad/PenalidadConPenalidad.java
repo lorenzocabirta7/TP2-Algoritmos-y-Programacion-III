@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Respuestas.Penalidad;
+package edu.fiuba.algo3.modelo.Penalidad.Penalidad;
 
 public class PenalidadConPenalidad implements TipoDePenalidad {
     @Override

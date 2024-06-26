@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,10 @@ public class TestRespuestaIncorrecta {
 
         Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
 
-        int puntajeObtenido = respuesta1.actualizarPuntaje(1, respuesta1);
+        TipoDePenalidad unaPenalidad = new PenalidadClasica();
+
+
+        int puntajeObtenido = respuesta1.actualizarPuntaje(1,unaPenalidad, respuesta1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -55,7 +59,8 @@ public class TestRespuestaIncorrecta {
 
         Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadConPenalidad());
 
-        int puntajeObtenido = respuesta1.actualizarPuntaje(1, respuesta1);
+        TipoDePenalidad unaPenalidad = new PenalidadConPenalidad();
+        int puntajeObtenido = respuesta1.actualizarPuntaje(1,unaPenalidad, respuesta1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }

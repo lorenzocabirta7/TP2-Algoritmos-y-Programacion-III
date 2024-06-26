@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.DTO;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.TipoDePenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 
 public class TipoDePenalidadDTO {
     public TipoDePenalidad DevolverPenalidad(PreguntaDTO pregunta){

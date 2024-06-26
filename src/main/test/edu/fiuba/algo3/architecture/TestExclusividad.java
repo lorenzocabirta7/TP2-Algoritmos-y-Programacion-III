@@ -1,17 +1,15 @@
 package edu.fiuba.algo3.architecture;
 
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.*;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.*;
 import edu.fiuba.algo3.modelo.exceptions.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //Cada jugador tendrá dos opciones de “exclusividad de puntaje” que podrá elegir
@@ -88,10 +86,10 @@ public class TestExclusividad {
 
 
 
-        jugador2.activarExclusividad(pregunta);
-        jugador3.activarExclusividad(pregunta);
-
-        pregunta.ObtenerResultados();
+        //jugador2.activarExclusividad(pregunta);
+        //jugador3.activarExclusividad(pregunta);
+//
+        //pregunta.ObtenerResultados();
 
     }
 

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
@@ -63,7 +64,9 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta);
+        TipoDePenalidad unaPenalidad = new PenalidadClasica();
+
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1,unaPenalidad, respuestaCorrecta);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -77,7 +80,9 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2.0");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta);
+        TipoDePenalidad unaPenalidad = new PenalidadClasica();
+
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1,unaPenalidad, respuestaCorrecta);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -92,8 +97,10 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta1);
-        puntajeObtenido += respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta2);
+        TipoDePenalidad unaPenalidad = new PenalidadClasica();
+
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1,unaPenalidad, respuestaCorrecta1);
+        puntajeObtenido += respuestaAVerificar.actualizarPuntaje(1,unaPenalidad, respuestaCorrecta2);
 
 
         assertEquals(puntajeEsperado, puntajeObtenido);

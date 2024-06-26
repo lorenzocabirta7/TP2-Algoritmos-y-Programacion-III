@@ -2,11 +2,15 @@ package edu.fiuba.algo3.modelo.preguntas;
 
 
 import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
 public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
+
+    private TipoDePenalidad penalidad = new PenalidadClasica();
     private ArrayList<Respuesta> respuestas;
     private void verificarActivacionAnulador(){
         if (!jugadoresQueUsaronAnulador.isEmpty()){
@@ -28,7 +32,7 @@ public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
 
         for (Respuesta respuesta : respuestas) {
             for(Respuesta respuestaPosible : this.respuestas){
-                RespuestasCorrectas += respuesta.actualizarPuntaje(1, respuestaPosible);
+                RespuestasCorrectas += respuesta.actualizarPuntaje(1,penalidad, respuestaPosible);
             }
         }
         if (RespuestasCorrectas == RespuestasCorrectasEsperadas) {

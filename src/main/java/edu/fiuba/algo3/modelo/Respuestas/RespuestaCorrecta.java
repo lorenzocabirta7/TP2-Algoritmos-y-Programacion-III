@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Respuestas;
 
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
+
 public class RespuestaCorrecta implements Respuesta {
     private String respuesta;
     private String ordenParcial;
@@ -10,7 +12,7 @@ public class RespuestaCorrecta implements Respuesta {
     }
 
     @Override
-    public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta) {
+    public int actualizarPuntaje(int puntaje, TipoDePenalidad unaPenalidad, Respuesta unaRespuesta) {
         return puntaje;
     }
 

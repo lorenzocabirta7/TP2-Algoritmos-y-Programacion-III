@@ -1,18 +1,24 @@
 package edu.fiuba.algo3.modelo.Respuestas;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.TipoDePenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 
 public class RespuestaIncorrecta implements Respuesta {
     private TipoDePenalidad tipoDePenalidad;
     private String enunciado;
 
+
+    //Hay que Sacar esto
     public RespuestaIncorrecta(String respuesta, TipoDePenalidad tipoDePenalidad){
         this.tipoDePenalidad = tipoDePenalidad;
         this.enunciado = respuesta;
     }
 
+    public RespuestaIncorrecta(String respuesta){
+        this.enunciado = respuesta;
+    }
+
     @Override
-    public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta) {
+    public int actualizarPuntaje(int puntaje,TipoDePenalidad tipoDePenalidad, Respuesta unaRespuesta) {
         return tipoDePenalidad.actualizarPuntaje(puntaje);
     }
 

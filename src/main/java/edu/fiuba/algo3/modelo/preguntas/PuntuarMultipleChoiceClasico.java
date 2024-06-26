@@ -1,10 +1,14 @@
 package edu.fiuba.algo3.modelo.preguntas;
 import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 
 public class PuntuarMultipleChoiceClasico extends PuntuarSinPenalidad{
+
+    private TipoDePenalidad penalidad = new PenalidadClasica();
     private ArrayList<Respuesta> respuestas;
 
     private void verificarActivacionAnulador(){

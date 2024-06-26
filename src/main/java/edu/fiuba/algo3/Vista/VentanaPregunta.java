@@ -3,7 +3,7 @@ package edu.fiuba.algo3.Vista;
 import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modelo;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;

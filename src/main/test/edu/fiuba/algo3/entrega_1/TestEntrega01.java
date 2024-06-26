@@ -2,8 +2,8 @@ package edu.fiuba.algo3.entrega_1;
 
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
@@ -31,7 +31,7 @@ public class TestEntrega01 {
 
 
         Respuesta respuesta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
-        Respuesta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+        Respuesta respuesta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta);
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
@@ -70,14 +70,10 @@ public class TestEntrega01 {
 
         String enunciado = "Estamos en el año 2000?";
 
-        String enunciadoRespuestaCorrecta = "NO";
-        String enunciadoRespuestaIncorrecta = "SI";
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("NO", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta2 = new RespuestaIncorrecta("SI");
 
-        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta(enunciadoRespuestaCorrecta, "0");
-        RespuestaIncorrecta respuestaDeLaPregunta2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
-
-        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
-
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuestaDeLaPregunta1);
         respuestasPosibles.add(respuestaDeLaPregunta2);
@@ -87,8 +83,8 @@ public class TestEntrega01 {
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
 
-        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
-        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta(enunciadoRespuestaIncorrecta, new PenalidadClasica());
+        RespuestaIncorrecta respuestaDelJugador1 = new RespuestaIncorrecta("SI");
+        RespuestaIncorrecta respuestaDelJugador2 = new RespuestaIncorrecta("SI");
 
         jugador1.responder(pregunta, respuestaDelJugador1);
         jugador2.responder(pregunta, respuestaDelJugador2);
@@ -119,7 +115,7 @@ public class TestEntrega01 {
         RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
         RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
 
-        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuestaDeLaPregunta1);
         respuestasPosibles.add(respuestaDeLaPregunta2);
@@ -901,7 +897,7 @@ public class TestEntrega01 {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta1 = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles), new AnuladorClasico());
+        Pregunta pregunta1 = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
 
         String enunciado2 = "Colocar estas letras en orden alfabetico, [E, A ,Z, F]";
 
@@ -917,7 +913,7 @@ public class TestEntrega01 {
         respuestasPosibles2.add(respuesta3Pregunta2);
         respuestasPosibles2.add(respuesta4Pregunta2);
 
-        Pregunta pregunta2 = new Pregunta(enunciado2, respuestasPosibles2, new PuntuarDeFormaOrdenada(respuestasPosibles2), new AnuladorClasico());
+        Pregunta pregunta2 = new Pregunta(enunciado2, respuestasPosibles2, new PuntuarDeFormaOrdenada(respuestasPosibles2));
 
         String enunciado3 = "Estamos en el año 2024?";
         String enunciadoRespuestaCorrecta = "SI";
@@ -934,7 +930,7 @@ public class TestEntrega01 {
         respuestasPosibles3.add(respuesta1Pregunta3);
         respuestasPosibles3.add(respuesta2Pregunta3);
 
-        Pregunta pregunta3 = new Pregunta(enunciado3, respuestasPosibles3, new PuntuarVerdaderoFalsoClasico(), new AnuladorClasico());
+        Pregunta pregunta3 = new Pregunta(enunciado3, respuestasPosibles3, new PuntuarVerdaderoFalsoClasico());
 
 
         ArrayList<Pregunta> preguntasDelJuego = new ArrayList<>();
