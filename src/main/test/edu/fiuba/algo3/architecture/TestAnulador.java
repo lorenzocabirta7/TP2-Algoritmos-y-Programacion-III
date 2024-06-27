@@ -19,7 +19,7 @@ public class TestAnulador {
         int cantidadCatchesEsperador = 0;
         int cantidadCatchesObtenidos = 1;
         Jugador jugador1 = new Jugador("Spirulina");
-        Pregunta pregunta = new Pregunta(null,null,new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(null, "Sin Tema", null,new PuntuarVerdaderoFalsoClasico());
         jugador1.activarAnuladorDePuntaje(pregunta);
         try {
             jugador1.activarAnuladorDePuntaje(pregunta);
@@ -41,14 +41,14 @@ public class TestAnulador {
         String enunciado = "Estamos en el año 2024?";
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -84,14 +84,14 @@ public class TestAnulador {
         String enunciado = "Estamos en el año 2024?";
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
@@ -126,14 +126,14 @@ public class TestAnulador {
         String enunciado = "Estamos en el año 2024?";
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -167,14 +167,14 @@ public class TestAnulador {
 
         String enunciado = "Gano la seleccion la copa america?";
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -202,14 +202,14 @@ public class TestAnulador {
 
         String enunciado = "Gano la seleccion la copa america?";
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -239,14 +239,14 @@ public class TestAnulador {
 
         String enunciado = "Gano la seleccion la copa america?";
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
 
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
@@ -289,8 +289,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -299,7 +299,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -341,8 +341,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -351,7 +351,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -395,8 +395,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadClasica());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4", new PenalidadClasica());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -405,7 +405,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -449,7 +449,7 @@ public class TestAnulador {
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
         RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
         RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -458,7 +458,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -496,7 +496,7 @@ public class TestAnulador {
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
         RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
         RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -505,7 +505,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -543,7 +543,7 @@ public class TestAnulador {
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
         RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
         RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
-        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero", new PenalidadClasica());
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -552,7 +552,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoiceParcial());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -591,8 +591,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -601,7 +601,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -641,8 +641,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -651,7 +651,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -690,8 +690,8 @@ public class TestAnulador {
 
         RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
         RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
-        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
-        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3", new PenalidadConPenalidad());
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
 
@@ -700,7 +700,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuestaDeLaPregunta3);
         respuestasPosibles.add(respuestaDeLaPregunta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
 
         Jugador jugador1 = new Jugador("Riquelme");
         Jugador jugador2 = new Jugador("Palermo");
@@ -754,7 +754,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -825,7 +825,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");
@@ -896,7 +896,7 @@ public class TestAnulador {
         respuestasPosibles.add(respuesta3);
         respuestasPosibles.add(respuesta4);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
 
         Jugador jugador1 = new Jugador("Manuel");
         Jugador jugador2 = new Jugador("Sebastian");

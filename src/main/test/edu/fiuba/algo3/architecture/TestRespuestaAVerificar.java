@@ -46,7 +46,7 @@ public class TestRespuestaAVerificar {
 
         Boolean respuestaEsperada = false;
 
-        Respuesta respuestaIncorrecta = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuestaIncorrecta = new RespuestaIncorrecta("enunciado De Prueba");
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 

@@ -21,14 +21,14 @@ public class ProcesarDTO {
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), "Sin Tema", respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            } else {
                ArrayList<Respuesta> respuestasPregunta = procesarPreguntasNormales(pregunta);
 
                FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
 
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
+               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), "Sin Tema", respuestasPregunta, unaFormaDePuntuar);
                preguntas.add(preguntaNueva);
            }
        }
@@ -61,7 +61,7 @@ public class ProcesarDTO {
                     respuestasTotales.add(respuestaCorrecta);
                 } else {
                     TipoDePenalidadDTO tipoDePenalidad = new TipoDePenalidadDTO();
-                    Respuesta respuestaIncorrecta = new RespuestaIncorrecta(opcion, tipoDePenalidad.DevolverPenalidad(pregunta));
+                    Respuesta respuestaIncorrecta = new RespuestaIncorrecta(opcion);
                     respuestasTotales.add(respuestaIncorrecta);
                 }
             }

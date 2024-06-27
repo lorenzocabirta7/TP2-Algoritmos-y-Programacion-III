@@ -21,7 +21,7 @@ public class TestPuntuarVerdaderoFalsoClasico {
         ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         respuestas.add(respuesta1);
         respuestas.add(respuesta2);
@@ -31,7 +31,7 @@ public class TestPuntuarVerdaderoFalsoClasico {
         String enunciadoEsperado = enunciado;
         ArrayList<Respuesta> respuestasEsperadas = respuestas;
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestas, new PuntuarVerdaderoFalsoClasico());
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());

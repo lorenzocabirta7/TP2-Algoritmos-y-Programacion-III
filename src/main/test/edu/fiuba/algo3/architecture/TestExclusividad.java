@@ -51,14 +51,14 @@ public class TestExclusividad {
         respuestas = new ArrayList<Respuesta>();
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         respuestas.add(respuesta1);
         respuestas.add(respuesta2);
 
         String enunciado = "Vamos a aprobar el TP?";
 
-        pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico());
+        pregunta = new Pregunta(enunciado, "Sin Tema", respuestas, new PuntuarVerdaderoFalsoClasico());
 
     }
 

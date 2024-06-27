@@ -16,7 +16,7 @@ public class TestRespuestaIncorrecta {
         String enunciadoEsperado = "enunciado De Prueba";
         String ordenEsperado = "0";
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         String enunciadoObtenido = respuesta1.getRespuesta();
         String ordenObtenido = respuesta1.getOrdenParcial();
@@ -30,7 +30,7 @@ public class TestRespuestaIncorrecta {
 
         Boolean respuestaEsperada = false;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         Boolean respuestaObtenida = respuesta1.EsCorrecta(respuesta1);
 
@@ -42,7 +42,7 @@ public class TestRespuestaIncorrecta {
 
         int puntajeEsperado = 0;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         TipoDePenalidad unaPenalidad = new PenalidadClasica();
 
@@ -57,7 +57,7 @@ public class TestRespuestaIncorrecta {
 
         int puntajeEsperado = -1;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadConPenalidad());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         TipoDePenalidad unaPenalidad = new PenalidadConPenalidad();
         int puntajeObtenido = respuesta1.actualizarPuntaje(1,unaPenalidad, respuesta1);

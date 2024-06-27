@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 public class Pregunta {
     private String enunciado;
+    private String tema;
     private ArrayList<Respuesta> respuestas;
     private FormaDePuntuar unaFormaDePuntuar;
 
 
-    public Pregunta(String enunciado, ArrayList<Respuesta> respuestasPosibles, FormaDePuntuar tipoDePregunta) {
+    public Pregunta(String enunciado, String tema, ArrayList<Respuesta> respuestasPosibles, FormaDePuntuar tipoDePregunta) {
         this.enunciado = enunciado;
+        this.tema = tema;
         this.respuestas = respuestasPosibles;
         this.unaFormaDePuntuar = tipoDePregunta;
     }

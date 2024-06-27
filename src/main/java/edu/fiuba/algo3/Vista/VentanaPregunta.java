@@ -156,8 +156,7 @@ public class VentanaPregunta implements Ventana, Observer {
                     jugadorActual.responder(preguntaAMostrar, new RespuestaAVerificar(respuesta.getRespuesta(),
                             jugadorActual.obtenerOrdenParcial()));
                 } else {
-                    jugadorActual.responder(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta(),
-                            new PenalidadClasica()));
+                    jugadorActual.responder(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta()));
                 }
                 opcion.setDisable(true);
                 System.out.println("Respuesta elegida: " + respuesta.getRespuesta()

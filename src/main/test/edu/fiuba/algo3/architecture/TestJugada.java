@@ -26,14 +26,14 @@ public class TestJugada {
         String enunciado = "Estamos en el año 2024?";
 
         RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
 
         ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
 
         respuestasPosibles.add(respuesta1);
         respuestasPosibles.add(respuesta2);
 
-        Pregunta pregunta = new Pregunta(enunciado, respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
         Jugador jugador1 = new Jugador("Jugador 1");
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");

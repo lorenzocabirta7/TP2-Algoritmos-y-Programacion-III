@@ -7,12 +7,6 @@ public class RespuestaIncorrecta implements Respuesta {
     private String enunciado;
 
 
-    //Hay que Sacar esto
-    public RespuestaIncorrecta(String respuesta, TipoDePenalidad tipoDePenalidad){
-        this.tipoDePenalidad = tipoDePenalidad;
-        this.enunciado = respuesta;
-    }
-
     public RespuestaIncorrecta(String respuesta){
         this.enunciado = respuesta;
     }
