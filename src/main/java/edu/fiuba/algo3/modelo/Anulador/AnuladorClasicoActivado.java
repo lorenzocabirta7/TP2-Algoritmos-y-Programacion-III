@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.Anulador;
 
 import edu.fiuba.algo3.modelo.*;
-
+import edu.fiuba.algo3.modelo.GestorPuntaje;
 import java.util.ArrayList;
 
 public class AnuladorClasicoActivado implements EstadoAnulador {
-
+    //private GestorPuntaje gestorPuntaje = new GestorPuntaje();
     @Override
     public int puntosLuegoDeEvaluacion(int puntajeNoAnulado, ArrayList<Jugador> jugaodoresQueUsaronAnulador, Jugador unJugador){
         int puntosObtenidos = puntajeNoAnulado;
@@ -18,10 +18,10 @@ public class AnuladorClasicoActivado implements EstadoAnulador {
                 }
             }
             if (!jugadorEncontrado){
-                puntosObtenidos = 0;
+                puntosObtenidos = GestorPuntaje.PuntajeError();
             }
         }else {
-            puntosObtenidos = 0;
+            puntosObtenidos = GestorPuntaje.PuntajeError();
         }
         return puntosObtenidos;
     }

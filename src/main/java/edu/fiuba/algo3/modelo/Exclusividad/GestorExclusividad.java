@@ -6,13 +6,11 @@ import edu.fiuba.algo3.modelo.preguntas.*;
 
 public class GestorExclusividad {
     private int usosDisponiblesExclusividad = 2;
-        public void gestarActivacion(Pregunta pregunta, Jugador jugador) throws ExclusividadSeUsaMasdeDosVeces {
+        public void gestarActivacion(Pregunta pregunta, Jugador jugador) throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
         if (this.usosDisponiblesExclusividad > 0) {
             pregunta.activarExclusividad(jugador);
-
             this.usosDisponiblesExclusividad--;
-        }
-        else {
+        }else{
             throw new ExclusividadSeUsaMasdeDosVeces("No hay usos disponibles");
         }
     }

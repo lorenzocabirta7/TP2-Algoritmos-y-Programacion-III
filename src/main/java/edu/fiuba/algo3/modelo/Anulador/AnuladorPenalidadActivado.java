@@ -17,12 +17,12 @@ public class AnuladorPenalidadActivado implements EstadoAnulador {
             }
             if (!jugadorEncontrado){
                 if (puntosObtenidos > 0){
-                    puntosObtenidos = 0;
+                    puntosObtenidos = GestorPuntaje.PuntajeError();
                 }
             }
         }else {
             if (puntosObtenidos > 0){
-                puntosObtenidos = 0;
+                puntosObtenidos = GestorPuntaje.PuntajeError();
             }
         }
         return puntosObtenidos;

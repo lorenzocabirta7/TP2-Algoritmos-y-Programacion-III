@@ -2,100 +2,952 @@ package edu.fiuba.algo3.architecture;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.exceptions.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//Cada jugador tendrá dos opciones de “exclusividad de puntaje” que podrá elegir
-//utilizar en cualquiera de las preguntas que no tienen “penalidad”.
-//        ➔ El jugador podrá asignar la exclusividad de puntaje a la pregunta cuando le llegue
-//el turno de responder.
-//        ➔ Al calcular los puntos, se asignará el doble del puntaje, pero solo en caso de que
-//solo uno de los jugadores haya realizado la opción correcta. Es decir, si los N
-//jugadores eligen la opción correcta, no se asignará puntaje a ninguno. Si uno de
-//los jugadores eligió la opción correcta, ese jugador conseguirá el doble del puntaje.
-//        ➔ Alcanza con que uno de los jugadores asigne la exclusividad de puntaje para que
-//la regla afecte a todos los jugadores en esa pregunta.
-//        ➔ Si por lo menos 2 jugadores asignan exclusividad de puntaje, entonces el efecto se
-//multiplica por la cantidad de jugadores que la asignaron y se asignará el puntaje al
-//jugador que elija la opción correcta (sólo si ningún otro jugador no eligió la opción
-//        correcta a su vez).
-//        ➔ Al mostrar los resultados (después de que respondieron los jugadores), se deberá
-//indicar que se usó este modificador
-
-
 
 public class TestExclusividad {
-
-    private Jugador jugador1;
-    private Jugador jugador2;
-    private Jugador jugador3;
-    private ArrayList<Respuesta> respuestas;
-    private Pregunta pregunta;
-
-
-    @BeforeEach
-    public void SetUp() {
-
-        jugador1 = new Jugador("FIUBERO");
-        jugador2 = new Jugador("TinchoSaad");
-        jugador3 = new Jugador("LaCapitalDeEcuador");
-
-
-        respuestas = new ArrayList<Respuesta>();
-
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
-
-        respuestas.add(respuesta1);
-        respuestas.add(respuesta2);
-
-        String enunciado = "Vamos a aprobar el TP?";
-
-        pregunta = new Pregunta(enunciado, "Sin Tema", respuestas, new PuntuarVerdaderoFalsoClasico());
-
+    @Test
+    public void test01JugadorUtilizaExclusividad2VecesYALaTerceraTiraExcepcion() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida{
+        int cantidadCatchesEsperados = 1;
+        int cantidadCatchesObtenidos = 0;
+        Jugador jugador1 = new Jugador("Spirulina");
+        Pregunta pregunta = new Pregunta(null, "Sin Tema", null,new PuntuarVerdaderoFalsoClasico());
+        jugador1.activarExclusividad(pregunta);
+        jugador1.activarExclusividad(pregunta);
+        try {
+            jugador1.activarExclusividad(pregunta);
+        } catch (ExclusividadSeUsaMasdeDosVeces error) {
+            cantidadCatchesObtenidos++;
+        }
+        assertEquals(cantidadCatchesEsperados,cantidadCatchesObtenidos);
     }
 
     @Test
-    public void test01UnUnicoJugadorUtilizaExclusividadRespondeCorrectamenteYSeLeDuplicaElPuntaje() throws ExclusividadSeUsaMasdeDosVeces {
-        int puntosEsperados = 4;
-        int puntosPregunta = 2;
+    public void test02JugadorActivaExclusividadRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 4;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Estamos en el año 2024?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta2);
+        jugador3.responder(pregunta, respuesta2);
+
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test03JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Estamos en el año 2024?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarExclusividad(pregunta);
 
+        jugador1.responder(pregunta, respuesta2);
+        jugador2.responder(pregunta, respuesta1);
+        jugador3.responder(pregunta, respuesta1);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
     }
     @Test
-    public void test02UnJugadorActivaExclusividadYTodosLosJugadoresRespondenBienYSumanCeroPuntos(){
-        int puntosEsperadosJugador1 = 0;
-        int puntosEsperadosJugador2 = 0;
-        int puntosEsperadosJugador3 = 0;
+    public void test04VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaVerdaderoFalsoClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Estamos en el año 2024?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoClasico());
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta1);
+        jugador3.responder(pregunta, respuesta1);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+
+    @Test
+    public void test05JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoPenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta1);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+
+    }
+    @Test
+    public void test06JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaVerdaderoFalsoPenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
+        int puntajeEsperadoJugador1 = -1;
+        int puntajeEsperadoJugador2 = 0;
+
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta2);
+        jugador2.responder(pregunta, respuesta1);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+
+    }
+    @Test
+    public void test07VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaVerdaderoFalsoPenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = -1;
+        int puntajeEsperadoJugador3 = 0;
+        int puntajeEsperadoJugador4 = -1;
+
+        String enunciado = "Gano la seleccion la copa america?";
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si","0");
+        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles,new PuntuarVerdaderoFalsoPenalidad());
+
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+        Jugador jugador4 = new Jugador("Jugador 4");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1);
+        jugador2.responder(pregunta, respuesta2);
+        jugador3.responder(pregunta, respuesta1);
+        jugador4.responder(pregunta, respuesta2);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+        jugador4.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+        int puntajeObtenidoJugador4 = jugador4.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+        assertEquals(puntajeEsperadoJugador4, puntajeObtenidoJugador4);
 
     }
 
     @Test
-    public void test03VariosJugadoresUsanExclusividadYSoloUnoRespondeBienSeMultiplicaElPuntaje() throws ExclusividadSeUsaMasdeDosVeces {
-        int puntosEsperadosJugador1 = 8; //2^n siendo n los jugadores que activan el multi
-        int puntosEsperadosJugador2 = 0;
-        int puntosEsperadosJugador3 = 0;
+    public void test08JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta1);
+        jugador1.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta3);
+        jugador3.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test09JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta3);
+        jugador1.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta3);
+        jugador3.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
 
 
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
 
-        //jugador2.activarExclusividad(pregunta);
-        //jugador3.activarExclusividad(pregunta);
-//
-        //pregunta.ObtenerResultados();
+    }
+    @Test
+    public void test10VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaMultipleChoiceClasico__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de MúltipleChoiceclásico recibe una lista de respuestas de un jugador
+        // y asigna correctamente puntos a los jugadores que respondieron correctamente✅.
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("2", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("4");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceClasico(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta1);
+        jugador1.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta3);
+        jugador3.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
 
     }
 
     @Test
-    public void test04VariosJugadoresUsanExclusividadYSoloUnoRespondeBienSeMultiplicaElPuntaje(){
+    public void test11JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceParcial__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
 
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta2);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test12JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoiceParcial__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida{
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta4);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test13VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaMultipleChoiceParcial__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuales fueron los 3 arqueros de Argentina en el mundial 2022?";
+
+        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Franco Armani", "0");
+        RespuestaCorrecta respuesta2 = new RespuestaCorrecta("Emiliano Martinez","0");
+        RespuestaCorrecta respuesta3 = new RespuestaCorrecta("Geronimo Rulli","0");
+        RespuestaIncorrecta respuesta4 = new RespuestaIncorrecta("Sergio Romero");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoiceParcial());
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Juan");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta,respuesta1);
+        jugador1.responder(pregunta,respuesta2);
+        jugador2.responder(pregunta,respuesta1);
+        jugador2.responder(pregunta,respuesta2);
+        jugador3.responder(pregunta,respuesta1);
+        jugador3.responder(pregunta,respuesta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
     }
 
+    @Test
+    public void test14JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoicePenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        int puntajeEsperadoJugador1 = 2;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = -2;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta1);
+        jugador1.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta3);
+        jugador3.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test15JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaMultipleChoicePenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida{
+        int puntajeEsperadoJugador1 = -2;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = -2;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta3);
+        jugador1.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta3);
+        jugador3.responder(pregunta, respuestaDeLaPregunta4);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+    @Test
+    public void test16VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaMultipleChoicePenalidad__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Cuantas patas puede tener una gallina (cero no cuenta)?";
+
+        RespuestaCorrecta respuestaDeLaPregunta1 = new RespuestaCorrecta("1", "0");
+        RespuestaCorrecta respuestaDeLaPregunta2 = new RespuestaCorrecta("1", "0");
+        RespuestaIncorrecta respuestaDeLaPregunta3 = new RespuestaIncorrecta("3");
+        RespuestaIncorrecta respuestaDeLaPregunta4 = new RespuestaIncorrecta("3");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuestaDeLaPregunta1);
+        respuestasPosibles.add(respuestaDeLaPregunta2);
+        respuestasPosibles.add(respuestaDeLaPregunta3);
+        respuestasPosibles.add(respuestaDeLaPregunta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarMultipleChoicePenalidad());
+
+        Jugador jugador1 = new Jugador("Riquelme");
+        Jugador jugador2 = new Jugador("Palermo");
+        Jugador jugador3 = new Jugador("Zenon");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuestaDeLaPregunta1);
+        jugador1.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador2.responder(pregunta, respuestaDeLaPregunta1);
+        jugador2.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador3.responder(pregunta, respuestaDeLaPregunta1);
+        jugador3.responder(pregunta, respuestaDeLaPregunta2);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1, puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2, puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3, puntajeObtenidoJugador3);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void test17JugadorActivaAnuladorRespondeBienYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaOrderChoice__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+        //Una Pregunta de GroupChoice recibe una lista de respuestas de un jugador
+        //y asigna correctamente puntos a los jugadores que respondieron de forma Correcta ✅.
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        Respuesta respuesta1 = new RespuestaCorrecta("A","Letras");
+        Respuesta respuesta2 = new RespuestaCorrecta("M","Letras");
+        Respuesta respuesta3 = new RespuestaCorrecta("0","Numeros");
+        Respuesta respuesta4 = new RespuestaCorrecta("2","Numeros");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Martin");
+
+        Respuesta respuesta1DelJugador1 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador1 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador1 = new RespuestaAVerificar("2","Numeros");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador2 = new RespuestaAVerificar("2","Numeros");
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        Respuesta respuesta1DelJugador3 = new RespuestaAVerificar("A","Numeros");
+        Respuesta respuesta2DelJugador3 = new RespuestaAVerificar("M","Numeros");
+        Respuesta respuesta3DelJugador3 = new RespuestaAVerificar("0","Letras");
+        Respuesta respuesta4DelJugador3 = new RespuestaAVerificar("2","Letras");
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+        jugador3.responder(pregunta, respuesta3DelJugador3);
+        jugador3.responder(pregunta, respuesta4DelJugador3);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test18JugadorActivaAnuladorRespondeMalYotrosJugadoresNoGananPuntosPorLaPregunta__PreguntaOrderChoice__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        Respuesta respuesta1 = new RespuestaCorrecta("A","Letras");
+        Respuesta respuesta2 = new RespuestaCorrecta("M","Letras");
+        Respuesta respuesta3 = new RespuestaCorrecta("0","Numeros");
+        Respuesta respuesta4 = new RespuestaCorrecta("2","Numeros");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Martin");
+
+        Respuesta respuesta1DelJugador1 = new RespuestaAVerificar("A","Numeros");
+        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("M","Numeros");
+        Respuesta respuesta3DelJugador1 = new RespuestaAVerificar("0","Letras");
+        Respuesta respuesta4DelJugador1 = new RespuestaAVerificar("2","Letras");
+
+        jugador1.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador2 = new RespuestaAVerificar("2","Numeros");
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        Respuesta respuesta1DelJugador3 = new RespuestaAVerificar("A","Numeros");
+        Respuesta respuesta2DelJugador3 = new RespuestaAVerificar("M","Numeros");
+        Respuesta respuesta3DelJugador3 = new RespuestaAVerificar("0","Letras");
+        Respuesta respuesta4DelJugador3 = new RespuestaAVerificar("2","Letras");
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+        jugador3.responder(pregunta, respuesta3DelJugador3);
+        jugador3.responder(pregunta, respuesta4DelJugador3);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
+    @org.junit.jupiter.api.Test
+    public void test19VariosJugadoresActivanAnuladorYNingunJugadorGanaPuntos__PreguntaOrderChoice__() throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        String enunciado = "Separar en grupos las letras y los numeros [M, A, 0, 2]";
+
+        Respuesta respuesta1 = new RespuestaCorrecta("A","Letras");
+        Respuesta respuesta2 = new RespuestaCorrecta("M","Letras");
+        Respuesta respuesta3 = new RespuestaCorrecta("0","Numeros");
+        Respuesta respuesta4 = new RespuestaCorrecta("2","Numeros");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<Respuesta>();
+
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+
+        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestasPosibles, new PuntuarDeFormaOrdenada(respuestasPosibles));
+
+        Jugador jugador1 = new Jugador("Manuel");
+        Jugador jugador2 = new Jugador("Sebastian");
+        Jugador jugador3 = new Jugador("Martin");
+
+        Respuesta respuesta1DelJugador1 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador1 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador1 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador1 = new RespuestaAVerificar("2","Numeros");
+
+        jugador1.activarExclusividad(pregunta);
+        jugador2.activarExclusividad(pregunta);
+
+        jugador1.responder(pregunta, respuesta1DelJugador1);
+        jugador1.responder(pregunta, respuesta2DelJugador1);
+        jugador1.responder(pregunta, respuesta3DelJugador1);
+        jugador1.responder(pregunta, respuesta4DelJugador1);
+
+        Respuesta respuesta1DelJugador2 = new RespuestaAVerificar("A","Letras");
+        Respuesta respuesta2DelJugador2 = new RespuestaAVerificar("M","Letras");
+        Respuesta respuesta3DelJugador2 = new RespuestaAVerificar("0","Numeros");
+        Respuesta respuesta4DelJugador2 = new RespuestaAVerificar("2","Numeros");
+
+        jugador2.responder(pregunta, respuesta1DelJugador2);
+        jugador2.responder(pregunta, respuesta2DelJugador2);
+        jugador2.responder(pregunta, respuesta3DelJugador2);
+        jugador2.responder(pregunta, respuesta4DelJugador2);
+
+        Respuesta respuesta1DelJugador3 = new RespuestaAVerificar("A","Numeros");
+        Respuesta respuesta2DelJugador3 = new RespuestaAVerificar("M","Numeros");
+        Respuesta respuesta3DelJugador3 = new RespuestaAVerificar("0","Letras");
+        Respuesta respuesta4DelJugador3 = new RespuestaAVerificar("2","Letras");
+
+        jugador3.responder(pregunta, respuesta1DelJugador3);
+        jugador3.responder(pregunta, respuesta2DelJugador3);
+        jugador3.responder(pregunta, respuesta3DelJugador3);
+        jugador3.responder(pregunta, respuesta4DelJugador3);
+
+        jugador1.confirmarRespuesta(pregunta);
+        jugador2.confirmarRespuesta(pregunta);
+        jugador3.confirmarRespuesta(pregunta);
+
+        int puntajeObtenidoJugador1 = jugador1.obtenerPuntos();
+        int puntajeObtenidoJugador2 = jugador2.obtenerPuntos();
+        int puntajeObtenidoJugador3 = jugador3.obtenerPuntos();
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenidoJugador1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenidoJugador2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenidoJugador3);
+    }
 }

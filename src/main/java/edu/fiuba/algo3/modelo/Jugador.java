@@ -20,9 +20,11 @@ public class Jugador {
     private GestorExclusividad gestorExclusividad;
     private ArrayList<Respuesta> respuestasDelJugador;
     private String ordenParcialRespuestas;
+    private ArrayList<Object> jugadasIndividual = new ArrayList<>();
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
+
         this.puntos = 0;
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
@@ -30,6 +32,7 @@ public class Jugador {
         this.gestorAnulador = new GestorAnulador();
         this.gestorExclusividad = new GestorExclusividad();
         this.ordenParcialRespuestas = "1";
+
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
@@ -63,6 +66,7 @@ public class Jugador {
     }
 
     public void confirmarRespuesta(Pregunta pregunta){
+        //pregunta.confirmarRespuesta(respuestasDelJugador,this);
         pregunta.puntuar(respuestasDelJugador, this);
         this.resetRespuestas();
     }
@@ -71,7 +75,8 @@ public class Jugador {
         this.gestorAnulador.gestarActivacion(pregunta,this);
     }
 
-    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces {
+    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+
         this.gestorExclusividad.gestarActivacion(pregunta,this);
     }
 

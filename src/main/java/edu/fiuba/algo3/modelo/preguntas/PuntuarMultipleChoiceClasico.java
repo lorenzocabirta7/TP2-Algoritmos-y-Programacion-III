@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.modelo.preguntas;
 import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.GestorPuntaje;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
+
 import java.util.ArrayList;
 
 public class PuntuarMultipleChoiceClasico extends PuntuarSinPenalidad{
@@ -35,7 +38,7 @@ public class PuntuarMultipleChoiceClasico extends PuntuarSinPenalidad{
     public int puntuar(ArrayList<Respuesta> respuestas,Jugador unjugador) {
         this.verificarActivacionAnulador();
         int RespuestasCorrectas = 0;
-        int PuntajeObtenido = 0;
+        int PuntajeObtenido = GestorPuntaje.PuntajeError();
         ArrayList<Respuesta>respuestasCorrectas = this.obtenerRespuestasCorrectas();
 
         for (Respuesta respuestaDelJugador : respuestas) {
@@ -44,14 +47,10 @@ public class PuntuarMultipleChoiceClasico extends PuntuarSinPenalidad{
             }
         }
         if (RespuestasCorrectas == respuestasCorrectas.size()){
-            PuntajeObtenido = 1;
+            PuntajeObtenido = GestorPuntaje.PuntajeAcierto();
         }
         PuntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(PuntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
+        PuntajeObtenido = this.exclusividad.puntosLuegoDeEvaluacion(PuntajeObtenido,this.jugadoresQueUsaronExclusividad,this.jugadorQueSeAplica,unjugador);
         return PuntajeObtenido;
-    }
-
-    @Override
-    public void agregarJugadorQueUsoExclusividad(Jugador jugador) {
-
     }
 }

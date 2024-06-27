@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.preguntas;
 
 
 import edu.fiuba.algo3.modelo.Anulador.*;
+import edu.fiuba.algo3.modelo.GestorPuntaje;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
@@ -28,23 +29,21 @@ public class PuntuarDeFormaOrdenada extends PuntuarSinPenalidad{
 
         int RespuestasCorrectas = 0;
         int RespuestasCorrectasEsperadas = respuestas.size();
-        int puntajeObtenido = 0;
+        int puntajeObtenido = GestorPuntaje.PuntajeError();
+
 
         for (Respuesta respuesta : respuestas) {
             for(Respuesta respuestaPosible : this.respuestas){
-                RespuestasCorrectas += respuesta.actualizarPuntaje(1,penalidad, respuestaPosible);
+                RespuestasCorrectas += respuesta.actualizarPuntaje(GestorPuntaje.PuntajeAcierto(),penalidad, respuestaPosible);
             }
         }
         if (RespuestasCorrectas == RespuestasCorrectasEsperadas) {
-            puntajeObtenido = 1;
+            puntajeObtenido = GestorPuntaje.PuntajeAcierto();
         }
         puntajeObtenido = this.anulador.puntosLuegoDeEvaluacion(puntajeObtenido,this.jugadoresQueUsaronAnulador,unjugador);
+        puntajeObtenido = this.exclusividad.puntosLuegoDeEvaluacion(puntajeObtenido,this.jugadoresQueUsaronExclusividad,this.jugadorQueSeAplica,unjugador);
         return puntajeObtenido;
     }
 
-    @Override
-    public void agregarJugadorQueUsoExclusividad(Jugador jugador) {
-
-    }
 }
 
