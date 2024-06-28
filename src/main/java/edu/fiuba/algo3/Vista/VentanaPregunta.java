@@ -42,7 +42,6 @@ public class VentanaPregunta implements Ventana, Observer {
 
     public VentanaPregunta(Modelo modelo){
 
-
         mostrarLeaderBoardBoton = new Button("Avanzar");
         mostrarLeaderBoardBoton.setStyle("-fx-background-color: #f16363; -fx-background-radius: 5px; -fx-padding: 8px;");
 
