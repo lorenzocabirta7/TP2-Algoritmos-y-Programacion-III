@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Respuestas;
 
+import edu.fiuba.algo3.modelo.ModoDePregunta.TipoDePregunta;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 
 public class RespuestaCorrecta implements Respuesta {
@@ -10,6 +11,7 @@ public class RespuestaCorrecta implements Respuesta {
         this.respuesta = enunciadoRespuesta;
         this.ordenParcial = unOrden;
     }
+
 
     @Override
     public int actualizarPuntaje(int puntaje, TipoDePenalidad unaPenalidad, Respuesta unaRespuesta) {

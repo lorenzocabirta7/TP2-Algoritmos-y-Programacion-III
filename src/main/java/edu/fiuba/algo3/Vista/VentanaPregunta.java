@@ -153,8 +153,8 @@ public class VentanaPregunta implements Ventana, Observer {
                     jugadorActual.responder(preguntaAMostrar, new RespuestaCorrecta(respuesta.getRespuesta(),
                     jugadorActual.obtenerOrdenParcial()));
                 } if (respuesta.EsDeOrdenParcial(respuesta)){
-                    jugadorActual.responder(preguntaAMostrar, new RespuestaAVerificar(respuesta.getRespuesta(),
-                            jugadorActual.obtenerOrdenParcial()));
+                    Respuesta respuestaJugador = new RespuestaAVerificar(respuesta.getRespuesta(), jugadorActual.obtenerOrdenParcial());
+                    jugadorActual.responder(preguntaAMostrar,respuestaJugador);
                 } else {
                     jugadorActual.responder(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta()));
                 }

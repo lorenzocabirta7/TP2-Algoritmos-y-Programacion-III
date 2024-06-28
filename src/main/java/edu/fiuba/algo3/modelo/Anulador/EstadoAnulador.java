@@ -5,5 +5,5 @@ import edu.fiuba.algo3.modelo.*;
 import java.util.ArrayList;
 
 public interface EstadoAnulador {
-    public abstract int puntosLuegoDeEvaluacion(int puntajeNoAnulado, ArrayList<Jugador> jugaodoresQueUsaronAnulador, Jugador unJugador);
+    public int anular(int puntaje, Jugador jugador, ArrayList<Jugador> jugadoresQueUsaronAnulador);
 }

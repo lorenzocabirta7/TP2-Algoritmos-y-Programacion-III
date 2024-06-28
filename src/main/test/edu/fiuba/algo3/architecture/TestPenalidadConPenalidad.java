@@ -14,7 +14,7 @@ public class TestPenalidadConPenalidad {
 
         TipoDePenalidad penalidadConPenalidad = new PenalidadConPenalidad();
 
-        int puntajeObtenido = penalidadConPenalidad.actualizarPuntaje(1);
+        int puntajeObtenido = penalidadConPenalidad.penalizarPuntaje(1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }

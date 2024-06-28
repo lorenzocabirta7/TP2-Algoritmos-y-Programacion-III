@@ -4,11 +4,13 @@ import edu.fiuba.algo3.modelo.Jugador;
 
 import java.util.ArrayList;
 
-public class ExclusividadDesactivado implements Exclusividad {
-    public ExclusividadDesactivado() {
+public class ExclusividadDesactivado implements EstadoExclusividad {
 
+    public ExclusividadDesactivado() {
     }
-    public int puntosLuegoDeEvaluacion(int puntajeSinModificar, ArrayList<Jugador> jugaodoresQueUsaronExclusividad, Jugador jugadorEvaluado, Jugador juagdorAlQueSeLeAplica) {
-        return puntajeSinModificar;
+
+    @Override
+    public int excluir(int puntaje, Jugador jugador, ArrayList<Jugador> jugadoresQueUsaronAnulador, ArrayList<Jugador> jugadoresQueRespondieronCorrectamente) {
+        return puntaje;
     }
 }

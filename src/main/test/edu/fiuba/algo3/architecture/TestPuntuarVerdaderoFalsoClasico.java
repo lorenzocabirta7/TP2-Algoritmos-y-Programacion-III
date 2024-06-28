@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.architecture;
 
+import edu.fiuba.algo3.modelo.ModoDePregunta.VerdaderoOFalso;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
@@ -8,7 +9,6 @@ import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import edu.fiuba.algo3.modelo.preguntas.PuntuarVerdaderoFalsoClasico;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +31,7 @@ public class TestPuntuarVerdaderoFalsoClasico {
         String enunciadoEsperado = enunciado;
         ArrayList<Respuesta> respuestasEsperadas = respuestas;
 
-        Pregunta pregunta = new Pregunta(enunciado, "Sin Tema", respuestas, new PuntuarVerdaderoFalsoClasico());
+        Pregunta pregunta = new Pregunta(enunciado,"Un Tema",respuestas, new VerdaderoOFalso(new PenalidadClasica()));
 
         assertEquals(enunciadoEsperado, pregunta.getEnunciado());
         assertEquals(respuestasEsperadas, pregunta.respuestasPosibles());

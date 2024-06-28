@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Jugador {
 
     private String nombre;
-    private int puntos;
+    private Puntaje puntos;
     private MultiplicadorPorDos multiplicadorPorDos;
     private MultiplicadorPorTres multiplicadorPorTres;
     private GestorAnulador gestorAnulador;
@@ -24,15 +24,13 @@ public class Jugador {
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
-
-        this.puntos = 0;
+        this.puntos = new Puntaje();
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
         this.gestorAnulador = new GestorAnulador();
         this.gestorExclusividad = new GestorExclusividad();
         this.ordenParcialRespuestas = "1";
-
     }
 
     public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
@@ -40,13 +38,14 @@ public class Jugador {
     }
 
     public void modificarPuntaje(int puntajePregunta) {
-        int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
-        puntajeModificado = multiplicadorPorTres.modificarPuntaje(puntajeModificado);
-        this.puntos += puntajeModificado;
+        int puntajeModificado = this.multiplicadorPorDos.modificarPuntaje(puntajePregunta);
+        puntajeModificado = this.multiplicadorPorTres.modificarPuntaje(puntajeModificado);
+        this.puntos.agregarPuntaje(puntajeModificado);
+
     }
 
     public int obtenerPuntos() {
-        return this.puntos;
+        return this.puntos.getPuntaje();
     }
 
     public String obtenerNombre() {
@@ -66,8 +65,7 @@ public class Jugador {
     }
 
     public void confirmarRespuesta(Pregunta pregunta){
-        //pregunta.confirmarRespuesta(respuestasDelJugador,this);
-        pregunta.puntuar(respuestasDelJugador, this);
+        pregunta.confirmarRespuesta(respuestasDelJugador,this);
         this.resetRespuestas();
     }
 
