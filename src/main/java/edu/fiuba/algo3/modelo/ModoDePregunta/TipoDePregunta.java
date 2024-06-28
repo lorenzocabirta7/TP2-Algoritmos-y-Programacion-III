@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.ModoDePregunta;
 
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 
+import java.util.ArrayList;
+
 public interface TipoDePregunta {
-    int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta);
+    int actualizarPuntaje(int puntosPorRespuestaCorrecta, ArrayList<Respuesta> respuestasDelJugador,ArrayList<Respuesta> respuestasDeLaPregunta);
 }

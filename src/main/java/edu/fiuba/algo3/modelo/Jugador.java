@@ -12,15 +12,14 @@ import java.util.ArrayList;
 
 public class Jugador {
 
-    private String nombre;
-    private Puntaje puntos;
-    private MultiplicadorPorDos multiplicadorPorDos;
-    private MultiplicadorPorTres multiplicadorPorTres;
-    private GestorAnulador gestorAnulador;
-    private GestorExclusividad gestorExclusividad;
+    private final String nombre;
+    private final Puntaje puntos;
+    private final MultiplicadorPorDos multiplicadorPorDos;
+    private final MultiplicadorPorTres multiplicadorPorTres;
+    private final GestorAnulador gestorAnulador;
+    private final GestorExclusividad gestorExclusividad;
     private ArrayList<Respuesta> respuestasDelJugador;
     private String ordenParcialRespuestas;
-    private ArrayList<Object> jugadasIndividual = new ArrayList<>();
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;

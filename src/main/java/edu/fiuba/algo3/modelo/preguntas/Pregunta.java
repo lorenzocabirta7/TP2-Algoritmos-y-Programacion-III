@@ -38,6 +38,7 @@ public class Pregunta {
 
     public void confirmarRespuesta(ArrayList<Respuesta> respuestas, Jugador jugador) {
         int respuestasCorrectas = 0;
+        jugadoresYRespuestas.put(jugador,respuestas);
         for (Respuesta delJugador : respuestas) {
             String enunciadoDelJugador =  delJugador.getRespuesta();
             for (Respuesta dePregunta : respuestas) {
@@ -51,24 +52,20 @@ public class Pregunta {
         if (respuestasCorrectas == cantidadDeRespuestasCorrectas()) {
             jugadoresQueRespondieronCorrectamente.add(jugador);
         }
-        jugadoresYRespuestas.put(jugador,respuestas);
+
     }
 
     public void puntuarJugadores(){
-        for (Respuesta respuesta : respuestas) {
-            for (Jugador jugador: jugadoresYRespuestas.keySet()){
-                for (Respuesta elegidaPorElJugador : jugadoresYRespuestas.get(jugador)){
-                    if (elegidaPorElJugador.getRespuesta().equals(respuesta.getRespuesta())){
-                        // Tengo la respuesta del jugador y la de la pregunta.
-                        int puntajeActualizado = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, elegidaPorElJugador, respuesta);
-                        puntajeActualizado =  anulador.anular(puntajeActualizado,jugador);
-                        puntajeActualizado = exclusividad.excluir(puntajeActualizado,jugador,jugadoresQueRespondieronCorrectamente);
-                        jugador.modificarPuntaje(puntajeActualizado);
+        for (Jugador jugador : jugadoresYRespuestas.keySet()) {
 
-                    }
-                }
-            }
+            ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
+            int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, respuestasDelJugador, respuestas);
+            puntaje = anulador.anular(puntaje,jugador);
+            puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
+            jugador.modificarPuntaje(puntaje);
+
         }
+
         anulador.desactivar();
         exclusividad.desactivar();
     }

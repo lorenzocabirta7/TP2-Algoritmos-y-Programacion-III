@@ -2,18 +2,14 @@ package edu.fiuba.algo3.architecture;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.ModoDePregunta.MultipleChoice;
-import edu.fiuba.algo3.modelo.ModoDePregunta.VerdaderoOFalso;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadParcialMC;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
-import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
-import edu.fiuba.algo3.modelo.exceptions.ExclusividadSeUsaMasdeDosVeces;
-import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestJugadaMultipleChoice {
     Pregunta preguntaChoiceConPenalidad;
-    Pregunta preguntaChoiceSinPenalidad;
-
+    Pregunta preguntaChoiceClasico;
+    Pregunta preguntaChoiceParcial;
     Jugador jugador1;
     Jugador jugador2;
     Jugador jugador3;
@@ -54,32 +50,192 @@ public class TestJugadaMultipleChoice {
         jugador3 = new Jugador("jugador3");
 
         preguntaChoiceConPenalidad = new Pregunta("Un Enunciado", "UnTema", respuestas, new MultipleChoice(new PenalidadConPenalidad()));
-        preguntaChoiceSinPenalidad = new Pregunta("Un Enunciado", "UnTema", respuestas, new MultipleChoice(new PenalidadClasica()));
-
+        preguntaChoiceClasico = new Pregunta("Un Enunciado", "UnTema", respuestas, new MultipleChoice(new PenalidadClasica()));
+        preguntaChoiceParcial = new Pregunta("Un Enunciado", "UnTema", respuestas, new MultipleChoice(new PenalidadParcialMC()));
     }
 
 
     @Test
-    public void test01TresJugadoresJueganUnaRonda() throws AnuladorSeUsaMasDeUnaVez {
+    public void test01TresJugadoresJueganUnaRondaDeMultipleChoiceClasico() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 1;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta1);
+        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta2);
+        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta3);
+        jugador1.confirmarRespuesta(preguntaChoiceClasico);
+
+
+        jugador2.responder(preguntaChoiceClasico,respuestaIncorrecta1);
+        jugador2.responder(preguntaChoiceClasico,respuestaCorrecta2);
+        jugador2.responder(preguntaChoiceClasico,respuestaCorrecta3);
+        jugador2.confirmarRespuesta(preguntaChoiceClasico);
+
+        jugador3.responder(preguntaChoiceClasico,respuestaIncorrecta1);
+        jugador3.confirmarRespuesta(preguntaChoiceClasico);
+
+        preguntaChoiceClasico.puntuarJugadores();
+
+        int puntajeObtenido1 = jugador1.obtenerPuntos();
+        int puntajeObtenido2 = jugador2.obtenerPuntos();
+        int puntajeObtenido3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenido1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenido2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenido3);
+    }
+
+    @Test
+    public void test01TresJugadoresJueganUnaRondaDeMultipleChoiceParcial() throws AnuladorSeUsaMasDeUnaVez {
         //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
         //correctamente puntos a los jugadores que respondieron correctamente
 
         int puntajeEsperadoJugador1 = 3;
-        int puntajeEsperadoJugador2 = 2;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 1;
+
+        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta1);
+        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta3);
+        jugador1.confirmarRespuesta(preguntaChoiceParcial);
+
+
+        jugador2.responder(preguntaChoiceParcial,respuestaIncorrecta1);
+        jugador2.responder(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador2.responder(preguntaChoiceParcial,respuestaCorrecta3);
+        jugador2.confirmarRespuesta(preguntaChoiceParcial);
+
+        jugador3.responder(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador3.confirmarRespuesta(preguntaChoiceParcial);
+
+        preguntaChoiceParcial.puntuarJugadores();
+
+        int puntajeObtenido1 = jugador1.obtenerPuntos();
+        int puntajeObtenido2 = jugador2.obtenerPuntos();
+        int puntajeObtenido3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenido1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenido2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenido3);
+    }
+
+    @Test
+    public void test03TresJugadoresJueganUnaRondaDeMultipleChoiceConPenalidad() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 3;
+        int puntajeEsperadoJugador2 = 1;
+        int puntajeEsperadoJugador3 = -1;
+
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        preguntaChoiceConPenalidad.puntuarJugadores();
+
+        int puntajeObtenido1 = jugador1.obtenerPuntos();
+        int puntajeObtenido2 = jugador2.obtenerPuntos();
+        int puntajeObtenido3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenido1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenido2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenido3);
+    }
+
+    @Test
+    public void test04TresJugadoresJueganUnaRondaDeMultipleChoiceClasicoYTodosUsanAnulador() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaChoiceSinPenalidad,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceSinPenalidad,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceSinPenalidad,respuestaCorrecta3);
 
-        jugador2.responder(preguntaChoiceSinPenalidad,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceSinPenalidad,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceSinPenalidad,respuestaCorrecta3);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
+        jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
 
-        jugador3.responder(preguntaChoiceSinPenalidad,respuestaIncorrecta1);
 
-        preguntaChoiceSinPenalidad.puntuarJugadores();
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
+        jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
+        jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        preguntaChoiceConPenalidad.puntuarJugadores();
+
+        int puntajeObtenido1 = jugador1.obtenerPuntos();
+        int puntajeObtenido2 = jugador2.obtenerPuntos();
+        int puntajeObtenido3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenido1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenido2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenido3);
     }
+
+    @Test
+    public void test05TresJugadoresJueganUnaRondaDeMultipleChoiceClasicoYUnJugadorUsaAnuladorYEseSoloRespondeBien() throws AnuladorSeUsaMasDeUnaVez {
+        //Una Pregunta de Verdadero/Falso clásico recibe una lista de respuestas y asigna
+        //correctamente puntos a los jugadores que respondieron correctamente
+
+        int puntajeEsperadoJugador1 = 3;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
+
+
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
+        jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
+
+        preguntaChoiceConPenalidad.puntuarJugadores();
+
+        int puntajeObtenido1 = jugador1.obtenerPuntos();
+        int puntajeObtenido2 = jugador2.obtenerPuntos();
+        int puntajeObtenido3 = jugador3.obtenerPuntos();
+
+
+        assertEquals(puntajeEsperadoJugador1,puntajeObtenido1);
+        assertEquals(puntajeEsperadoJugador2,puntajeObtenido2);
+        assertEquals(puntajeEsperadoJugador3,puntajeObtenido3);
+    }
+
     
 
 }

@@ -13,9 +13,33 @@ public class MultipleChoice implements TipoDePregunta{
         this.penalidad = unaPenalidad;
     }
 
-
     @Override
-    public int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta) {
-        return respuestaDelJugador.actualizarPuntaje(puntaje, penalidad, respuestaDeLaPregunta);
+    public int actualizarPuntaje(int puntosPorRespuestaCorrecta, ArrayList<Respuesta> respuestasDelJugador, ArrayList<Respuesta> respuestasDeLaPregunta) {
+
+        int respuestasCorrectas = 0;
+        int respuestasCorrectasDelJugador = 0;
+        int respuestasIncorrectas = 0;
+        for (Respuesta respuesta : respuestasDeLaPregunta) {
+            if (respuesta.EsCorrecta(respuesta)){
+                respuestasCorrectas++;
+            }
+        }
+        for (Respuesta respuesta : respuestasDelJugador) {
+            if (respuesta.EsCorrecta(respuesta)){
+                respuestasCorrectasDelJugador++;
+            } else {
+                respuestasIncorrectas++;
+            }
+        }
+        int puntaje = penalidad.penalizarPuntaje(puntosPorRespuestaCorrecta, respuestasCorrectasDelJugador,respuestasIncorrectas, respuestasCorrectas);
+        return puntaje;
     }
+
+
+    //@Override
+    //public int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta) {
+    //
+//
+    //    return respuestaDelJugador.actualizarPuntaje(puntaje, penalidad, respuestaDeLaPregunta);
+    //}
 }

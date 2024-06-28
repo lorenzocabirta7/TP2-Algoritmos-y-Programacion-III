@@ -11,4 +11,12 @@ public class PenalidadClasica implements TipoDePenalidad {
     public int penalizarPuntaje(int puntaje) {
         return 0;
     }
+
+    public int penalizarPuntaje(int puntosTotales, int respuestasCorrectasDelJugador, int respuestasIncorrectas, int respuestasCorrectas){
+        if (respuestasCorrectasDelJugador == respuestasCorrectas){
+            return puntosTotales;
+        } else{
+            return 0;
+        }
+    }
 }
