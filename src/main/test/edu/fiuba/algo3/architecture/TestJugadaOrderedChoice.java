@@ -1,20 +1,15 @@
 package edu.fiuba.algo3.architecture;
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.ModoDePregunta.MultipleChoice;
 import edu.fiuba.algo3.modelo.ModoDePregunta.OrderedChoice;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
-import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadParcialMC;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
