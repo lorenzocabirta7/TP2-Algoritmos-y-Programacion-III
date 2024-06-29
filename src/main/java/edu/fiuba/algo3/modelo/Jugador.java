@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.modificadores.*;
 import edu.fiuba.algo3.modelo.Anulador.*;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.preguntas.*;
-import edu.fiuba.algo3.modelo.exceptions.*;
 import edu.fiuba.algo3.modelo.Exclusividad.*;
 
 import java.util.ArrayList;
@@ -51,11 +50,11 @@ public class Jugador {
         return this.nombre;
     }
 
-    public void activarDuplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+    public void activarDuplicadorDePuntaje() throws edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException {
         this.multiplicadorPorDos.activar();
     }
 
-    public void activarTriplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+    public void activarTriplicadorDePuntaje() throws  edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException {
         this.multiplicadorPorTres.activar();
     }
 
@@ -68,11 +67,11 @@ public class Jugador {
         this.resetRespuestas();
     }
 
-    public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
+    public void activarAnuladorDePuntaje(Pregunta pregunta) throws edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez {
         this.gestorAnulador.gestarActivacion(pregunta,this);
     }
 
-    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces, ExclusividadInvalida {
+    public void activarExclusividad(Pregunta pregunta) throws edu.fiuba.algo3.modelo.exceptions.ExclusividadSeUsaMasdeDosVeces, edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida {
 
         this.gestorExclusividad.gestarActivacion(pregunta,this);
     }

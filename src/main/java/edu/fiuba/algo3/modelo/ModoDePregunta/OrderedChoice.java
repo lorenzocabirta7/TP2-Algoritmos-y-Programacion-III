@@ -22,8 +22,6 @@ public class OrderedChoice implements TipoDePregunta{
         int respuestasCorrectasDelJugador = 0;
         int respuestasIncorrectas = 0;
 
-
-
         for (Respuesta respuesta : respuestasDeLaPregunta) {
             if (respuesta.EsCorrecta(respuesta)){
                 respuestasCorrectas++;

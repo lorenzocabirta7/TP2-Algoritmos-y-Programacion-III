@@ -20,12 +20,14 @@ public class Pregunta {
     private Anulador anulador = new Anulador();
     private Exclusividad exclusividad = new Exclusividad();
     private int puntosPorRespuestaCorrecta = 1;
+    private int cantidadDeRespuestasCorrectas;
 
     public Pregunta(String enunciado, String tema, ArrayList<Respuesta> respuestasPosibles, TipoDePregunta tipoDePregunta) {
         this.enunciado = enunciado;
         this.tema = tema;
         this.respuestas = respuestasPosibles;
         this.tipoDePregunta = tipoDePregunta;
+        //respuestasPosibles.stream().filter(respuesta -> respuesta.EsCorrecta(respuesta)).count())
     }
 
     public ArrayList<Respuesta> getRespuestasCorrectas() {
@@ -63,7 +65,6 @@ public class Pregunta {
             puntaje = anulador.anular(puntaje,jugador);
             puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
             jugador.modificarPuntaje(puntaje);
-
         }
 
         anulador.desactivar();
