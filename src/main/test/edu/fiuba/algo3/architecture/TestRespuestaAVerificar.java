@@ -12,4 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestRespuestaAVerificar {
 
+    @Test
+    public void test01RespuestaAVerificarIncorrectaDevuelveFalseCuandoSeLePreguntaSiEsCorrecta() {}
 }

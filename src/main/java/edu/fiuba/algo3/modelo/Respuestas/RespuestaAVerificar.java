@@ -32,7 +32,7 @@ public class RespuestaAVerificar implements Respuesta{
             return (new RespuestaCorrecta(respuesta1.respuesta, respuesta1.OrdenParcial));
         }
         return (new RespuestaIncorrecta(respuesta1.respuesta));
-    }                                                         //no deberia ser siempre clasica
+    }
 
     private Boolean EsLaMismaRespuesta(Respuesta unaRespuesta){
         return(this.respuesta.equals(unaRespuesta.getRespuesta()) && (this.OrdenParcial.equals(unaRespuesta.getOrdenParcial())));

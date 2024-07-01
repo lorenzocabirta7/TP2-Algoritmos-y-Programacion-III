@@ -40,10 +40,11 @@ public class Pregunta {
 
     public void confirmarRespuesta(ArrayList<Respuesta> respuestas, Jugador jugador) {
         int respuestasCorrectas = 0;
-        jugadoresYRespuestas.put(jugador,respuestas);
-        for (Respuesta delJugador : respuestas) {
-            String enunciadoDelJugador =  delJugador.getRespuesta();
-            for (Respuesta dePregunta : respuestas) {
+        jugadoresYRespuestas.put(jugador,respuestas); // Agrego al jugador con sus Respuestas
+
+        for (Respuesta delJugador : respuestas) { // por cada respuesta del jugador
+            String enunciadoDelJugador =  delJugador.getRespuesta(); //obtengo el enunciado
+            for (Respuesta dePregunta : this.respuestas) {
                 if (dePregunta.getRespuesta().equals(enunciadoDelJugador)) {
                     if (delJugador.EsCorrecta(dePregunta)){
                         respuestasCorrectas++;

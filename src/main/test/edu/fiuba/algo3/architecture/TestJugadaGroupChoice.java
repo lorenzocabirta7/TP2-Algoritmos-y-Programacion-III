@@ -257,17 +257,17 @@ public class TestJugadaGroupChoice {
 
 
         jugador1.activarExclusividad(preguntaGroupChoice);
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Letra"));
+        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Letra"));
         jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Numero"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
         jugador2.activarExclusividad(preguntaGroupChoice);
         jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
         jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
         jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB", "Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
         jugador3.activarExclusividad(preguntaGroupChoice);
