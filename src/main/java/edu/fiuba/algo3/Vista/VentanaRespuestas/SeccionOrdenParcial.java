@@ -23,23 +23,17 @@ public class SeccionOrdenParcial implements SeccionRespuesta {
         this.pregunta = pregunta;
         this.jugador = jugador;
 
-
         VBox cajaDeRespuestas = new VBox();
-        HBox contenido = new HBox();
-        cajaDeRespuestas.getChildren().addAll(contenido);
-
         int cantidadRespuestas = respuestasPosibles.size();
 
         for (Respuesta respuesta : respuestasPosibles) {
             HBox cajaRespuestaIndividual = new HBox();
             Label enunciadoRespuesta = new Label(respuesta.getRespuesta());
 
-            // Crear el ComboBox con números del 1 a la cantidad de respuestas posibles
             ComboBox<Integer> ordenParcial = new ComboBox<>();
             for (int i = 1; i <= cantidadRespuestas; i++) {
                 ordenParcial.getItems().add(i);
             }
-            // Añadir enunciado y ComboBox a la cajaRespuestaIndividual
             cajaRespuestaIndividual.getChildren().addAll(enunciadoRespuesta, ordenParcial);
             cajaDeRespuestas.getChildren().add(cajaRespuestaIndividual);
 
@@ -48,11 +42,12 @@ public class SeccionOrdenParcial implements SeccionRespuesta {
                 if (ordenSeleccionado != null) {
                     String ordenParcialString = ordenSeleccionado.toString();
                     RespuestaAVerificar respuestaAVerificar = new RespuestaAVerificar(respuesta.getRespuesta(), ordenParcialString);
-                    jugador.agregarRespuesta(pregunta,respuestaAVerificar);
+                    jugador.agregarRespuesta(pregunta, respuestaAVerificar);
                 }
             });
         }
 
         return cajaDeRespuestas;
     }
+
 }
