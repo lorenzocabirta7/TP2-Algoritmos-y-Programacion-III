@@ -25,6 +25,9 @@ public class TipoDePreguntaDTO {
 
             case "Multiple Choice Penalidad":
                 return new MultipleChoice(new PenalidadConPenalidad());
+
+            case "Group Choice":
+                return new GroupChoice(new PenalidadClasica());
         }
         return null;
     }

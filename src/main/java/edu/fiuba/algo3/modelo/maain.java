@@ -26,7 +26,7 @@ public class maain {
 
             System.out.println("Preguntas:");
             for (Pregunta pregunta : listaPreguntasProcesadas) {
-                System.out.println(pregunta);
+                System.out.println(pregunta.getEnunciado() + " " + pregunta.getTipoDePregunta());
             }
 
         } catch (IOException e) {
