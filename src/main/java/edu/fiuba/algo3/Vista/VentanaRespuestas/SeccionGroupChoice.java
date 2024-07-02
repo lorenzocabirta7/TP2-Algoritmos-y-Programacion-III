@@ -25,6 +25,8 @@ public class SeccionGroupChoice implements SeccionRespuesta{
     @Override
     public VBox mostrarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestasPosibles, Jugador jugadorActual) {
         VBox cajaRespuestas = new VBox();
+        ArrayList<String> gruposPosibles = new ArrayList<>();
+
         for (Respuesta respuesta : respuestasPosibles) {
             HBox respuestaIndividual = new HBox();
             gruposPosibles.add(respuesta.getOrdenParcial());
@@ -49,6 +51,6 @@ public class SeccionGroupChoice implements SeccionRespuesta{
 
 
 
-        return null;
+        return cajaRespuestas;
     }
 }

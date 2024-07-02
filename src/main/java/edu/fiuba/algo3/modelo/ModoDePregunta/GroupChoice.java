@@ -49,7 +49,7 @@ public class GroupChoice implements TipoDePregunta{
 
     @Override
     public boolean EsDeOrderedChoice() {
-        return true;
+        return false;
     }
 
     @Override

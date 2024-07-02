@@ -136,12 +136,18 @@ public class VentanaPregunta implements Ventana, Observer {
         ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
         if (preguntaActual.esOrderChoice()){
             seccionRespuesta = new SeccionOrdenParcial();
-        } else if (preguntaActual.esDeMultipleChoice()) {
+        }
+        else if (preguntaActual.esDeMultipleChoice()) {
             seccionRespuesta = new SeccionMultipleChoice();
-        } else if (preguntaActual.esDeVerdaderoFalso()){
+        }
+        else if (preguntaActual.esDeVerdaderoFalso()){
             seccionRespuesta = new SeccionVerdaderoFalso();
-        } else{
+        }
+        else if (preguntaActual.esGroupChoice()){
             seccionRespuesta = new SeccionGroupChoice();
+        }
+        else {
+            return null;
         }
 
         return seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles,jugadorActual);
