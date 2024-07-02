@@ -107,4 +107,7 @@ public class Modelo extends Observable {
 
     }
 
+    public void puntuarRespuestas() {
+        preguntaActual.puntuarJugadores();
+    }
 }

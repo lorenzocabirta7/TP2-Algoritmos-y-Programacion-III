@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.modificadores.*;
-import edu.fiuba.algo3.modelo.Anulador.*;
-import edu.fiuba.algo3.modelo.Respuestas.*;
-import edu.fiuba.algo3.modelo.preguntas.*;
-import edu.fiuba.algo3.modelo.Exclusividad.*;
+import edu.fiuba.algo3.modelo.Anulador.GestorAnulador;
+import edu.fiuba.algo3.modelo.Exclusividad.GestorExclusividad;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorDos;
+import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorTres;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.util.ArrayList;
 
@@ -31,9 +32,14 @@ public class Jugador {
         this.ordenParcialRespuestas = "1";
     }
 
-    public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
+    public void agregarRespuesta(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
         respuestasDelJugador.add(respuestaElegida);
     }
+
+    public void eliminarRespuesta(Pregunta preguntaAMostrar, Respuesta respuesta) {
+        respuestasDelJugador.remove(respuesta);
+    }
+
 
     public void modificarPuntaje(int puntajePregunta) {
         int puntajeModificado = this.multiplicadorPorDos.modificarPuntaje(puntajePregunta);
@@ -88,4 +94,6 @@ public class Jugador {
         ordenParcialRespuestas = ordenNumerico + "";
         return ordenActual;
     }
+
+
 }

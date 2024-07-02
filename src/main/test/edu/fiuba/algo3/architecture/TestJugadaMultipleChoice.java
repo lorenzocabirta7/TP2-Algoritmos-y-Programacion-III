@@ -64,18 +64,18 @@ public class TestJugadaMultipleChoice {
         int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceClasico,respuestaCorrecta3);
+        jugador1.agregarRespuesta(preguntaChoiceClasico,respuestaCorrecta1);
+        jugador1.agregarRespuesta(preguntaChoiceClasico,respuestaCorrecta2);
+        jugador1.agregarRespuesta(preguntaChoiceClasico,respuestaCorrecta3);
         jugador1.confirmarRespuesta(preguntaChoiceClasico);
 
 
-        jugador2.responder(preguntaChoiceClasico,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceClasico,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceClasico,respuestaCorrecta3);
+        jugador2.agregarRespuesta(preguntaChoiceClasico,respuestaIncorrecta1);
+        jugador2.agregarRespuesta(preguntaChoiceClasico,respuestaCorrecta2);
+        jugador2.agregarRespuesta(preguntaChoiceClasico,respuestaCorrecta3);
         jugador2.confirmarRespuesta(preguntaChoiceClasico);
 
-        jugador3.responder(preguntaChoiceClasico,respuestaIncorrecta1);
+        jugador3.agregarRespuesta(preguntaChoiceClasico,respuestaIncorrecta1);
         jugador3.confirmarRespuesta(preguntaChoiceClasico);
 
         preguntaChoiceClasico.puntuarJugadores();
@@ -99,18 +99,18 @@ public class TestJugadaMultipleChoice {
         int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 1;
 
-        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceParcial,respuestaCorrecta3);
+        jugador1.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta1);
+        jugador1.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador1.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta3);
         jugador1.confirmarRespuesta(preguntaChoiceParcial);
 
 
-        jugador2.responder(preguntaChoiceParcial,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceParcial,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceParcial,respuestaCorrecta3);
+        jugador2.agregarRespuesta(preguntaChoiceParcial,respuestaIncorrecta1);
+        jugador2.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador2.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta3);
         jugador2.confirmarRespuesta(preguntaChoiceParcial);
 
-        jugador3.responder(preguntaChoiceParcial,respuestaCorrecta2);
+        jugador3.agregarRespuesta(preguntaChoiceParcial,respuestaCorrecta2);
         jugador3.confirmarRespuesta(preguntaChoiceParcial);
 
         preguntaChoiceParcial.puntuarJugadores();
@@ -134,18 +134,18 @@ public class TestJugadaMultipleChoice {
         int puntajeEsperadoJugador2 = 1;
         int puntajeEsperadoJugador3 = -1;
 
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
 
 
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
 
-        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
         jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
 
         preguntaChoiceConPenalidad.puntuarJugadores();
@@ -170,20 +170,20 @@ public class TestJugadaMultipleChoice {
         int puntajeEsperadoJugador3 = 0;
 
 
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador1.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
         jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
 
 
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador2.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
         jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
 
-        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
         jugador3.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
         jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
 
@@ -209,19 +209,19 @@ public class TestJugadaMultipleChoice {
         int puntajeEsperadoJugador3 = 0;
 
 
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta1);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador1.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta1);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador1.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador1.activarAnuladorDePuntaje(preguntaChoiceConPenalidad);
         jugador1.confirmarRespuesta(preguntaChoiceConPenalidad);
 
 
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta2);
-        jugador2.responder(preguntaChoiceConPenalidad,respuestaCorrecta3);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta2);
+        jugador2.agregarRespuesta(preguntaChoiceConPenalidad,respuestaCorrecta3);
         jugador2.confirmarRespuesta(preguntaChoiceConPenalidad);
 
-        jugador3.responder(preguntaChoiceConPenalidad,respuestaIncorrecta1);
+        jugador3.agregarRespuesta(preguntaChoiceConPenalidad,respuestaIncorrecta1);
         jugador3.confirmarRespuesta(preguntaChoiceConPenalidad);
 
         preguntaChoiceConPenalidad.puntuarJugadores();

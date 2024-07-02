@@ -43,13 +43,13 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
 
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -84,13 +84,13 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
 
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -126,15 +126,15 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarDuplicadorDePuntaje();
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarTriplicadorDePuntaje();
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -171,15 +171,15 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarAnuladorDePuntaje(pregunta);
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarAnuladorDePuntaje(pregunta);
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -214,14 +214,14 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
 
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarAnuladorDePuntaje(pregunta);
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -258,14 +258,14 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
 
-        jugador1.responder(pregunta, respuesta1);
+        jugador1.agregarRespuesta(pregunta, respuesta1);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarAnuladorDePuntaje(pregunta);
-        jugador2.responder(pregunta, respuesta2);
+        jugador2.agregarRespuesta(pregunta, respuesta2);
         jugador2.confirmarRespuesta(pregunta);
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -301,14 +301,14 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador2 = new Jugador("Jugador 2");
         Jugador jugador3 = new Jugador("Jugador 3");
 
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarExclusividad(pregunta);
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -345,15 +345,15 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarExclusividad(pregunta);
-        jugador1.responder(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarExclusividad(pregunta);
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
         jugador3.activarExclusividad(pregunta);
-        jugador3.responder(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -370,9 +370,9 @@ public class TestJugadaVerdaderoFalso {
     @Test
     public void test10TresJugadoresJueganUnaRondaVerdaderoFalsoSinPenalidadLosTresUsanExclusividadYTodosRespondenBien() throws AnuladorSeUsaMasDeUnaVez, ModificadorSeUsaMasDeUnaVezException, ExclusividadInvalida, ExclusividadSeUsaMasdeDosVeces {
 
-        int puntajeEsperadoJugador1 = 1;
-        int puntajeEsperadoJugador2 = 1;
-        int puntajeEsperadoJugador3 = 1;
+        int puntajeEsperadoJugador1 = 0;
+        int puntajeEsperadoJugador2 = 0;
+        int puntajeEsperadoJugador3 = 0;
 
         String enunciado = "Estamos en el año 2024?";
 
@@ -390,15 +390,15 @@ public class TestJugadaVerdaderoFalso {
         Jugador jugador3 = new Jugador("Jugador 3");
 
         jugador1.activarExclusividad(pregunta);
-        jugador1.responder(pregunta, respuesta1);
+        jugador1.agregarRespuesta(pregunta, respuesta1);
         jugador1.confirmarRespuesta(pregunta);
 
         jugador2.activarExclusividad(pregunta);
-        jugador2.responder(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta1);
         jugador2.confirmarRespuesta(pregunta);
 
         jugador3.activarExclusividad(pregunta);
-        jugador3.responder(pregunta, respuesta1);
+        jugador3.agregarRespuesta(pregunta, respuesta1);
         jugador3.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();

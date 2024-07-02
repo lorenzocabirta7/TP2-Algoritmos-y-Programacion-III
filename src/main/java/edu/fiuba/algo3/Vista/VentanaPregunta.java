@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.Vista;
 
+import edu.fiuba.algo3.Alertas.BonificadorSeUsoMasVecesDeLoEsperado;
 import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modelo;
-import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
@@ -13,10 +13,7 @@ import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -34,6 +31,8 @@ public class VentanaPregunta implements Ventana, Observer {
     private Button mostrarLeaderBoardBoton;
     private Button botonConfirmar;
     private Label labelEnunciado;
+    private Label labelTipoDePregunta;
+    private VBox contenedorOpciones;
     private ArrayList<RadioButton> BotonesDeRespuestas = new ArrayList<>();
     private Label playerLabel;
     private ArrayList<Button> botonesDeModificadores;
@@ -50,24 +49,25 @@ public class VentanaPregunta implements Ventana, Observer {
 
         HBox boxJugador =  new HBox(playerLabel, botonConfirmar);
 
+        Pregunta preguntaInicial = modelo.ConseguirPregunta();
+
         VBox cajaDeRespuestas = ArmarBoxRespuestas(boxJugador, modelo);
 
         VBox cajaDeBonificadores = ArmarBoxModificadores(modelo);
 
-        Pregunta preguntaInicial = modelo.ConseguirPregunta();
+
 
         labelEnunciado = new Label();
         labelEnunciado.setText(preguntaInicial.getEnunciado());
 
-        Label labelTipoDePregunta = new Label("[Tipo de Pregunta]");
+        labelTipoDePregunta = new Label();
+        labelTipoDePregunta.setText(preguntaInicial.getTipoDePregunta());
 
+        Label labelTemaDePregunta = new Label(preguntaInicial.getTema());
 
         controlador = new ControladorMostrarPregunta(modelo, this, botonConfirmar);
 
-
-
-        VBox cajaPregunta = new VBox(10, labelEnunciado, labelTipoDePregunta, cajaDeRespuestas);
-
+        VBox cajaPregunta = new VBox(10, labelEnunciado, labelTemaDePregunta,labelTipoDePregunta, cajaDeRespuestas);
 
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(cajaPregunta);
@@ -91,7 +91,7 @@ public class VentanaPregunta implements Ventana, Observer {
             try {
                 unJugador.activarDuplicadorDePuntaje();
             } catch (ModificadorSeUsaMasDeUnaVezException ex) {
-                throw new RuntimeException(ex);
+                BonificadorSeUsoMasVecesDeLoEsperado.mostrarAlerta();
             }
 
         });
@@ -101,7 +101,8 @@ public class VentanaPregunta implements Ventana, Observer {
             try {
                 unJugador.activarDuplicadorDePuntaje();
             } catch (ModificadorSeUsaMasDeUnaVezException ex) {
-                throw new RuntimeException(ex);
+                BonificadorSeUsoMasVecesDeLoEsperado.mostrarAlerta();
+
             }
 
         });
@@ -113,11 +114,10 @@ public class VentanaPregunta implements Ventana, Observer {
             try {
                 unJugador.activarAnuladorDePuntaje(modelo.ConseguirPregunta());
             } catch (AnuladorSeUsaMasDeUnaVez ex) {
-                throw new RuntimeException(ex);
+                BonificadorSeUsoMasVecesDeLoEsperado.mostrarAlerta();
             }
 
         });
-        botonMultiplicadorPorDos.setDisable(true); //Para tener despues, cuando haya que implementarlo
 
         botonesDeModificadores = new ArrayList<>();
         botonesDeModificadores.add(botonMultiplicadorPorDos);
@@ -145,25 +145,50 @@ public class VentanaPregunta implements Ventana, Observer {
 
 
         for (Respuesta respuesta : respuestasPosibles) {
+
+            if (respuesta.EsDeOrdenParcial(respuesta)){
+
+            }
+
+            Label labelRespuesta = new Label(respuesta.getRespuesta());
+            ToggleButton opcion1 = new ToggleButton("Agregar Respuesta");
+            HBox contenedorOpcion = new HBox(labelRespuesta,opcion1);
             RadioButton opcion = new RadioButton(respuesta.getRespuesta());
 
             opcion.setOnAction(g -> {
                 if (respuesta.EsCorrecta(respuesta)){
-                    jugadorActual.responder(preguntaAMostrar, new RespuestaCorrecta(respuesta.getRespuesta(),
-                    jugadorActual.obtenerOrdenParcial()));
+                    jugadorActual.agregarRespuesta(preguntaAMostrar, new RespuestaCorrecta(respuesta.getRespuesta(),
+                            jugadorActual.obtenerOrdenParcial()));
                 } if (respuesta.EsDeOrdenParcial(respuesta)){
                     Respuesta respuestaJugador = new RespuestaAVerificar(respuesta.getRespuesta(), jugadorActual.obtenerOrdenParcial());
-                    jugadorActual.responder(preguntaAMostrar,respuestaJugador);
+                    jugadorActual.agregarRespuesta(preguntaAMostrar,respuestaJugador);
                 } else {
-                    jugadorActual.responder(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta()));
+                    jugadorActual.agregarRespuesta(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta()));
                 }
-                opcion.setDisable(true);
+                //opcion.setDisable(true);
                 System.out.println("Respuesta elegida: " + respuesta.getRespuesta()
-                + " Es de Tipo: " + respuesta.EsCorrecta(respuesta));
+                        + " Es de Tipo: " + respuesta.EsCorrecta(respuesta));
                 System.out.println("El jugador que responde es: " + jugadorActual.obtenerNombre());
             });
+
+
+
+            opcion1.setOnAction(event -> {
+                if (opcion1.isSelected()) {
+                    opcion1.setText("Eliminar Repuesta");
+                    Respuesta respuestaAAgregar;
+
+
+                    jugadorActual.agregarRespuesta(preguntaAMostrar,respuesta);
+                } else {
+                    opcion1.setText("Agregar Repuesta");
+                    jugadorActual.eliminarRespuesta(preguntaAMostrar,respuesta);
+                }
+            });
+
             opcion.setToggleGroup(grupoRespuestas);
             BotonesDeRespuestas.add(opcion);
+            cajaDeRespuestas.getChildren().add(contenedorOpcion);
             cajaDeRespuestas.getChildren().add(opcion);
         }
         cajaDeRespuestas.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(10), Insets.EMPTY)));

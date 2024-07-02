@@ -16,4 +16,9 @@ public class PenalidadConPenalidad implements TipoDePenalidad {
         return puntaje;
     }
 
+    @Override
+    public String getTipoPenalidad() {
+        return "Con Penalidad";
+    }
+
 }

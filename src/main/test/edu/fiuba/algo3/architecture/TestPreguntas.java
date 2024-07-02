@@ -52,7 +52,7 @@ public class TestPreguntas {
 
         Jugador jugador = new Jugador("Jugador 1");
         RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("SI","0");
-        jugador.responder(pregunta, respuestaDelJugador1);
+        jugador.agregarRespuesta(pregunta, respuestaDelJugador1);
         jugador.confirmarRespuesta(pregunta);
 
         pregunta.puntuarJugadores();
@@ -65,8 +65,7 @@ public class TestPreguntas {
     @Test
     public void Test03PreguntaVerdaderoFalsoConPenalidadRecibeEnunciadoListaDeRespuestasYUnJugadorQueRespondeMalYPuntuaCorrectamente(){
     int puntajeEsperado1 = 1;
-    int puntajeEsperado2 = -1;
-    int puntajeEsperado3 = 1;
+
 
     String enunciado = "Estamos en el año 2024?";
 
@@ -74,22 +73,62 @@ public class TestPreguntas {
     RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("NO");
 
     ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
-        respuestasPosibles.add(respuesta1);
-        respuestasPosibles.add(respuesta2);
+    respuestasPosibles.add(respuesta1);
+    respuestasPosibles.add(respuesta2);
+
     Pregunta pregunta = new Pregunta("Un Enunciado", "Sin Tema", respuestasPosibles, new VerdaderoOFalso(new PenalidadClasica()));
 
     Jugador jugador = new Jugador("Jugador 1");
     RespuestaCorrecta respuestaDelJugador1 = new RespuestaCorrecta("SI","0");
-        jugador.responder(pregunta, respuestaDelJugador1);
-        jugador.confirmarRespuesta(pregunta);
-
-        pregunta.puntuarJugadores();
+    jugador.agregarRespuesta(pregunta, respuestaDelJugador1);
+    jugador.confirmarRespuesta(pregunta);
+    pregunta.puntuarJugadores();
 
     int puntajeObtenido = jugador.obtenerPuntos();
 
     assertEquals(puntajeEsperado1, puntajeObtenido);
-    assertEquals(puntajeEsperado2, puntajeObtenido);
-    assertEquals(puntajeEsperado3, puntajeObtenido);
-}
+    }
+
+
+    @Test
+    public void test04PreguntaDevuelveLosJugadoresQueRespondieronCorrectamente() {
+        Respuesta respuesta1 = new RespuestaCorrecta("0", "0");
+        Respuesta respuesta2 = new RespuestaCorrecta("2", "0");
+        Respuesta respuesta3 = new RespuestaCorrecta("4", "0");
+        Respuesta respuesta4 = new RespuestaIncorrecta("3");
+
+        ArrayList<Respuesta> respuestasPosibles = new ArrayList<>();
+        respuestasPosibles.add(respuesta1);
+        respuestasPosibles.add(respuesta2);
+        respuestasPosibles.add(respuesta3);
+        respuestasPosibles.add(respuesta4);
+        Jugador jugador1 = new Jugador("Jugador 1");
+        Jugador jugador2 = new Jugador("Jugador 2");
+        Jugador jugador3 = new Jugador("Jugador 3");
+
+
+        Pregunta pregunta = new Pregunta("Cual De los Numeros son pares?", "unTema",respuestasPosibles, new VerdaderoOFalso(new PenalidadClasica()));
+
+        jugador1.agregarRespuesta(pregunta, respuesta1);
+        jugador1.agregarRespuesta(pregunta, respuesta2);
+        jugador1.agregarRespuesta(pregunta, respuesta3);
+        jugador1.confirmarRespuesta(pregunta);
+
+        jugador2.agregarRespuesta(pregunta, respuesta1);
+        jugador2.agregarRespuesta(pregunta, respuesta2);
+        jugador2.agregarRespuesta(pregunta, respuesta3);
+        jugador2.agregarRespuesta(pregunta, respuesta4);
+        jugador2.confirmarRespuesta(pregunta);
+
+        jugador3.agregarRespuesta(pregunta, respuesta1);
+        jugador3.agregarRespuesta(pregunta, respuesta2);
+        jugador3.agregarRespuesta(pregunta, respuesta3);
+        jugador3.agregarRespuesta(pregunta, respuesta4);
+        jugador3.confirmarRespuesta(pregunta);
+
+        ArrayList<Jugador> jugadoresQueRespondieronBien = pregunta.getJugadoresQueRespondieronCorrectamente();
+
+        assertEquals(jugadoresQueRespondieronBien.size(),3);
+    }
 
 }

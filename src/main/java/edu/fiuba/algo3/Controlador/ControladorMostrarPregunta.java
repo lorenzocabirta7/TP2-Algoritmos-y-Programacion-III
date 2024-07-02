@@ -35,6 +35,7 @@ public class ControladorMostrarPregunta extends MouseAdapter {
             modelo.confirmarRespuestas();
             modelo.SiguienteJugador();
         } catch (YaJugaronTodosLosJugadores e) {
+            modelo.puntuarRespuestas();
             modelo.SiguientePregunta();
         }
     }

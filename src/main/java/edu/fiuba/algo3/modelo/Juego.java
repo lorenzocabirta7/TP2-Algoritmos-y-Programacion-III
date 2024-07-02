@@ -9,8 +9,8 @@ import edu.fiuba.algo3.Vista.VentanaPregunta;
 import javafx.stage.Stage;
 
 public class Juego {
-    public static final int ANCHO_PANTALLA = 1100;
-    public static final int LARGO_PANTALLA = 750;
+    public static final int ANCHO_PANTALLA = 600;
+    public static final int LARGO_PANTALLA = 450;
     private Stage stage;
     private VentanaInicio ventanaInicio;
     private VentanaLeaderboard ventanaLeaderboard;

@@ -33,8 +33,6 @@ public class ProcesarDTO {
        return preguntas;
    }
 
-
-
     private ArrayList<Respuesta> procesarPreguntasNormales(PreguntaDTO pregunta) {
         String[] respuestasArray = pregunta.getRespuesta().split(",");
 

@@ -78,6 +78,14 @@ public class Pregunta {
         return enunciado;
     }
 
+    public String getTipoDePregunta() {
+        return this.tipoDePregunta.getTipoDePregunta();
+    }
+
+    public ArrayList<Jugador> getJugadoresQueRespondieronCorrectamente() {
+        return jugadoresQueRespondieronCorrectamente;
+    }
+
     public String getTema() {
         return tema;
     }
@@ -93,5 +101,6 @@ public class Pregunta {
     public void activarExclusividad(Jugador jugador) {
         exclusividad.activar(jugador);
     }
+
 }
 

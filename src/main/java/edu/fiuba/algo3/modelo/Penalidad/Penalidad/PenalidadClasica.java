@@ -19,4 +19,9 @@ public class PenalidadClasica implements TipoDePenalidad {
             return 0;
         }
     }
+
+    @Override
+    public String getTipoPenalidad() {
+        return "Clasica";
+    }
 }

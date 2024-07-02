@@ -55,20 +55,20 @@ public class TestJugadaOrderedChoice {
         int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "2"));
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "3"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "2"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "3"));
         jugador1.confirmarRespuesta(preguntaOrderedChoice);
 
 
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "3"));
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "3"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
         jugador2.confirmarRespuesta(preguntaOrderedChoice);
 
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "3"));
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "1"));
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "3"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "1"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
         jugador3.confirmarRespuesta(preguntaOrderedChoice);
 
         preguntaOrderedChoice.puntuarJugadores();
@@ -92,20 +92,20 @@ public class TestJugadaOrderedChoice {
         int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "2"));
-        jugador1.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "3"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "2"));
+        jugador1.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "3"));
         jugador1.confirmarRespuesta(preguntaOrderedChoice);
 
 
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "3"));
-        jugador2.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "1"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "3"));
+        jugador2.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
         jugador2.confirmarRespuesta(preguntaOrderedChoice);
 
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "3"));
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "1"));
-        jugador3.responder(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta1", "3"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta2", "1"));
+        jugador3.agregarRespuesta(preguntaOrderedChoice, new RespuestaAVerificar("Correcta3", "2"));
         jugador3.confirmarRespuesta(preguntaOrderedChoice);
 
         preguntaOrderedChoice.puntuarJugadores();

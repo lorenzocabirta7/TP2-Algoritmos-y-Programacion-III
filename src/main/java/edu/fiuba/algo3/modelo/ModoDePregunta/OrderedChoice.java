@@ -45,9 +45,9 @@ public class OrderedChoice implements TipoDePregunta{
         return 0;
     }
 
+    @Override
+    public String getTipoDePregunta() {
+        return "Pregunta: GroupChoice \n Penalidad: " + penalidad.getTipoPenalidad();
+    }
 
-    //@Override
-    //public int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta) {
-    //    return respuestaDelJugador.actualizarPuntaje(puntaje, penalidad, respuestaDeLaPregunta);
-    //}
 }

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.architecture;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.ModoDePregunta.GroupChoice;
-import edu.fiuba.algo3.modelo.ModoDePregunta.GroupChoice;
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
@@ -57,23 +56,23 @@ public class TestJugadaGroupChoice {
         int puntajeEsperadoJugador2 = 1;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
 
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();
@@ -97,24 +96,24 @@ public class TestJugadaGroupChoice {
         int puntajeEsperadoJugador3 = 0;
 
         jugador1.activarDuplicadorDePuntaje();
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
         jugador2.activarTriplicadorDePuntaje();
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
 
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();
@@ -138,23 +137,23 @@ public class TestJugadaGroupChoice {
         int puntajeEsperadoJugador3 = 0;
 
         jugador1.activarExclusividad(preguntaGroupChoice);
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
         jugador2.activarAnuladorDePuntaje(preguntaGroupChoice);
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();
@@ -177,23 +176,23 @@ public class TestJugadaGroupChoice {
         int puntajeEsperadoJugador2 = 1;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
 
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();
@@ -216,23 +215,23 @@ public class TestJugadaGroupChoice {
         int puntajeEsperadoJugador2 = 0;
         int puntajeEsperadoJugador3 = 0;
 
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
         jugador2.activarExclusividad(preguntaGroupChoice);
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();
@@ -257,24 +256,24 @@ public class TestJugadaGroupChoice {
 
 
         jugador1.activarExclusividad(preguntaGroupChoice);
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Letra"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador1.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Letra"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador1.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Numero"));
         jugador1.confirmarRespuesta(preguntaGroupChoice);
 
         jugador2.activarExclusividad(preguntaGroupChoice);
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
-        jugador2.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Letra"));
+        jugador2.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB", "Letra"));
         jugador2.confirmarRespuesta(preguntaGroupChoice);
 
         jugador3.activarExclusividad(preguntaGroupChoice);
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
-        jugador3.responder(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero1", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("Numero2", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraA", "Numero"));
+        jugador3.agregarRespuesta(preguntaGroupChoice, new RespuestaAVerificar("LetraB","Letra"));
         jugador3.confirmarRespuesta(preguntaGroupChoice);
 
         preguntaGroupChoice.puntuarJugadores();

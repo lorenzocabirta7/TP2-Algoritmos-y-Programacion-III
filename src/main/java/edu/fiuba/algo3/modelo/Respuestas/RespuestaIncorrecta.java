@@ -11,7 +11,6 @@ public class RespuestaIncorrecta implements Respuesta {
         this.enunciado = respuesta;
     }
 
-
     @Override
     public int actualizarPuntaje(int puntaje, TipoDePenalidad unaPenalidad, Respuesta unaRespuesta) {
         return unaPenalidad.penalizarPuntaje(puntaje);

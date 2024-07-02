@@ -21,9 +21,9 @@ public class VerdaderoOFalso implements TipoDePregunta{
         return puntajeTotal;
     }
 
+    @Override
+    public String getTipoDePregunta() {
+        return "Pregunta: Verdadero Falso \n Penalidad: " + penalidad.getTipoPenalidad();
+    }
 
-    //@Override
-    //public int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta) {
-    //    return respuestaDelJugador.actualizarPuntaje(puntaje, penalidad, respuestaDeLaPregunta);
-    //}
 }
