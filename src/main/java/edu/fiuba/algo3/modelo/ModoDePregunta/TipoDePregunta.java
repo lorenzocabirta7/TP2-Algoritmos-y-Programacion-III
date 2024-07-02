@@ -9,4 +9,12 @@ public interface TipoDePregunta {
 
     String getTipoDePregunta();
 
+
+    boolean EsDeOrderedChoice();
+
+    boolean EsDeMultipleChoice();
+
+    boolean EsDeVerdaderoFalso();
+
+    boolean EsDeGroupChoice();
 }

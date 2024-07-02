@@ -26,4 +26,23 @@ public class VerdaderoOFalso implements TipoDePregunta{
         return "Pregunta: Verdadero Falso \n Penalidad: " + penalidad.getTipoPenalidad();
     }
 
+    @Override
+    public boolean EsDeOrderedChoice() {
+        return false;
+    }
+
+    @Override
+    public boolean EsDeMultipleChoice() {
+        return false;
+    }
+
+    @Override
+    public boolean EsDeVerdaderoFalso() {
+        return true;
+    }
+
+    @Override
+    public boolean EsDeGroupChoice() {
+        return false;
+    }
 }

@@ -91,7 +91,7 @@ public class VentanaInicio implements Ventana{
 
     public void inicializarVentana(Stage stage){
         stage.setScene(scene);
-        stage.setTitle("Preguntados");
+        stage.setTitle("Algo-Hoot");
         stage.show();
     }
 

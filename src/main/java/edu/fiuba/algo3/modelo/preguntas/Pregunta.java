@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.preguntas;
 import edu.fiuba.algo3.modelo.Anulador.Anulador;
 import edu.fiuba.algo3.modelo.Exclusividad.Exclusividad;
 import edu.fiuba.algo3.modelo.ModoDePregunta.TipoDePregunta;
-import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 
@@ -100,6 +99,22 @@ public class Pregunta {
 
     public void activarExclusividad(Jugador jugador) {
         exclusividad.activar(jugador);
+    }
+
+    public boolean esGroupChoice () {
+        return tipoDePregunta.EsDeGroupChoice();
+    }
+
+    public boolean esOrderChoice() {
+        return tipoDePregunta.EsDeOrderedChoice();
+    }
+
+    public boolean esDeVerdaderoFalso() {
+        return tipoDePregunta.EsDeVerdaderoFalso();
+    }
+
+    public boolean esDeMultipleChoice() {
+        return tipoDePregunta.EsDeMultipleChoice();
     }
 
 }

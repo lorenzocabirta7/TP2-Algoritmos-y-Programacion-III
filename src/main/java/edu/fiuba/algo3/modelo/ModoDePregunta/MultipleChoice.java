@@ -40,11 +40,24 @@ public class MultipleChoice implements TipoDePregunta{
         return "Pregunta: Multiple Choice \n Penalidad: " + penalidad.getTipoPenalidad();
     }
 
+    @Override
+    public boolean EsDeOrderedChoice() {
+        return false;
+    }
 
-    //@Override
-    //public int actualizarPuntaje(int puntaje, Respuesta respuestaDelJugador, Respuesta respuestaDeLaPregunta) {
-    //
-//
-    //    return respuestaDelJugador.actualizarPuntaje(puntaje, penalidad, respuestaDeLaPregunta);
-    //}
+    @Override
+    public boolean EsDeMultipleChoice() {
+        return true;
+    }
+
+    @Override
+    public boolean EsDeVerdaderoFalso() {
+        return false;
+    }
+
+    @Override
+    public boolean EsDeGroupChoice() {
+        return false;
+    }
+
 }

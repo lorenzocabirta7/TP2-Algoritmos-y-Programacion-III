@@ -46,4 +46,25 @@ public class GroupChoice implements TipoDePregunta{
     public String getTipoDePregunta() {
         return "Pregunta: GroupChoice \n Penalidad: " + penalidad.getTipoPenalidad();
     }
+
+    @Override
+    public boolean EsDeOrderedChoice() {
+        return true;
+    }
+
+    @Override
+    public boolean EsDeMultipleChoice() {
+        return false;
+    }
+
+    @Override
+    public boolean EsDeVerdaderoFalso() {
+        return false;
+    }
+
+    @Override
+    public boolean EsDeGroupChoice() {
+        return true;
+    }
+
 }

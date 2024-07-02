@@ -2,12 +2,10 @@ package edu.fiuba.algo3.Vista;
 
 import edu.fiuba.algo3.Alertas.BonificadorSeUsoMasVecesDeLoEsperado;
 import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
+import edu.fiuba.algo3.Vista.VentanaRespuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modelo;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
-import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
 import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
@@ -17,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,6 +30,7 @@ public class VentanaPregunta implements Ventana, Observer {
     private Label labelEnunciado;
     private Label labelTipoDePregunta;
     private VBox contenedorOpciones;
+
     private ArrayList<RadioButton> BotonesDeRespuestas = new ArrayList<>();
     private Label playerLabel;
     private ArrayList<Button> botonesDeModificadores;
@@ -51,10 +49,13 @@ public class VentanaPregunta implements Ventana, Observer {
 
         Pregunta preguntaInicial = modelo.ConseguirPregunta();
 
-        VBox cajaDeRespuestas = ArmarBoxRespuestas(boxJugador, modelo);
+        jugadorActual = modelo.conseguirJugador();
+
+        VBox cajaDeRespuestas = new VBox(boxJugador);
+
+        cajaDeRespuestas.getChildren().add(ArmarBoxRespuestas(boxJugador,preguntaInicial, modelo));
 
         VBox cajaDeBonificadores = ArmarBoxModificadores(modelo);
-
 
 
         labelEnunciado = new Label();
@@ -130,71 +131,21 @@ public class VentanaPregunta implements Ventana, Observer {
         return cajaDeBonificadores;
     }
 
-    public VBox ArmarBoxRespuestas(HBox boxJugadores, Modelo modelo){
-
-        VBox cajaDeRespuestas = new VBox(20, boxJugadores);
-
-        Pregunta preguntaAMostrar = modelo.ConseguirPregunta();
-
-        ArrayList<Respuesta> respuestasPosibles = preguntaAMostrar.respuestasPosibles();
-
-        jugadorActual = modelo.conseguirJugador();
-
-        ToggleGroup grupoRespuestas = new ToggleGroup();
-
-
-
-        for (Respuesta respuesta : respuestasPosibles) {
-
-            if (respuesta.EsDeOrdenParcial(respuesta)){
-
-            }
-
-            Label labelRespuesta = new Label(respuesta.getRespuesta());
-            ToggleButton opcion1 = new ToggleButton("Agregar Respuesta");
-            HBox contenedorOpcion = new HBox(labelRespuesta,opcion1);
-            RadioButton opcion = new RadioButton(respuesta.getRespuesta());
-
-            opcion.setOnAction(g -> {
-                if (respuesta.EsCorrecta(respuesta)){
-                    jugadorActual.agregarRespuesta(preguntaAMostrar, new RespuestaCorrecta(respuesta.getRespuesta(),
-                            jugadorActual.obtenerOrdenParcial()));
-                } if (respuesta.EsDeOrdenParcial(respuesta)){
-                    Respuesta respuestaJugador = new RespuestaAVerificar(respuesta.getRespuesta(), jugadorActual.obtenerOrdenParcial());
-                    jugadorActual.agregarRespuesta(preguntaAMostrar,respuestaJugador);
-                } else {
-                    jugadorActual.agregarRespuesta(preguntaAMostrar, new RespuestaIncorrecta(respuesta.getRespuesta()));
-                }
-                //opcion.setDisable(true);
-                System.out.println("Respuesta elegida: " + respuesta.getRespuesta()
-                        + " Es de Tipo: " + respuesta.EsCorrecta(respuesta));
-                System.out.println("El jugador que responde es: " + jugadorActual.obtenerNombre());
-            });
-
-
-
-            opcion1.setOnAction(event -> {
-                if (opcion1.isSelected()) {
-                    opcion1.setText("Eliminar Repuesta");
-                    Respuesta respuestaAAgregar;
-
-
-                    jugadorActual.agregarRespuesta(preguntaAMostrar,respuesta);
-                } else {
-                    opcion1.setText("Agregar Repuesta");
-                    jugadorActual.eliminarRespuesta(preguntaAMostrar,respuesta);
-                }
-            });
-
-            opcion.setToggleGroup(grupoRespuestas);
-            BotonesDeRespuestas.add(opcion);
-            cajaDeRespuestas.getChildren().add(contenedorOpcion);
-            cajaDeRespuestas.getChildren().add(opcion);
+    public VBox ArmarBoxRespuestas(HBox boxJugadores,Pregunta preguntaActual, Modelo modelo){
+        SeccionRespuesta seccionRespuesta;
+        ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
+        if (preguntaActual.esOrderChoice()){
+            seccionRespuesta = new SeccionOrdenParcial();
+        } else if (preguntaActual.esDeMultipleChoice()) {
+            seccionRespuesta = new SeccionMultipleChoice();
+        } else if (preguntaActual.esDeVerdaderoFalso()){
+            seccionRespuesta = new SeccionVerdaderoFalso();
+        } else{
+            seccionRespuesta = new SeccionGroupChoice();
         }
-        cajaDeRespuestas.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(10), Insets.EMPTY)));
-        return cajaDeRespuestas;
-    }
 
+        return seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles,jugadorActual);
+    }
 
     @Override
     public void AlCambiarVentana(Runnable funcion) {
