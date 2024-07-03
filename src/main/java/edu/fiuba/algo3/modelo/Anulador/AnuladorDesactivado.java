@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AnuladorDesactivado implements EstadoAnulador{
     @Override
-    public int puntosLuegoDeEvaluacion(int puntajeNoAnulado, ArrayList<Jugador> jugaodoresQueUsaronAnulador, Jugador unJugador) {
-        return puntajeNoAnulado;
+    public int anular(int puntaje, Jugador jugador, ArrayList<Jugador> jugadoresQueUsaronAnulador) {
+        return puntaje;
     }
 }

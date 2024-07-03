@@ -1,103 +1,93 @@
 package edu.fiuba.algo3.architecture;
 
+import edu.fiuba.algo3.modelo.Anulador.Anulador;
+import edu.fiuba.algo3.modelo.Exclusividad.Exclusividad;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Respuestas.*;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.*;
-import edu.fiuba.algo3.modelo.exceptions.*;
-import edu.fiuba.algo3.modelo.preguntas.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-//Cada jugador tendrá dos opciones de “exclusividad de puntaje” que podrá elegir
-//utilizar en cualquiera de las preguntas que no tienen “penalidad”.
-//        ➔ El jugador podrá asignar la exclusividad de puntaje a la pregunta cuando le llegue
-//el turno de responder.
-//        ➔ Al calcular los puntos, se asignará el doble del puntaje, pero solo en caso de que
-//solo uno de los jugadores haya realizado la opción correcta. Es decir, si los N
-//jugadores eligen la opción correcta, no se asignará puntaje a ninguno. Si uno de
-//los jugadores eligió la opción correcta, ese jugador conseguirá el doble del puntaje.
-//        ➔ Alcanza con que uno de los jugadores asigne la exclusividad de puntaje para que
-//la regla afecte a todos los jugadores en esa pregunta.
-//        ➔ Si por lo menos 2 jugadores asignan exclusividad de puntaje, entonces el efecto se
-//multiplica por la cantidad de jugadores que la asignaron y se asignará el puntaje al
-//jugador que elija la opción correcta (sólo si ningún otro jugador no eligió la opción
-//        correcta a su vez).
-//        ➔ Al mostrar los resultados (después de que respondieron los jugadores), se deberá
-//indicar que se usó este modificador
-
 
 
 public class TestExclusividad {
-
     private Jugador jugador1;
     private Jugador jugador2;
     private Jugador jugador3;
-    private ArrayList<Respuesta> respuestas;
-    private Pregunta pregunta;
-
+    private Exclusividad exclusividad;
 
     @BeforeEach
-    public void SetUp() {
-
-        jugador1 = new Jugador("FIUBERO");
-        jugador2 = new Jugador("TinchoSaad");
-        jugador3 = new Jugador("LaCapitalDeEcuador");
-
-
-        respuestas = new ArrayList<Respuesta>();
-
-        RespuestaCorrecta respuesta1 = new RespuestaCorrecta("Si", "0");
-        RespuestaIncorrecta respuesta2 = new RespuestaIncorrecta("No", new PenalidadClasica());
-
-        respuestas.add(respuesta1);
-        respuestas.add(respuesta2);
-
-        String enunciado = "Vamos a aprobar el TP?";
-
-        pregunta = new Pregunta(enunciado, respuestas, new PuntuarVerdaderoFalsoClasico());
+    public void setUp() {
+        exclusividad = new Exclusividad();
+        jugador1 = new Jugador("jugador1");
+        jugador2 = new Jugador("jugador2");
+        jugador3 = new Jugador("jugador3");
 
     }
 
     @Test
-    public void test01UnUnicoJugadorUtilizaExclusividadRespondeCorrectamenteYSeLeDuplicaElPuntaje() throws ExclusividadSeUsaMasdeDosVeces {
-        int puntosEsperados = 4;
-        int puntosPregunta = 2;
+    public void test01UnaExclusividadDesactivadaNoExcluyeNingunPuntaje() {
 
-        jugador1.activarExclusividad(pregunta);
+        int puntajeEsperado1 = 5;
+        int puntajeEsperado2 = 3;
+        int puntajeEsperado3 = 2;
 
-    }
-    @Test
-    public void test02UnJugadorActivaExclusividadYTodosLosJugadoresRespondenBienYSumanCeroPuntos(){
-        int puntosEsperadosJugador1 = 0;
-        int puntosEsperadosJugador2 = 0;
-        int puntosEsperadosJugador3 = 0;
+        ArrayList<Jugador> jugadoresQueRespondieronCorrectamente = new ArrayList<>();
+        jugadoresQueRespondieronCorrectamente.add(jugador1);
+        jugadoresQueRespondieronCorrectamente.add(jugador2);
+        jugadoresQueRespondieronCorrectamente.add(jugador3);
 
-    }
+        int puntajeObtenido1 = exclusividad.excluir(5,jugador1, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido2 = exclusividad.excluir(3,jugador2, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido3 = exclusividad.excluir(2,jugador3, jugadoresQueRespondieronCorrectamente);
 
-    @Test
-    public void test03VariosJugadoresUsanExclusividadYSoloUnoRespondeBienSeMultiplicaElPuntaje() throws ExclusividadSeUsaMasdeDosVeces {
-        int puntosEsperadosJugador1 = 8; //2^n siendo n los jugadores que activan el multi
-        int puntosEsperadosJugador2 = 0;
-        int puntosEsperadosJugador3 = 0;
-
-
-
-        jugador2.activarExclusividad(pregunta);
-        jugador3.activarExclusividad(pregunta);
-
-        pregunta.ObtenerResultados();
-
+        assertEquals(puntajeEsperado1, puntajeObtenido1);
+        assertEquals(puntajeEsperado2, puntajeObtenido2);
+        assertEquals(puntajeEsperado3, puntajeObtenido3);
     }
 
     @Test
-    public void test04VariosJugadoresUsanExclusividadYSoloUnoRespondeBienSeMultiplicaElPuntaje(){
+    public void test02UnaExclusividadActivadaExcluyeLosPuntajesCuandoSoloUnJugadorRespondeCorrectamente() {
+        int puntajeEsperado1 = 10;
+        int puntajeEsperado2 = 0;
+        int puntajeEsperado3 = 0;
 
+        ArrayList<Jugador> jugadoresQueRespondieronCorrectamente = new ArrayList<>();
+        jugadoresQueRespondieronCorrectamente.add(jugador1);
+
+
+        exclusividad.activar(jugador1);
+        int puntajeObtenido1 = exclusividad.excluir(5,jugador1, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido2 = exclusividad.excluir(3,jugador2, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido3 = exclusividad.excluir(2,jugador3, jugadoresQueRespondieronCorrectamente);
+
+        assertEquals(puntajeEsperado1,puntajeObtenido1);
+        assertEquals(puntajeEsperado2,puntajeObtenido2);
+        assertEquals(puntajeEsperado3,puntajeObtenido3);
+
+    }
+
+    @Test
+    public void test03TresJugadoresActivanUnaExclusividadYSeExcluyenTodosLosPuntajesYElUnicoQueRepondeBienSeLeMultiplicaElPuntajePorSeis(){
+        int puntajeEsperado1 = 6;
+        int puntajeEsperado2 = 0;
+        int puntajeEsperado3 = 0;
+
+        ArrayList<Jugador> jugadoresQueRespondieronCorrectamente = new ArrayList<>();
+        jugadoresQueRespondieronCorrectamente.add(jugador1);
+
+
+        exclusividad.activar(jugador1);
+        exclusividad.activar(jugador2);
+        exclusividad.activar(jugador3);
+        int puntajeObtenido1 = exclusividad.excluir(1,jugador1, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido2 = exclusividad.excluir(3,jugador2, jugadoresQueRespondieronCorrectamente);
+        int puntajeObtenido3 = exclusividad.excluir(2,jugador3, jugadoresQueRespondieronCorrectamente);
+
+        assertEquals(puntajeEsperado1,puntajeObtenido1);
+        assertEquals(puntajeEsperado2,puntajeObtenido2);
+        assertEquals(puntajeEsperado3,puntajeObtenido3);
     }
 
 }

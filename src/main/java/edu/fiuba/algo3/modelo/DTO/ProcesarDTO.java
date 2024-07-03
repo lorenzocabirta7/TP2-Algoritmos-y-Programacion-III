@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.DTO;
 
+import edu.fiuba.algo3.modelo.ModoDePregunta.GroupChoice;
+import edu.fiuba.algo3.modelo.ModoDePregunta.TipoDePregunta;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
@@ -12,30 +15,22 @@ public class ProcesarDTO {
    public ArrayList<Pregunta> procesarPreguntas(PreguntaDTO[] listaPreguntas) {
 
        ArrayList<Pregunta> preguntas = new ArrayList<>();
-
        for (PreguntaDTO pregunta : listaPreguntas) {
-           FormaDePuntuarDTO GeneradorFormaDePuntaje = new FormaDePuntuarDTO();
 
+
+           ArrayList<Respuesta> respuestasPregunta;
+           TipoDePreguntaDTO GeneradorFormaDePuntaje = new TipoDePreguntaDTO();
            if (pregunta.getTipo().equals("Group Choice")) { //los groupchoice se tienen que procesar de otra forma que el resto de las preguntas
-               ArrayList<Respuesta> respuestasPregunta = procesarPreguntasGroupChoice(pregunta);
-
-               FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
-
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
-               preguntas.add(preguntaNueva);
+               respuestasPregunta = procesarPreguntasGroupChoice(pregunta);
            } else {
-               ArrayList<Respuesta> respuestasPregunta = procesarPreguntasNormales(pregunta);
-
-               FormaDePuntuar unaFormaDePuntuar = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta, respuestasPregunta);
-
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), respuestasPregunta, unaFormaDePuntuar);
-               preguntas.add(preguntaNueva);
+               respuestasPregunta = procesarPreguntasNormales(pregunta);
            }
+           TipoDePregunta unTipoDePregunta = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta);
+           Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), pregunta.getTema(), respuestasPregunta,unTipoDePregunta);
+           preguntas.add(preguntaNueva);
        }
        return preguntas;
    }
-
-
 
     private ArrayList<Respuesta> procesarPreguntasNormales(PreguntaDTO pregunta) {
         String[] respuestasArray = pregunta.getRespuesta().split(",");
@@ -51,7 +46,6 @@ public class ProcesarDTO {
 
         int opcionesTotales = 6; //asumimos que pueden haber hasta 6 respuestas posibles
 
-
         for (int i = 1; i <= opcionesTotales; i++) {
             String indice = String.valueOf(i);
             String opcion = ObtenerOpcionPorPosicion(pregunta, indice);
@@ -60,8 +54,8 @@ public class ProcesarDTO {
                     Respuesta respuestaCorrecta = new RespuestaCorrecta(opcion, String.valueOf(indicesDeRespuestasCorrectas.indexOf(indice)+ 1));
                     respuestasTotales.add(respuestaCorrecta);
                 } else {
-                    TipoDePenalidadDTO tipoDePenalidad = new TipoDePenalidadDTO();
-                    Respuesta respuestaIncorrecta = new RespuestaIncorrecta(opcion, tipoDePenalidad.DevolverPenalidad(pregunta));
+                    TipoDePreguntaDTO tipoDePenalidad = new TipoDePreguntaDTO();
+                    Respuesta respuestaIncorrecta = new RespuestaIncorrecta(opcion);
                     respuestasTotales.add(respuestaIncorrecta);
                 }
             }

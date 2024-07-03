@@ -10,13 +10,11 @@ public class Jugada {
     private Pregunta preguntaActual;
     private Integer IndiceUltimoJugador;
 
-
     public Jugada(ArrayList<Jugador> jugadores, Pregunta preguntaActual) {
         this.jugadores = jugadores;
         this.preguntaActual = preguntaActual;
         IndiceUltimoJugador = 0;
     }
-
 
     public Jugador conseguirJugador() {
 //        if (IndiceUltimoJugador >= jugadores.size()){
@@ -38,5 +36,9 @@ public class Jugada {
             IndiceUltimoJugador = 0; //reset
         throw new YaJugaronTodosLosJugadores("Ya jugaron todos los jugadores");
         }
+    }
+
+    public void puntuarTodosLosJugadores(Pregunta preguntaAPuntuar) {
+        preguntaAPuntuar.puntuarJugadores();
     }
 }

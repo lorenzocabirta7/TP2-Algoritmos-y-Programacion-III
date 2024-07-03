@@ -1,29 +1,29 @@
 package edu.fiuba.algo3.modelo;
 
 
-import edu.fiuba.algo3.modelo.modificadores.*;
-import edu.fiuba.algo3.modelo.Anulador.*;
-import edu.fiuba.algo3.modelo.Respuestas.*;
-import edu.fiuba.algo3.modelo.preguntas.*;
-import edu.fiuba.algo3.modelo.exceptions.*;
-import edu.fiuba.algo3.modelo.Exclusividad.*;
+import edu.fiuba.algo3.modelo.Anulador.GestorAnulador;
+import edu.fiuba.algo3.modelo.Exclusividad.GestorExclusividad;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorDos;
+import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorTres;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 
 import java.util.ArrayList;
 
 public class Jugador {
 
-    private String nombre;
-    private int puntos;
-    private MultiplicadorPorDos multiplicadorPorDos;
-    private MultiplicadorPorTres multiplicadorPorTres;
-    private GestorAnulador gestorAnulador;
-    private GestorExclusividad gestorExclusividad;
+    private final String nombre;
+    private final Puntaje puntos;
+    private final MultiplicadorPorDos multiplicadorPorDos;
+    private final MultiplicadorPorTres multiplicadorPorTres;
+    private final GestorAnulador gestorAnulador;
+    private final GestorExclusividad gestorExclusividad;
     private ArrayList<Respuesta> respuestasDelJugador;
     private String ordenParcialRespuestas;
 
     public Jugador(String nombreJugador) {
         this.nombre = nombreJugador;
-        this.puntos = 0;
+        this.puntos = new Puntaje();
         this.multiplicadorPorDos = new MultiplicadorPorDos();
         this.multiplicadorPorTres = new MultiplicadorPorTres();
         this.respuestasDelJugador = new ArrayList<>();
@@ -32,29 +32,47 @@ public class Jugador {
         this.ordenParcialRespuestas = "1";
     }
 
-    public void responder(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
+    public void agregarRespuesta(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
+        respuestasDelJugador.removeIf(respuesta -> respuesta.getRespuesta().equals(respuestaElegida.getRespuesta()));
         respuestasDelJugador.add(respuestaElegida);
+        System.out.println("Respuesta Agregada Exitosamente");
+        System.out.println("Numero De Respuestas: " + respuestasDelJugador.size());
+        for (Respuesta respuesta : respuestasDelJugador){
+            System.out.println(respuesta.getRespuesta() + " , " + respuesta.getOrdenParcial());
+        }
+
     }
 
+    public void eliminarRespuesta(Pregunta preguntaAMostrar, Respuesta respuesta) {
+        respuestasDelJugador.remove(respuesta);
+        System.out.println("Respuesta Eliminada Exitosamente");
+        System.out.println("Numero De Respuestas: " + respuestasDelJugador.size());
+        for (Respuesta elegida : respuestasDelJugador){
+            System.out.println(elegida.getRespuesta() + " , " + respuesta.getOrdenParcial());
+        }
+    }
+
+
     public void modificarPuntaje(int puntajePregunta) {
-        int puntajeModificado = multiplicadorPorDos.modificarPuntaje(puntajePregunta);
-        puntajeModificado = multiplicadorPorTres.modificarPuntaje(puntajeModificado);
-        this.puntos += puntajeModificado;
+        int puntajeModificado = this.multiplicadorPorDos.modificarPuntaje(puntajePregunta);
+        puntajeModificado = this.multiplicadorPorTres.modificarPuntaje(puntajeModificado);
+        this.puntos.agregarPuntaje(puntajeModificado);
+
     }
 
     public int obtenerPuntos() {
-        return this.puntos;
+        return this.puntos.getPuntaje();
     }
 
     public String obtenerNombre() {
         return this.nombre;
     }
 
-    public void activarDuplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+    public void activarDuplicadorDePuntaje() throws edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException {
         this.multiplicadorPorDos.activar();
     }
 
-    public void activarTriplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException {
+    public void activarTriplicadorDePuntaje() throws  edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException {
         this.multiplicadorPorTres.activar();
     }
 
@@ -63,15 +81,17 @@ public class Jugador {
     }
 
     public void confirmarRespuesta(Pregunta pregunta){
-        pregunta.puntuar(respuestasDelJugador, this);
+        pregunta.confirmarRespuesta(respuestasDelJugador,this);
+        System.out.println("Respuesta Confirmada");
         this.resetRespuestas();
     }
 
-    public void activarAnuladorDePuntaje(Pregunta pregunta) throws AnuladorSeUsaMasDeUnaVez {
+    public void activarAnuladorDePuntaje(Pregunta pregunta) throws edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez {
         this.gestorAnulador.gestarActivacion(pregunta,this);
     }
 
-    public void activarExclusividad(Pregunta pregunta) throws ExclusividadSeUsaMasdeDosVeces {
+    public void activarExclusividad(Pregunta pregunta) throws edu.fiuba.algo3.modelo.exceptions.ExclusividadSeUsaMasdeDosVeces, edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida {
+
         this.gestorExclusividad.gestarActivacion(pregunta,this);
     }
 
@@ -87,4 +107,6 @@ public class Jugador {
         ordenParcialRespuestas = ordenNumerico + "";
         return ordenActual;
     }
+
+
 }

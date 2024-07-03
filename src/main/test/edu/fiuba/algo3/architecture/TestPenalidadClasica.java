@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.architecture;
 
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.TipoDePenalidad;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import org.junit.jupiter.api.Test;
 
 
@@ -16,7 +16,7 @@ public class TestPenalidadClasica {
 
         TipoDePenalidad penalidadClasica = new PenalidadClasica();
 
-        int puntajeObtenido = penalidadClasica.actualizarPuntaje(1);
+        int puntajeObtenido = penalidadClasica.penalizarPuntaje(1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }

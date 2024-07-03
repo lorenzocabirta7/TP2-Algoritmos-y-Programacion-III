@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadConPenalidad;
+
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class TestRespuestaIncorrecta {
         String enunciadoEsperado = "enunciado De Prueba";
         String ordenEsperado = "0";
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         String enunciadoObtenido = respuesta1.getRespuesta();
         String ordenObtenido = respuesta1.getOrdenParcial();
@@ -29,7 +30,7 @@ public class TestRespuestaIncorrecta {
 
         Boolean respuestaEsperada = false;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
         Boolean respuestaObtenida = respuesta1.EsCorrecta(respuesta1);
 
@@ -41,9 +42,9 @@ public class TestRespuestaIncorrecta {
 
         int puntajeEsperado = 0;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
-        int puntajeObtenido = respuesta1.actualizarPuntaje(1, respuesta1);
+        int puntajeObtenido = respuesta1.actualizarPuntaje(1, new PenalidadClasica(), respuesta1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -53,9 +54,9 @@ public class TestRespuestaIncorrecta {
 
         int puntajeEsperado = -1;
 
-        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadConPenalidad());
+        Respuesta respuesta1 = new RespuestaIncorrecta("enunciado De Prueba");
 
-        int puntajeObtenido = respuesta1.actualizarPuntaje(1, respuesta1);
+        int puntajeObtenido = respuesta1.actualizarPuntaje(1, new PenalidadConPenalidad(), respuesta1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }

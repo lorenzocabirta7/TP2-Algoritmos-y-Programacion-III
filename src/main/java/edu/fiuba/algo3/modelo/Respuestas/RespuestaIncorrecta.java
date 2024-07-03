@@ -1,19 +1,19 @@
 package edu.fiuba.algo3.modelo.Respuestas;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.TipoDePenalidad;
+import edu.fiuba.algo3.modelo.ModoDePregunta.TipoDePregunta;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 
 public class RespuestaIncorrecta implements Respuesta {
-    private TipoDePenalidad tipoDePenalidad;
     private String enunciado;
+    private Respuesta respuestaReal;
 
-    public RespuestaIncorrecta(String respuesta, TipoDePenalidad tipoDePenalidad){
-        this.tipoDePenalidad = tipoDePenalidad;
+    public RespuestaIncorrecta(String respuesta){
         this.enunciado = respuesta;
     }
 
     @Override
-    public int actualizarPuntaje(int puntaje, Respuesta unaRespuesta) {
-        return tipoDePenalidad.actualizarPuntaje(puntaje);
+    public int actualizarPuntaje(int puntaje, TipoDePenalidad unaPenalidad, Respuesta unaRespuesta) {
+        return unaPenalidad.penalizarPuntaje(puntaje);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class RespuestaIncorrecta implements Respuesta {
     @Override
     public String toString() {
         return "Respuesta{" +
-                "enunciado='" + enunciado + '\'' +
-                ", tipoDePenalidad='" + tipoDePenalidad + '\'' +
+                "enunciado='" + enunciado
+                + '\'' +
                 '}';
     }
 

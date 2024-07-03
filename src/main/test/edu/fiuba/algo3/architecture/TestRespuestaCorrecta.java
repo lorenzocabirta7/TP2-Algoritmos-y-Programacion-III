@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.architecture;
 
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 
@@ -39,7 +40,7 @@ public class TestRespuestaCorrecta {
 
         Respuesta respuesta1 = new RespuestaCorrecta("enunciado De Prueba", "0");
 
-        int puntajeObtenido = respuesta1.actualizarPuntaje(1, respuesta1);
+        int puntajeObtenido = respuesta1.actualizarPuntaje(1,new PenalidadClasica(), respuesta1);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }

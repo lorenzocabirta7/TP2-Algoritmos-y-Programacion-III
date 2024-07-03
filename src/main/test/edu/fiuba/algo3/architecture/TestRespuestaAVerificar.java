@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.architecture;
 
-import edu.fiuba.algo3.modelo.Respuestas.Penalidad.PenalidadClasica;
+
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
@@ -45,7 +46,7 @@ public class TestRespuestaAVerificar {
 
         Boolean respuestaEsperada = false;
 
-        Respuesta respuestaIncorrecta = new RespuestaIncorrecta("enunciado De Prueba", new PenalidadClasica());
+        Respuesta respuestaIncorrecta = new RespuestaCorrecta("enunciado De Prueba","1");
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 
@@ -63,7 +64,7 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta);
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, new PenalidadClasica(),respuestaCorrecta);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -75,9 +76,9 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaCorrecta = new RespuestaCorrecta("enunciado De Prueba", "2");
 
-        Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2.0");
+        Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "3");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta);
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, new PenalidadClasica(),respuestaCorrecta);
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
@@ -92,8 +93,8 @@ public class TestRespuestaAVerificar {
 
         Respuesta respuestaAVerificar = new RespuestaAVerificar("enunciado De Prueba", "2");
 
-        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta1);
-        puntajeObtenido += respuestaAVerificar.actualizarPuntaje(1, respuestaCorrecta2);
+        int puntajeObtenido = respuestaAVerificar.actualizarPuntaje(1, new PenalidadClasica() ,respuestaCorrecta1);
+        puntajeObtenido += respuestaAVerificar.actualizarPuntaje(1, new PenalidadClasica() ,respuestaCorrecta2);
 
 
         assertEquals(puntajeEsperado, puntajeObtenido);

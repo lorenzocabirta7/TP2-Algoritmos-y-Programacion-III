@@ -59,9 +59,7 @@ public class Modelo extends Observable {
 
     private Pregunta BuscarPregunta() {
         Random random = new Random();
-
         int indiceRandom = random.nextInt(preguntas.size());
-
         return preguntas.get(indiceRandom);
     }
 
@@ -107,4 +105,8 @@ public class Modelo extends Observable {
 
     }
 
+    public void puntuarRespuestas() {
+        preguntaActual.puntuarJugadores();
+        //jugadaActual.puntuarTodosLosJugadores(preguntaActual);
+    }
 }

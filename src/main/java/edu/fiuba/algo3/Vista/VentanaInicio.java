@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,6 +42,19 @@ public class VentanaInicio implements Ventana{
 
         ControladorCrearJugadores controladorCrearJugador = new ControladorCrearJugadores(modelo);
 
+        InputNombre.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String NombreDeJugador = InputNombre.getText().trim();
+                if (!NombreDeJugador.isEmpty()) {
+                    controladorCrearJugador.seleccionarBoton(NombreDeJugador);
+                    mensajeExito.setText(NombreDeJugador + " agregado exitosamente!");
+                    numeroJugadores++;
+                    numeroJugadoresLabel.setText("Número de Jugadores Actuales: " + numeroJugadores);
+                    InputNombre.clear();
+                }
+            }
+        });
+
         ConfirmarJugadorBoton.setOnAction(e -> {
             String NombreDeJugador = InputNombre.getText().trim();
             if (!NombreDeJugador.isEmpty()) {
@@ -48,6 +62,19 @@ public class VentanaInicio implements Ventana{
                 mensajeExito.setText(NombreDeJugador + " agregado exitosamente!");
                 numeroJugadores++;
                 numeroJugadoresLabel.setText("Número de Jugadores Actuales: " + numeroJugadores);
+                InputNombre.clear();
+            }
+        });
+
+
+        ConfirmarJugadorBoton.setOnAction(e -> {
+            String NombreDeJugador = InputNombre.getText().trim();
+            if (!NombreDeJugador.isEmpty()) {
+                controladorCrearJugador.seleccionarBoton(NombreDeJugador);
+                mensajeExito.setText(NombreDeJugador + " agregado exitosamente!");
+                numeroJugadores++;
+                numeroJugadoresLabel.setText("Número de Jugadores Actuales: " + numeroJugadores);
+                InputNombre.clear();
             }
         });
 
@@ -64,7 +91,7 @@ public class VentanaInicio implements Ventana{
 
     public void inicializarVentana(Stage stage){
         stage.setScene(scene);
-        stage.setTitle("Preguntados");
+        stage.setTitle("Algo-Hoot");
         stage.show();
     }
 
