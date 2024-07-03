@@ -35,9 +35,11 @@ public class MultipleChoice implements TipoDePregunta{
         return puntaje;
     }
 
+
     @Override
-    public String getTipoDePregunta() {
-        return "Pregunta: Multiple Choice \n Penalidad: " + penalidad.getTipoPenalidad();
+    public String getTipoDePregunta(String mensaje) {
+        String mensajePenalidad = "Penalidad: ";
+        return mensaje + "Multiple Choice " + penalidad.getTipoPenalidad(mensajePenalidad);
     }
 
     @Override

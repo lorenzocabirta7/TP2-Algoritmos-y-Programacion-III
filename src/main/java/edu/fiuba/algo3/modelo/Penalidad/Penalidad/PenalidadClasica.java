@@ -21,7 +21,8 @@ public class PenalidadClasica implements TipoDePenalidad {
     }
 
     @Override
-    public String getTipoPenalidad() {
-        return "Clasica";
+    public String getTipoPenalidad(String mensaje) {
+
+        return mensaje + "Clasica";
     }
 }

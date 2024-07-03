@@ -69,6 +69,8 @@ public class Pregunta {
                 System.out.println("Puntuando");
                 System.out.println(respuesta.getRespuesta());
             }
+            System.out.println("Este es el tamaño de las respuestas");
+            System.out.println(jugadoresYRespuestas.get(jugador).size());
             ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
             int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, respuestasDelJugador, respuestas);
             System.out.println(puntaje);
@@ -81,14 +83,14 @@ public class Pregunta {
         exclusividad.desactivar();
     }
 
-
     // Getters
     public String getEnunciado() {
         return enunciado;
     }
 
     public String getTipoDePregunta() {
-        return this.tipoDePregunta.getTipoDePregunta();
+        String mensaje = "Pregunta de Tipo: ";
+        return this.tipoDePregunta.getTipoDePregunta(mensaje);
     }
 
     public ArrayList<Jugador> getJugadoresQueRespondieronCorrectamente() {

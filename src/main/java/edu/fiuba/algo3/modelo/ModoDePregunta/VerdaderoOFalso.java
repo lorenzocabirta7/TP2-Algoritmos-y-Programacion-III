@@ -23,8 +23,9 @@ public class VerdaderoOFalso implements TipoDePregunta{
     }
 
     @Override
-    public String getTipoDePregunta() {
-        return "Pregunta: Verdadero Falso \n Penalidad: " + penalidad.getTipoPenalidad();
+    public String getTipoDePregunta(String mensaje) {
+        String mensajePenalidad = "Penalidad: ";
+        return mensaje + "Verdadero Falso " + penalidad.getTipoPenalidad(mensajePenalidad);
     }
 
     @Override

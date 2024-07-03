@@ -43,6 +43,6 @@ public class Jugada {
     public void puntuarTodosLosJugadores(Pregunta preguntaAPuntuar) {
         System.out.println("Aca se punuta");
         System.out.println(preguntaAPuntuar.getEnunciado());
-        preguntaAPuntuar.puntuarJugadores();
+        preguntaActual.puntuarJugadores();
     }
 }

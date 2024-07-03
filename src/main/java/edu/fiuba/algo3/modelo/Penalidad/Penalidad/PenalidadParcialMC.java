@@ -14,9 +14,8 @@ public class PenalidadParcialMC implements TipoDePenalidad{
             return respuestasCorrectasDelJugador*puntosPorRespuestaCorrecta;
         }
     }
-
     @Override
-    public String getTipoPenalidad() {
-        return "Parcial";
+    public String getTipoPenalidad(String mensaje) {
+        return mensaje + "Parcial";
     }
 }

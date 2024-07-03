@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface TipoDePregunta {
     int actualizarPuntaje(int puntosPorRespuestaCorrecta, ArrayList<Respuesta> respuestasDelJugador,ArrayList<Respuesta> respuestasDeLaPregunta);
 
-    String getTipoDePregunta();
+    String getTipoDePregunta(String mensaje);
 
 
     boolean EsDeOrderedChoice();

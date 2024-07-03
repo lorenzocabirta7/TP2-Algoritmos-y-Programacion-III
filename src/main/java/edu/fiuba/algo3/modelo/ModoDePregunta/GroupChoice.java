@@ -43,8 +43,9 @@ public class GroupChoice implements TipoDePregunta{
     }
 
     @Override
-    public String getTipoDePregunta() {
-        return "Pregunta: GroupChoice \n Penalidad: " + penalidad.getTipoPenalidad();
+    public String getTipoDePregunta(String mensaje) {
+        String mensajePenalidad = "Penalidad: ";
+        return mensaje + "GroupChoice " + penalidad.getTipoPenalidad(mensajePenalidad);
     }
 
     @Override

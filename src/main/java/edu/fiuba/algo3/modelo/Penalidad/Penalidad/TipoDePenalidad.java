@@ -5,5 +5,5 @@ public interface TipoDePenalidad {
 
     int penalizarPuntaje(int puntosPorRespuestaCorrecta, int respuestasCorrectasDelJugador, int respuestasIncorrectas, int respuestasCorrectas);
 
-    String getTipoPenalidad();
+    String getTipoPenalidad(String mensaje);
 }
