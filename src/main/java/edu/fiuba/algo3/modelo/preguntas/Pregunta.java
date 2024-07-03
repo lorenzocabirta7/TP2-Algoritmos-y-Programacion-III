@@ -26,7 +26,7 @@ public class Pregunta {
         this.tema = tema;
         this.respuestas = respuestasPosibles;
         this.tipoDePregunta = tipoDePregunta;
-        //respuestasPosibles.stream().filter(respuesta -> respuesta.EsCorrecta(respuesta)).count())
+        //cantidadDeRespuestasCorrectas = (int) respuestasPosibles.stream().filter(respuesta -> respuesta.EsCorrecta(respuesta)).count())
     }
 
     public ArrayList<Respuesta> getRespuestasCorrectas() {
@@ -47,12 +47,16 @@ public class Pregunta {
                 if (dePregunta.getRespuesta().equals(enunciadoDelJugador)) {
                     if (delJugador.EsCorrecta(dePregunta)){
                         respuestasCorrectas++;
+                        System.out.println("El jugador Respondio bien 1 opcion");
+                        System.out.println(enunciadoDelJugador);
+
                     }
                 }
             }
         }
         if (respuestasCorrectas == cantidadDeRespuestasCorrectas()) {
             jugadoresQueRespondieronCorrectamente.add(jugador);
+            System.out.println("El jugador: " + jugador.obtenerNombre() + " Respondio Correctamente");
         }
 
     }
@@ -61,11 +65,15 @@ public class Pregunta {
 
         for (Jugador jugador : jugadoresYRespuestas.keySet()) {
             System.out.println(jugador.obtenerNombre());
+            for (Respuesta respuesta : jugadoresYRespuestas.get(jugador)) {
+                System.out.println("Puntuando");
+                System.out.println(respuesta.getRespuesta());
+            }
             ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
             int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, respuestasDelJugador, respuestas);
+            System.out.println(puntaje);
             puntaje = anulador.anular(puntaje,jugador);
             puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
-            System.out.println(puntaje);
             jugador.modificarPuntaje(puntaje);
         }
 

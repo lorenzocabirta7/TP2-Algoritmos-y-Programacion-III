@@ -85,8 +85,6 @@ public class ProcesarDTO {
                String unaRespuesta = ObtenerOpcionPorPosicion(pregunta, indice);
                Respuesta respuesta = new RespuestaCorrecta(unaRespuesta, grupoEspecifico);
                respuestas.add(respuesta);
-               System.out.println(respuesta.getRespuesta());
-               System.out.println(respuesta.getOrdenParcial());
            }
        }
        return respuestas;

@@ -131,7 +131,10 @@ public class VentanaPregunta implements Ventana, Observer {
         return cajaDeBonificadores;
     }
 
-    public VBox ArmarBoxRespuestas(HBox boxJugadores,Pregunta preguntaActual, Modelo modelo){
+    public VBox ArmarBoxRespuestas(HBox boxJugadores,Pregunta pregunta, Modelo modelo){
+        Pregunta preguntaActual = modelo.ConseguirPregunta();
+        System.out.println(preguntaActual.getEnunciado());
+
         SeccionRespuesta seccionRespuesta;
         ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
         if (preguntaActual.esOrderChoice()){
@@ -147,7 +150,7 @@ public class VentanaPregunta implements Ventana, Observer {
             seccionRespuesta = new SeccionGroupChoice();
         }
         else {
-            return null;
+            throw new RuntimeException("Tipo de Pregunta inesperado");
         }
 
         return seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles,jugadorActual);

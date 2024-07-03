@@ -39,4 +39,10 @@ public class Jugada {
         throw new YaJugaronTodosLosJugadores("Ya jugaron todos los jugadores");
         }
     }
+
+    public void puntuarTodosLosJugadores(Pregunta preguntaAPuntuar) {
+        System.out.println("Aca se punuta");
+        System.out.println(preguntaAPuntuar.getEnunciado());
+        preguntaAPuntuar.puntuarJugadores();
+    }
 }

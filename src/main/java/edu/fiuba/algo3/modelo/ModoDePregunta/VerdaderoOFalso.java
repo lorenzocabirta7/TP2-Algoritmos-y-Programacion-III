@@ -16,6 +16,7 @@ public class VerdaderoOFalso implements TipoDePregunta{
     public int actualizarPuntaje(int puntosPorRespuestaCorrecta, ArrayList<Respuesta> respuestasDelJugador, ArrayList<Respuesta> respuestasDeLaPregunta) {
         int puntajeTotal = 0;
         for (Respuesta respuesta : respuestasDelJugador) {
+
             puntajeTotal += respuesta.actualizarPuntaje(puntosPorRespuestaCorrecta,penalidad,respuesta);
         }
         return puntajeTotal;
