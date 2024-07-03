@@ -87,10 +87,6 @@ public class Modelo extends Observable {
         return puntajesADevolver;
     }
 
-    public void confirmarRespuestas(){
-        jugadaActual.confirmarRespuestas();
-    }
-
     public void SiguientePregunta(){
         this.preguntaActual = BuscarPregunta();
         this.jugadaActual = iniciarJugada();
@@ -106,7 +102,7 @@ public class Modelo extends Observable {
     }
 
     public void puntuarRespuestas() {
-        preguntaActual.puntuarJugadores();
-        //jugadaActual.puntuarTodosLosJugadores(preguntaActual);
+        //preguntaActual.puntuarJugadores();
+        jugadaActual.puntuarTodosLosJugadores(preguntaActual);
     }
 }

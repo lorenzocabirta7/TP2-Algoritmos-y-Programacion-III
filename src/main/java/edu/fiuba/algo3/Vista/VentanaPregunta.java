@@ -23,18 +23,18 @@ import static edu.fiuba.algo3.modelo.Juego.ANCHO_PANTALLA;
 import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
 
 public class VentanaPregunta implements Ventana, Observer {
+    private VBox cajaDeRespuestas;
     private ControladorMostrarPregunta controlador;
     private Scene escenaPregunta;
     private Button mostrarLeaderBoardBoton;
     private Button botonConfirmar;
     private Label labelEnunciado;
     private Label labelTipoDePregunta;
-    private VBox contenedorOpciones;
 
-    private ArrayList<RadioButton> BotonesDeRespuestas = new ArrayList<>();
     private Label playerLabel;
     private ArrayList<Button> botonesDeModificadores;
     private Jugador jugadorActual;
+    private SeccionRespuesta seccionRespuesta;
 
 
     public VentanaPregunta(Modelo modelo){
@@ -48,12 +48,15 @@ public class VentanaPregunta implements Ventana, Observer {
         HBox boxJugador =  new HBox(playerLabel, botonConfirmar);
 
         Pregunta preguntaInicial = modelo.ConseguirPregunta();
+        ArrayList<Respuesta> respuestasPosibles = preguntaInicial.respuestasPosibles();
 
         jugadorActual = modelo.conseguirJugador();
 
-        VBox cajaDeRespuestas = new VBox(boxJugador);
+        cajaDeRespuestas = new VBox(boxJugador);
 
-        cajaDeRespuestas.getChildren().add(ArmarBoxRespuestas(boxJugador,preguntaInicial, modelo));
+        ArmarBoxRespuestas(preguntaInicial);
+
+        cajaDeRespuestas.getChildren().add(seccionRespuesta.mostrarRespuestas(preguntaInicial,respuestasPosibles, jugadorActual));
 
         VBox cajaDeBonificadores = ArmarBoxModificadores(modelo);
 
@@ -131,12 +134,8 @@ public class VentanaPregunta implements Ventana, Observer {
         return cajaDeBonificadores;
     }
 
-    public VBox ArmarBoxRespuestas(HBox boxJugadores,Pregunta pregunta, Modelo modelo){
-        //Pregunta preguntaActual = modelo.ConseguirPregunta();
-        System.out.println(pregunta.getEnunciado());
+    public void ArmarBoxRespuestas(Pregunta pregunta){
 
-        SeccionRespuesta seccionRespuesta;
-        ArrayList<Respuesta> respuestasPosibles = pregunta.respuestasPosibles();
         if (pregunta.esOrderChoice()){
             seccionRespuesta = new SeccionOrdenParcial();
         }
@@ -153,7 +152,6 @@ public class VentanaPregunta implements Ventana, Observer {
             throw new RuntimeException("Tipo de Pregunta inesperado");
         }
 
-        return seccionRespuesta.mostrarRespuestas(pregunta, respuestasPosibles,jugadorActual);
     }
 
     @Override
@@ -167,12 +165,7 @@ public class VentanaPregunta implements Ventana, Observer {
         playerLabel.setText("Jugador Actual:  " + nombreJugador);
     }
 
-    public void resetAnswerButtons() {
-        for (RadioButton button : BotonesDeRespuestas) {
-            button.setDisable(false);
-            button.setSelected(false);// Enable all buttons
-        }
-    }
+
     public void siguienteJugador(Jugador unJugador) {
         jugadorActual = unJugador;
     }
@@ -190,15 +183,23 @@ public class VentanaPregunta implements Ventana, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        Modelo modelo = (Modelo) o;
         if (arg.equals("Siguiente Jugador")) {
-            Modelo modelo = (Modelo) o;
             this.updatePlayerLabel(modelo.conseguirJugador().obtenerNombre());
-            this.resetAnswerButtons();
             this.resetModificadores();
-            this.updatePreguntaLabel(modelo.ConseguirPregunta());
             this.siguienteJugador(modelo.conseguirJugador());
+
+            Pregunta preguntaActual = modelo.ConseguirPregunta();
+            ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
+            jugadorActual = modelo.conseguirJugador();
+
+            cajaDeRespuestas.getChildren().remove(1);
+
+            ArmarBoxRespuestas(preguntaActual);
+            cajaDeRespuestas.getChildren().add(seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles, jugadorActual));
         }
         if (arg.equals("Siguiente Pregunta")) {
+            this.updatePreguntaLabel(modelo.ConseguirPregunta());
             mostrarLeaderBoardBoton.fire();
         }
     }

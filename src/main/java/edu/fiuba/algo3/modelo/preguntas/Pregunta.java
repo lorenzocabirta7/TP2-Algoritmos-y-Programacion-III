@@ -15,17 +15,19 @@ public class Pregunta {
     private final ArrayList<Respuesta> respuestas;
     private TipoDePregunta tipoDePregunta;
     private ArrayList<Jugador> jugadoresQueRespondieronCorrectamente = new ArrayList<Jugador>();
-    private HashMap<Jugador, ArrayList<Respuesta>> jugadoresYRespuestas = new HashMap<>();
+    //private HashMap<Jugador, ArrayList<Respuesta>> jugadoresYRespuestas = new HashMap<>();
     private Anulador anulador = new Anulador();
     private Exclusividad exclusividad = new Exclusividad();
     private int puntosPorRespuestaCorrecta = 1;
     private int cantidadDeRespuestasCorrectas;
+    private ArrayList<Jugador> jugadores;
 
     public Pregunta(String enunciado, String tema, ArrayList<Respuesta> respuestasPosibles, TipoDePregunta tipoDePregunta) {
         this.enunciado = enunciado;
         this.tema = tema;
         this.respuestas = respuestasPosibles;
         this.tipoDePregunta = tipoDePregunta;
+        this.jugadores = new ArrayList<>();
         //cantidadDeRespuestasCorrectas = (int) respuestasPosibles.stream().filter(respuesta -> respuesta.EsCorrecta(respuesta)).count())
     }
 
@@ -39,44 +41,38 @@ public class Pregunta {
 
     public void confirmarRespuesta(ArrayList<Respuesta> respuestas, Jugador jugador) {
         int respuestasCorrectas = 0;
-        jugadoresYRespuestas.put(jugador,respuestas); // Agrego al jugador con sus Respuestas
-        System.out.println("Aca se confirma");
-        for (Respuesta delJugador : respuestas) {
-            System.out.println(delJugador.getRespuesta());// por cada respuesta del jugador
-            String enunciadoDelJugador =  delJugador.getRespuesta(); //obtengo el enunciado
-            for (Respuesta dePregunta : this.respuestas) {
-                if (dePregunta.getRespuesta().equals(enunciadoDelJugador)) {
-                    if (delJugador.EsCorrecta(dePregunta)){
-                        respuestasCorrectas++;
+        //jugadoresYRespuestas.put(jugador,jugador.obtenerRespuestas()); // Agrego al jugador con sus Respuestas
+        jugadores.add(jugador);
+        for (Respuesta respuestaDelJugador : jugador.obtenerRespuestas()) {
 
+            String enunciadoDelJugador =  respuestaDelJugador.getRespuesta(); //obtengo el enunciado
+
+            for (Respuesta respuestasDeLaPregunta : this.respuestas) {
+                if (respuestasDeLaPregunta.getRespuesta().equals(enunciadoDelJugador)) {
+                    if (respuestaDelJugador.EsCorrecta(respuestasDeLaPregunta)){
+                        respuestasCorrectas++;
                     }
                 }
             }
-            System.out.println(jugadoresYRespuestas.get(jugador));
         }
         if (respuestasCorrectas == cantidadDeRespuestasCorrectas()) {
             jugadoresQueRespondieronCorrectamente.add(jugador);
-            System.out.println("El jugador: " + jugador.obtenerNombre() + " Respondio Correctamente");
         }
 
     }
 
     public void puntuarJugadores(){
+        System.out.println("Hay " + jugadores.size() + " jugadores.");
+        for (Jugador jugador : jugadores) {
 
-        for (Jugador jugador : jugadoresYRespuestas.keySet()) {
-            System.out.println(jugador.obtenerNombre());
-            for (Respuesta respuesta : jugadoresYRespuestas.get(jugador)) {
-                System.out.println("Puntuando");
-                System.out.println(respuesta.getRespuesta());
-            }
-            System.out.println("Este es el tamaño de las respuestas");
-            System.out.println(jugadoresYRespuestas.get(jugador).size());
-            ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
-            int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, respuestasDelJugador, respuestas);
-            System.out.println(puntaje);
+            //ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
+            int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, jugador.obtenerRespuestas(), respuestas);
+            System.out.println("el jugador: " + jugador.obtenerNombre() + "respondio esto segun el jugador: " + jugador.obtenerRespuestas());
+            //System.out.println("el jugador: " + jugador.obtenerNombre() + "respondio esto segun el diccionario: " + jugadoresYRespuestas.get(jugador));
             puntaje = anulador.anular(puntaje,jugador);
             puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
             jugador.modificarPuntaje(puntaje);
+            System.out.println("puntaje de: " + jugador.obtenerNombre() + " es: " + puntaje);
         }
 
         anulador.desactivar();

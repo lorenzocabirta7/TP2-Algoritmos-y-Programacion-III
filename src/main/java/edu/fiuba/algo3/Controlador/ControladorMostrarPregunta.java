@@ -26,19 +26,13 @@ public class ControladorMostrarPregunta extends MouseAdapter {
     }
 
 
-    public void ApretarBotonSiguientePregunta()  {
-        modelo.SiguientePregunta();
-    }
-
     private void ApretarBotonProximoJugador(ActionEvent event) {
         try {
-            modelo.confirmarRespuestas();
             modelo.SiguienteJugador();
         } catch (YaJugaronTodosLosJugadores e) {
             modelo.puntuarRespuestas();
             modelo.SiguientePregunta();
         }
     }
-
 
 }

@@ -17,20 +17,13 @@ public class Jugada {
     }
 
     public Jugador conseguirJugador() {
-//        if (IndiceUltimoJugador >= jugadores.size()){
-//            IndiceUltimoJugador = 0; //reset
-//        }
         return jugadores.get(IndiceUltimoJugador);
     }
 
-    public void confirmarRespuestas(){
-        this.conseguirJugador().confirmarRespuesta(preguntaActual);
-    }
 
     public void siguienteJugador() throws YaJugaronTodosLosJugadores {
         Jugador jugadorActual = this.conseguirJugador();
         jugadorActual.confirmarRespuesta(preguntaActual);
-        System.out.println(jugadorActual.obtenerPuntos());
         IndiceUltimoJugador++;
         if (IndiceUltimoJugador >= jugadores.size()) {
             IndiceUltimoJugador = 0; //reset
@@ -40,5 +33,8 @@ public class Jugada {
 
     public void puntuarTodosLosJugadores(Pregunta preguntaAPuntuar) {
         preguntaAPuntuar.puntuarJugadores();
+        for (Jugador jugador : jugadores) {
+            jugador.resetRespuestas();
+        }
     }
 }

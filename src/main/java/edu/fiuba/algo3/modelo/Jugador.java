@@ -35,11 +35,6 @@ public class Jugador {
     public void agregarRespuesta(Pregunta pregunta, Respuesta respuestaElegida) { //las preguntas que reciba aca deben ser de la interfaz Pregunta
         respuestasDelJugador.removeIf(respuesta -> respuesta.getRespuesta().equals(respuestaElegida.getRespuesta()));
         respuestasDelJugador.add(respuestaElegida);
-        System.out.println("Respuesta Agregada Exitosamente");
-        System.out.println("Numero De Respuestas: " + respuestasDelJugador.size());
-        for (Respuesta respuesta : respuestasDelJugador){
-            System.out.println(respuesta.getRespuesta() + " , " + respuesta.getOrdenParcial());
-        }
 
     }
 
@@ -82,8 +77,6 @@ public class Jugador {
 
     public void confirmarRespuesta(Pregunta pregunta){
         pregunta.confirmarRespuesta(respuestasDelJugador,this);
-        System.out.println("Respuesta Confirmada");
-        this.resetRespuestas();
     }
 
     public void activarAnuladorDePuntaje(Pregunta pregunta) throws edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez {
