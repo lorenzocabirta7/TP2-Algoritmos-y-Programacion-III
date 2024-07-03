@@ -16,19 +16,19 @@ public class ProcesarDTO {
 
        ArrayList<Pregunta> preguntas = new ArrayList<>();
        for (PreguntaDTO pregunta : listaPreguntas) {
+
+
+           ArrayList<Respuesta> respuestasPregunta;
            TipoDePreguntaDTO GeneradorFormaDePuntaje = new TipoDePreguntaDTO();
            if (pregunta.getTipo().equals("Group Choice")) { //los groupchoice se tienen que procesar de otra forma que el resto de las preguntas
-               ArrayList<Respuesta> respuestasPregunta = procesarPreguntasGroupChoice(pregunta);
-               TipoDePregunta unTipoDePregunta = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta);
-
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), pregunta.getTema(), respuestasPregunta,unTipoDePregunta);
-               preguntas.add(preguntaNueva);
+               respuestasPregunta = procesarPreguntasGroupChoice(pregunta);
            } else {
-               ArrayList<Respuesta> respuestasPregunta = procesarPreguntasNormales(pregunta);
-               TipoDePregunta unTipoDePregunta = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta);
-               Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), pregunta.getTema(), respuestasPregunta,unTipoDePregunta);
-               preguntas.add(preguntaNueva);
+               respuestasPregunta = procesarPreguntasNormales(pregunta);
            }
+           TipoDePregunta unTipoDePregunta = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta);
+           Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), pregunta.getTema(), respuestasPregunta,unTipoDePregunta);
+           System.out.println(preguntaNueva.getTipoDePregunta());
+           preguntas.add(preguntaNueva);
        }
        return preguntas;
    }
@@ -85,6 +85,8 @@ public class ProcesarDTO {
                String unaRespuesta = ObtenerOpcionPorPosicion(pregunta, indice);
                Respuesta respuesta = new RespuestaCorrecta(unaRespuesta, grupoEspecifico);
                respuestas.add(respuesta);
+               System.out.println(respuesta.getRespuesta());
+               System.out.println(respuesta.getOrdenParcial());
            }
        }
        return respuestas;

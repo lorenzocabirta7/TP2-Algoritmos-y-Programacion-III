@@ -16,16 +16,7 @@ public class Puntaje {
         for (Integer punto : puntos){
             puntajeTotal += punto;
         }
-        return puntajeTotal;
-        //return puntos.stream().mapToInt(i -> i).sum();
-    }
-
-    public void anularUltimoPuntaje(){
-        puntos.set(puntos.size() - 1, 0);
-    }
-
-    public void multiplicarUltimoPuntaje(int unMultiplicador){
-        puntos.set(puntos.size() -1, puntos.get(puntos.size() - 1) * unMultiplicador);
+        return puntos.stream().mapToInt(i -> i).sum();
     }
 
 }

@@ -58,12 +58,14 @@ public class Pregunta {
     }
 
     public void puntuarJugadores(){
-        for (Jugador jugador : jugadoresYRespuestas.keySet()) {
 
+        for (Jugador jugador : jugadoresYRespuestas.keySet()) {
+            System.out.println(jugador.obtenerNombre());
             ArrayList<Respuesta> respuestasDelJugador = jugadoresYRespuestas.get(jugador);
             int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, respuestasDelJugador, respuestas);
             puntaje = anulador.anular(puntaje,jugador);
             puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
+            System.out.println(puntaje);
             jugador.modificarPuntaje(puntaje);
         }
 

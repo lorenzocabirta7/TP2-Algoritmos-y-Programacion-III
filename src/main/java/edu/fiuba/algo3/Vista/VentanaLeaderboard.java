@@ -17,7 +17,6 @@ import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
 
 public class VentanaLeaderboard implements Ventana, Observer {
 
-
     private Scene escenaJugadores;
     private Button siguienteVentana;
     private ControladorMostrarLeaderboard controlador;
@@ -54,6 +53,7 @@ public class VentanaLeaderboard implements Ventana, Observer {
     private ArrayList<Label> ConseguirJugadores(Modelo modelo) {
         ArrayList<String> arregloJugadores = modelo.ConseguirTodosLosJugadores();
         ArrayList<Integer> arregloPuntajeJugadores = modelo.ConseguirTodosLosPuntajes();
+        System.out.println(arregloPuntajeJugadores);
         ArrayList<Label> jugadores = new ArrayList<>();
 
 
