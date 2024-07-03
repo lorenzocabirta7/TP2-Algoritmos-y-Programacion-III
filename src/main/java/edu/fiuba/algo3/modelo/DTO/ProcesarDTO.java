@@ -27,7 +27,6 @@ public class ProcesarDTO {
            }
            TipoDePregunta unTipoDePregunta = GeneradorFormaDePuntaje.TipoDePuntuacion(pregunta);
            Pregunta preguntaNueva = new Pregunta(pregunta.getPregunta(), pregunta.getTema(), respuestasPregunta,unTipoDePregunta);
-           System.out.println(preguntaNueva.getTipoDePregunta());
            preguntas.add(preguntaNueva);
        }
        return preguntas;

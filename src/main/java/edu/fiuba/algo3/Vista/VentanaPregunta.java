@@ -132,28 +132,28 @@ public class VentanaPregunta implements Ventana, Observer {
     }
 
     public VBox ArmarBoxRespuestas(HBox boxJugadores,Pregunta pregunta, Modelo modelo){
-        Pregunta preguntaActual = modelo.ConseguirPregunta();
-        System.out.println(preguntaActual.getEnunciado());
+        //Pregunta preguntaActual = modelo.ConseguirPregunta();
+        System.out.println(pregunta.getEnunciado());
 
         SeccionRespuesta seccionRespuesta;
-        ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
-        if (preguntaActual.esOrderChoice()){
+        ArrayList<Respuesta> respuestasPosibles = pregunta.respuestasPosibles();
+        if (pregunta.esOrderChoice()){
             seccionRespuesta = new SeccionOrdenParcial();
         }
-        else if (preguntaActual.esDeMultipleChoice()) {
+        else if (pregunta.esDeMultipleChoice()) {
             seccionRespuesta = new SeccionMultipleChoice();
         }
-        else if (preguntaActual.esDeVerdaderoFalso()){
+        else if (pregunta.esDeVerdaderoFalso()){
             seccionRespuesta = new SeccionVerdaderoFalso();
         }
-        else if (preguntaActual.esGroupChoice()){
+        else if (pregunta.esGroupChoice()){
             seccionRespuesta = new SeccionGroupChoice();
         }
         else {
             throw new RuntimeException("Tipo de Pregunta inesperado");
         }
 
-        return seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles,jugadorActual);
+        return seccionRespuesta.mostrarRespuestas(pregunta, respuestasPosibles,jugadorActual);
     }
 
     @Override

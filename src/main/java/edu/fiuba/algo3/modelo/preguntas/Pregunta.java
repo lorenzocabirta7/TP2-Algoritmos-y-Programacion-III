@@ -40,19 +40,19 @@ public class Pregunta {
     public void confirmarRespuesta(ArrayList<Respuesta> respuestas, Jugador jugador) {
         int respuestasCorrectas = 0;
         jugadoresYRespuestas.put(jugador,respuestas); // Agrego al jugador con sus Respuestas
-
-        for (Respuesta delJugador : respuestas) { // por cada respuesta del jugador
+        System.out.println("Aca se confirma");
+        for (Respuesta delJugador : respuestas) {
+            System.out.println(delJugador.getRespuesta());// por cada respuesta del jugador
             String enunciadoDelJugador =  delJugador.getRespuesta(); //obtengo el enunciado
             for (Respuesta dePregunta : this.respuestas) {
                 if (dePregunta.getRespuesta().equals(enunciadoDelJugador)) {
                     if (delJugador.EsCorrecta(dePregunta)){
                         respuestasCorrectas++;
-                        System.out.println("El jugador Respondio bien 1 opcion");
-                        System.out.println(enunciadoDelJugador);
 
                     }
                 }
             }
+            System.out.println(jugadoresYRespuestas.get(jugador));
         }
         if (respuestasCorrectas == cantidadDeRespuestasCorrectas()) {
             jugadoresQueRespondieronCorrectamente.add(jugador);

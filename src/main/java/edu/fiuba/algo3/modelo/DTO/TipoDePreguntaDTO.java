@@ -28,11 +28,9 @@ public class TipoDePreguntaDTO {
                 return new MultipleChoice(new PenalidadConPenalidad());
 
             case "Group Choice":
-                System.out.println("Se encontro una pregunta group choice");
                 return new GroupChoice(new PenalidadClasica());
         }
-        System.out.println("Aca es el ERORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        System.out.println(pregunta.getTipo());
+
         return null;
     }
 }

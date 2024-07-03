@@ -19,17 +19,18 @@ public class SeccionMultipleChoice implements SeccionRespuesta{
             HBox cajaRespuestaIndividual = new HBox();
             Label enunciadoRespuesta = new Label(respuesta.getRespuesta());
             ToggleButton opcion1 = new ToggleButton("Agregar Respuesta");
+            cajaRespuestaIndividual.getChildren().add(enunciadoRespuesta);
+            cajaRespuestaIndividual.getChildren().add(opcion1);
             opcion1.setOnAction(event -> {
                 if (opcion1.isSelected()) {
                     opcion1.setText("Eliminar Repuesta");
-                    Respuesta respuestaAAgregar;
                     jugadorActual.agregarRespuesta(pregunta,respuesta);
                 } else {
                     opcion1.setText("Agregar Repuesta");
                     jugadorActual.eliminarRespuesta(pregunta,respuesta);
                 }
             });
-            cajaDeRespuestas.getChildren().addAll(enunciadoRespuesta, opcion1);
+            cajaDeRespuestas.getChildren().addAll(cajaRespuestaIndividual);
         }
         return cajaDeRespuestas;
     }

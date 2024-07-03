@@ -3,7 +3,6 @@ package edu.fiuba.algo3.Vista.VentanaRespuestas;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
