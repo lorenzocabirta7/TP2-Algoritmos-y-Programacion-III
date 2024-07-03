@@ -25,4 +25,9 @@ public class PenalidadClasica implements TipoDePenalidad {
 
         return mensaje + "Clasica";
     }
+
+    @Override
+    public void activarExlcusividad() {
+
+    }
 }

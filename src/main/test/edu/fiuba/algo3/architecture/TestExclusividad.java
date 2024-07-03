@@ -3,6 +3,15 @@ package edu.fiuba.algo3.architecture;
 import edu.fiuba.algo3.modelo.Anulador.Anulador;
 import edu.fiuba.algo3.modelo.Exclusividad.Exclusividad;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.ModoDePregunta.VerdaderoOFalso;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadClasica;
+import edu.fiuba.algo3.modelo.Penalidad.Penalidad.PenalidadConPenalidad;
+import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadSeUsaMasdeDosVeces;
+import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
+import edu.fiuba.algo3.modelo.modificadores.MultiplicadorPorDos;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -88,6 +97,20 @@ public class TestExclusividad {
         assertEquals(puntajeEsperado1,puntajeObtenido1);
         assertEquals(puntajeEsperado2,puntajeObtenido2);
         assertEquals(puntajeEsperado3,puntajeObtenido3);
+    }
+
+    @Test
+    public void test04JugadorActivaUnaExclusividadEnUnaPreguntaConPenalidadYArrojaUnaExcepcion() throws ExclusividadInvalida, ExclusividadSeUsaMasdeDosVeces {
+        Jugador jugador1 = new Jugador("Jugador1");
+        Pregunta pregunta = new Pregunta("Un enunciado", "UnTema", new ArrayList<Respuesta>(), new VerdaderoOFalso(new PenalidadConPenalidad()));
+        int excepcionesEncontradas = 0;
+        int excepcionesEsperadas = 1;
+        try {
+            jugador1.activarExclusividad(pregunta);
+        } catch (ExclusividadInvalida e) {
+            excepcionesEncontradas ++;
+        }
+        assertEquals(excepcionesEncontradas,excepcionesEsperadas);
     }
 
 }

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.ModoDePregunta;
 
 import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public class MultipleChoice implements TipoDePregunta{
     @Override
     public boolean EsDeGroupChoice() {
         return false;
+    }
+
+    @Override
+    public void activarExclusividad() throws ExclusividadInvalida {
+        penalidad.activarExlcusividad();
     }
 
 }

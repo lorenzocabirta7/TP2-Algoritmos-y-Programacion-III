@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Penalidad.Penalidad;
 
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
+
 public class PenalidadConPenalidad implements TipoDePenalidad {
 
     int penalidad = -1;
@@ -19,6 +21,11 @@ public class PenalidadConPenalidad implements TipoDePenalidad {
     @Override
     public String getTipoPenalidad(String mensaje) {
         return mensaje + "Con Penalidad";
+    }
+
+    @Override
+    public void activarExlcusividad() throws ExclusividadInvalida {
+        throw new ExclusividadInvalida("No se Puede usar la Exclusividad en una pregunta de Penalidad");
     }
 
 }

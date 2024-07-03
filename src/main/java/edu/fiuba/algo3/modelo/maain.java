@@ -14,7 +14,6 @@ public class maain {
     public static void main(String[] args) {
         Gson gson = new Gson();
 
-
         try (Reader readerPregunta = new InputStreamReader(maain.class.getResourceAsStream("/preguntas.json"))) {
 
             PreguntaDTO[] listaPreguntas = gson.fromJson(readerPregunta, PreguntaDTO[].class);

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.ModoDePregunta;
 
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
 
 import java.util.ArrayList;
 
@@ -17,4 +18,6 @@ public interface TipoDePregunta {
     boolean EsDeVerdaderoFalso();
 
     boolean EsDeGroupChoice();
+
+    void activarExclusividad() throws ExclusividadInvalida;
 }

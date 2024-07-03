@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Penalidad.Penalidad;
 
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
+
 public class PenalidadParcialMC implements TipoDePenalidad{
     @Override
     public int penalizarPuntaje(int puntaje) {
@@ -17,5 +19,10 @@ public class PenalidadParcialMC implements TipoDePenalidad{
     @Override
     public String getTipoPenalidad(String mensaje) {
         return mensaje + "Parcial";
+    }
+
+    @Override
+    public void activarExlcusividad() throws ExclusividadInvalida {
+
     }
 }
