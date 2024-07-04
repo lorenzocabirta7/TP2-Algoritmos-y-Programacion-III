@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.Vista;
 
 import edu.fiuba.algo3.Alertas.BonificadorSeUsoMasVecesDeLoEsperado;
+import edu.fiuba.algo3.Alertas.ExclusividadSeUsaEnPreguntaDePenalidad;
 import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
 import edu.fiuba.algo3.Vista.VentanaRespuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Modelo;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
+import edu.fiuba.algo3.modelo.exceptions.ExclusividadSeUsaMasdeDosVeces;
 import edu.fiuba.algo3.modelo.exceptions.ModificadorSeUsaMasDeUnaVezException;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import javafx.geometry.Insets;
@@ -111,6 +114,14 @@ public class VentanaPregunta implements Ventana, Observer {
 
         });
         Button botonExclusividad = new Button("Exclusividad");
+        botonExclusividad.setOnAction(event -> {
+            Jugador unJugador = modelo.conseguirJugador();
+            try {
+                unJugador.activarExclusividad(modelo.ConseguirPregunta());
+            } catch (ExclusividadInvalida | ExclusividadSeUsaMasdeDosVeces ex) {
+                ExclusividadSeUsaEnPreguntaDePenalidad.mostrarAlerta();
+            }
+        });
 
         Button botonAnulador = new Button("Anulador");
         botonAnulador.setOnAction(event -> {
@@ -173,7 +184,6 @@ public class VentanaPregunta implements Ventana, Observer {
     public void resetModificadores(){
         for (Button button : botonesDeModificadores) {
             button.setDisable(false);
-            // Poner la logica aca de que si ya uso modificador, tiene que estar deshabilitado.
         }
     }
 
