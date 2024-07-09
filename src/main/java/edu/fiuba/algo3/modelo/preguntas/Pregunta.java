@@ -63,13 +63,11 @@ public class Pregunta {
 
 
     public void puntuarJugadores(){
-        System.out.println("Hay " + jugadores.size() + " jugadores.");
         for (Jugador jugador : jugadores) {
             int puntaje = tipoDePregunta.actualizarPuntaje(puntosPorRespuestaCorrecta, jugador.obtenerRespuestas(), respuestas);
             puntaje = anulador.anular(puntaje,jugador);
             puntaje = exclusividad.excluir(puntaje,jugador,jugadoresQueRespondieronCorrectamente);
             jugador.modificarPuntaje(puntaje);
-            System.out.println("puntaje de: " + jugador.obtenerNombre() + " es: " + puntaje);
         }
 
         anulador.desactivar();

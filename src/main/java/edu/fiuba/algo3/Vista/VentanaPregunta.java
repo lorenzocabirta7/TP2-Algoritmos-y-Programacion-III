@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static edu.fiuba.algo3.modelo.cambioVentanas.ANCHO_PANTALLA;
-import static edu.fiuba.algo3.modelo.cambioVentanas.LARGO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.ANCHO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.LARGO_PANTALLA;
 
 public class VentanaPregunta implements Ventana, Observer {
     private VBox cajaDeRespuestas;

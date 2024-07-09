@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static edu.fiuba.algo3.modelo.cambioVentanas.ANCHO_PANTALLA;
-import static edu.fiuba.algo3.modelo.cambioVentanas.LARGO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.ANCHO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.LARGO_PANTALLA;
 
 public class VentanaLeaderboard implements Ventana, Observer {
 
@@ -53,7 +53,6 @@ public class VentanaLeaderboard implements Ventana, Observer {
     private ArrayList<Label> ConseguirJugadores(Juego juego) {
         ArrayList<String> arregloJugadores = juego.ConseguirTodosLosJugadores();
         ArrayList<Integer> arregloPuntajeJugadores = juego.ConseguirTodosLosPuntajes();
-        System.out.println(arregloPuntajeJugadores);
         ArrayList<Label> jugadores = new ArrayList<>();
 
 

@@ -40,11 +40,6 @@ public class Jugador {
 
     public void eliminarRespuesta(Pregunta preguntaAMostrar, Respuesta respuesta) {
         respuestasDelJugador.remove(respuesta);
-        System.out.println("Respuesta Eliminada Exitosamente");
-        System.out.println("Numero De Respuestas: " + respuestasDelJugador.size());
-        for (Respuesta elegida : respuestasDelJugador){
-            System.out.println(elegida.getRespuesta() + " , " + respuesta.getOrdenParcial());
-        }
     }
 
 

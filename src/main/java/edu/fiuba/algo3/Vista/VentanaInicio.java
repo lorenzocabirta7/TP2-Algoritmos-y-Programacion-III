@@ -12,8 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static edu.fiuba.algo3.modelo.cambioVentanas.ANCHO_PANTALLA;
-import static edu.fiuba.algo3.modelo.cambioVentanas.LARGO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.ANCHO_PANTALLA;
+import static edu.fiuba.algo3.manejoVentanas.LARGO_PANTALLA;
 
 public class VentanaInicio implements Ventana{
 

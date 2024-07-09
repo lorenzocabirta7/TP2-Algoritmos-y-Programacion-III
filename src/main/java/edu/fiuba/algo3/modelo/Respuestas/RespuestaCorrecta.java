@@ -15,7 +15,6 @@ public class RespuestaCorrecta implements Respuesta {
 
     @Override
     public int actualizarPuntaje(int puntaje, TipoDePenalidad unaPenalidad, Respuesta unaRespuesta) {
-        System.out.println(puntaje);
         return puntaje;
     }
 

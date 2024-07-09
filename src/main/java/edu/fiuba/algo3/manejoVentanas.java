@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3;
 
 
 
@@ -6,9 +6,10 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.Vista.VentanaInicio;
 import edu.fiuba.algo3.Vista.VentanaLeaderboard;
 import edu.fiuba.algo3.Vista.VentanaPregunta;
+import edu.fiuba.algo3.modelo.Juego;
 import javafx.stage.Stage;
 
-public class cambioVentanas {
+public class manejoVentanas {
     public static final int ANCHO_PANTALLA = 600;
     public static final int LARGO_PANTALLA = 450;
     private Stage stage;
