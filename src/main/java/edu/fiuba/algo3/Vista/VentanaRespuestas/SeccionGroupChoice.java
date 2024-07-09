@@ -1,18 +1,15 @@
 package edu.fiuba.algo3.Vista.VentanaRespuestas;
 
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Modelo;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaAVerificar;
 import edu.fiuba.algo3.modelo.preguntas.Pregunta;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class SeccionGroupChoice implements SeccionRespuesta{

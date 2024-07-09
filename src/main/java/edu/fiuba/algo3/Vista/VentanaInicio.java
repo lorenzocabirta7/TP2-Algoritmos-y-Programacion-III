@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.Vista;
 
 import edu.fiuba.algo3.Controlador.ControladorCrearJugadores;
-import edu.fiuba.algo3.modelo.Modelo;
+import edu.fiuba.algo3.modelo.Juego;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static edu.fiuba.algo3.modelo.Juego.ANCHO_PANTALLA;
-import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
+import static edu.fiuba.algo3.modelo.cambioVentanas.ANCHO_PANTALLA;
+import static edu.fiuba.algo3.modelo.cambioVentanas.LARGO_PANTALLA;
 
 public class VentanaInicio implements Ventana{
 
@@ -23,7 +23,7 @@ public class VentanaInicio implements Ventana{
     private final Label numeroJugadoresLabel;
     private int numeroJugadores = 0;
 
-    public VentanaInicio(Modelo modelo) {
+    public VentanaInicio(Juego juego) {
 
         Label CartelBienvenida = new Label("Bienvenidos Al Juego del grupo 4 de Algoritmos y Programacion 3!");
 
@@ -40,7 +40,7 @@ public class VentanaInicio implements Ventana{
         mensajeExito = new Label(); // Mensaje de éxito
         numeroJugadoresLabel = new Label("Número de Jugadores Actuales: " + numeroJugadores); // Contador de jugadores
 
-        ControladorCrearJugadores controladorCrearJugador = new ControladorCrearJugadores(modelo);
+        ControladorCrearJugadores controladorCrearJugador = new ControladorCrearJugadores(juego);
 
         InputNombre.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {

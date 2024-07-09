@@ -5,7 +5,7 @@ import edu.fiuba.algo3.Alertas.ExclusividadSeUsaEnPreguntaDePenalidad;
 import edu.fiuba.algo3.Controlador.ControladorMostrarPregunta;
 import edu.fiuba.algo3.Vista.VentanaRespuestas.*;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Modelo;
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.exceptions.AnuladorSeUsaMasDeUnaVez;
 import edu.fiuba.algo3.modelo.exceptions.ExclusividadInvalida;
@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static edu.fiuba.algo3.modelo.Juego.ANCHO_PANTALLA;
-import static edu.fiuba.algo3.modelo.Juego.LARGO_PANTALLA;
+import static edu.fiuba.algo3.modelo.cambioVentanas.ANCHO_PANTALLA;
+import static edu.fiuba.algo3.modelo.cambioVentanas.LARGO_PANTALLA;
 
 public class VentanaPregunta implements Ventana, Observer {
     private VBox cajaDeRespuestas;
@@ -40,20 +40,20 @@ public class VentanaPregunta implements Ventana, Observer {
     private SeccionRespuesta seccionRespuesta;
 
 
-    public VentanaPregunta(Modelo modelo){
+    public VentanaPregunta(Juego juego){
 
         mostrarLeaderBoardBoton = new Button("Avanzar");
         mostrarLeaderBoardBoton.setStyle("-fx-background-color: #f16363; -fx-background-radius: 5px; -fx-padding: 8px;");
 
-        playerLabel = new Label("Jugador Actual: " + modelo.conseguirJugador().obtenerNombre());
+        playerLabel = new Label("Jugador Actual: " + juego.conseguirJugador().obtenerNombre());
         botonConfirmar = new Button("Confirmar");
 
         HBox boxJugador =  new HBox(playerLabel, botonConfirmar);
 
-        Pregunta preguntaInicial = modelo.ConseguirPregunta();
+        Pregunta preguntaInicial = juego.ConseguirPregunta();
         ArrayList<Respuesta> respuestasPosibles = preguntaInicial.respuestasPosibles();
 
-        jugadorActual = modelo.conseguirJugador();
+        jugadorActual = juego.conseguirJugador();
 
         cajaDeRespuestas = new VBox(boxJugador);
 
@@ -61,7 +61,7 @@ public class VentanaPregunta implements Ventana, Observer {
 
         cajaDeRespuestas.getChildren().add(seccionRespuesta.mostrarRespuestas(preguntaInicial,respuestasPosibles, jugadorActual));
 
-        VBox cajaDeBonificadores = ArmarBoxModificadores(modelo);
+        VBox cajaDeBonificadores = ArmarBoxModificadores(juego);
 
 
         labelEnunciado = new Label();
@@ -72,7 +72,7 @@ public class VentanaPregunta implements Ventana, Observer {
 
         Label labelTemaDePregunta = new Label(preguntaInicial.getTema());
 
-        controlador = new ControladorMostrarPregunta(modelo, this, botonConfirmar);
+        controlador = new ControladorMostrarPregunta(juego, this, botonConfirmar);
 
         VBox cajaPregunta = new VBox(10, labelEnunciado, labelTemaDePregunta,labelTipoDePregunta, cajaDeRespuestas);
 
@@ -90,11 +90,11 @@ public class VentanaPregunta implements Ventana, Observer {
     }
 
 
-    private VBox ArmarBoxModificadores(Modelo modelo){
+    private VBox ArmarBoxModificadores(Juego juego){
 
         Button botonMultiplicadorPorDos = new Button("Multiplicador X2");
         botonMultiplicadorPorDos.setOnAction(event -> {
-            Jugador unJugador = modelo.conseguirJugador();
+            Jugador unJugador = juego.conseguirJugador();
             try {
                 unJugador.activarDuplicadorDePuntaje();
             } catch (ModificadorSeUsaMasDeUnaVezException ex) {
@@ -104,7 +104,7 @@ public class VentanaPregunta implements Ventana, Observer {
         });
         Button botonMultiplicadorPorTres = new Button("Multiplicador X3");
         botonMultiplicadorPorTres.setOnAction(event -> {
-            Jugador unJugador = modelo.conseguirJugador();
+            Jugador unJugador = juego.conseguirJugador();
             try {
                 unJugador.activarDuplicadorDePuntaje();
             } catch (ModificadorSeUsaMasDeUnaVezException ex) {
@@ -115,9 +115,9 @@ public class VentanaPregunta implements Ventana, Observer {
         });
         Button botonExclusividad = new Button("Exclusividad");
         botonExclusividad.setOnAction(event -> {
-            Jugador unJugador = modelo.conseguirJugador();
+            Jugador unJugador = juego.conseguirJugador();
             try {
-                unJugador.activarExclusividad(modelo.ConseguirPregunta());
+                unJugador.activarExclusividad(juego.ConseguirPregunta());
             } catch (ExclusividadInvalida | ExclusividadSeUsaMasdeDosVeces ex) {
                 ExclusividadSeUsaEnPreguntaDePenalidad.mostrarAlerta();
             }
@@ -125,9 +125,9 @@ public class VentanaPregunta implements Ventana, Observer {
 
         Button botonAnulador = new Button("Anulador");
         botonAnulador.setOnAction(event -> {
-            Jugador unJugador = modelo.conseguirJugador();
+            Jugador unJugador = juego.conseguirJugador();
             try {
-                unJugador.activarAnuladorDePuntaje(modelo.ConseguirPregunta());
+                unJugador.activarAnuladorDePuntaje(juego.ConseguirPregunta());
             } catch (AnuladorSeUsaMasDeUnaVez ex) {
                 BonificadorSeUsoMasVecesDeLoEsperado.mostrarAlerta();
             }
@@ -193,15 +193,15 @@ public class VentanaPregunta implements Ventana, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        Modelo modelo = (Modelo) o;
+        Juego juego = (Juego) o;
         if (arg.equals("Siguiente Jugador")) {
-            this.updatePlayerLabel(modelo.conseguirJugador().obtenerNombre());
+            this.updatePlayerLabel(juego.conseguirJugador().obtenerNombre());
             this.resetModificadores();
-            this.siguienteJugador(modelo.conseguirJugador());
+            this.siguienteJugador(juego.conseguirJugador());
 
-            Pregunta preguntaActual = modelo.ConseguirPregunta();
+            Pregunta preguntaActual = juego.ConseguirPregunta();
             ArrayList<Respuesta> respuestasPosibles = preguntaActual.respuestasPosibles();
-            jugadorActual = modelo.conseguirJugador();
+            jugadorActual = juego.conseguirJugador();
 
             cajaDeRespuestas.getChildren().remove(1);
 
@@ -209,7 +209,7 @@ public class VentanaPregunta implements Ventana, Observer {
             cajaDeRespuestas.getChildren().add(seccionRespuesta.mostrarRespuestas(preguntaActual, respuestasPosibles, jugadorActual));
         }
         if (arg.equals("Siguiente Pregunta")) {
-            this.updatePreguntaLabel(modelo.ConseguirPregunta());
+            this.updatePreguntaLabel(juego.ConseguirPregunta());
             mostrarLeaderBoardBoton.fire();
         }
     }

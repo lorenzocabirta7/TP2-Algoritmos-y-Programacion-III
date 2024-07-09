@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.DTO;
+package edu.fiuba.algo3.DTO;
 
 import edu.fiuba.algo3.modelo.ModoDePregunta.*;
 

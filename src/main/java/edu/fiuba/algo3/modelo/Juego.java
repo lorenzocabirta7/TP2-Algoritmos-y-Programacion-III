@@ -1,53 +1,108 @@
 package edu.fiuba.algo3.modelo;
 
+import com.google.gson.Gson;
+import edu.fiuba.algo3.DTO.PreguntaDTO;
+import edu.fiuba.algo3.DTO.ProcesarDTO;
+import edu.fiuba.algo3.modelo.exceptions.YaJugaronTodosLosJugadores;
+import edu.fiuba.algo3.modelo.preguntas.Pregunta;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Observable;
+
+import java.util.Random;
 
 
-
-import edu.fiuba.algo3.Vista.VentanaInicio;
-import edu.fiuba.algo3.Vista.VentanaLeaderboard;
-import edu.fiuba.algo3.Vista.VentanaPregunta;
-import javafx.stage.Stage;
-
-public class Juego {
-    public static final int ANCHO_PANTALLA = 600;
-    public static final int LARGO_PANTALLA = 450;
-    private Stage stage;
-    private VentanaInicio ventanaInicio;
-    private VentanaLeaderboard ventanaLeaderboard;
-    private VentanaPregunta ventanaPregunta;
-    Modelo modelo;
+public class Juego extends Observable {
+    private ArrayList<Jugador> jugadores;
+    private ArrayList<Pregunta> preguntas;
+    private Pregunta preguntaActual;
+    private Jugada jugadaActual;
 
 
-    public void iniciar() {
-        modelo = new Modelo();
-        stage = new Stage();
-        crearVentanas();
+    public Juego() {
+        this.jugadores = new ArrayList<>();
+        this.procesarPreguntas();
+        this.jugadaActual = iniciarJugada();
     }
 
+    public Jugada iniciarJugada(){
+        return new Jugada(jugadores, preguntaActual);
+    }
 
-    private void crearVentanas() {
+    public void agregarJugador(String nombreJugador) {
+        jugadores.add(new Jugador(nombreJugador));
+    }
 
-        ventanaInicio = new VentanaInicio(modelo);
-        ventanaInicio.inicializarVentana(stage);
+    private void procesarPreguntas(){
+        preguntas = new ArrayList<>();
 
-        ventanaInicio.AlCambiarVentana(() -> {
-            ventanaLeaderboard = new VentanaLeaderboard(modelo);
-
-            ventanaLeaderboard.AlCambiarVentana(() -> {
-
-                ventanaPregunta = new VentanaPregunta(modelo);
-
-                ventanaPregunta.AlCambiarVentana(() -> {
-                    ventanaLeaderboard.inicializarVentana(stage);
-                });
-
-                ventanaPregunta.inicializarVentana(stage);
-
-            });
-            ventanaLeaderboard.inicializarVentana(stage);
+        Gson gson = new Gson();
 
 
-        });
+        try (Reader readerPregunta = new InputStreamReader(Juego.class.getResourceAsStream("/preguntas.json"))) {
 
+            PreguntaDTO[] listaPreguntas = gson.fromJson(readerPregunta, PreguntaDTO[].class);
+
+            ProcesarDTO procesador = new ProcesarDTO();
+
+            this.preguntas = procesador.procesarPreguntas(listaPreguntas);
+
+            this.preguntaActual = this.BuscarPregunta();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Pregunta BuscarPregunta() {
+        Random random = new Random();
+        int indiceRandom = random.nextInt(preguntas.size());
+        return preguntas.get(indiceRandom);
+    }
+
+    public Pregunta ConseguirPregunta(){
+        return preguntaActual;
+    }
+
+    public Jugador conseguirJugador(){
+        return jugadaActual.conseguirJugador();
+    }
+
+    public ArrayList<String> ConseguirTodosLosJugadores(){
+        ArrayList<String> jugadoresADevolver = new ArrayList<>();
+        for (Jugador jugador : this.jugadores) {
+            jugadoresADevolver.add(jugador.obtenerNombre());
+        }
+        return jugadoresADevolver;
+    }
+
+    public ArrayList<Integer> ConseguirTodosLosPuntajes(){
+        ArrayList<Integer> puntajesADevolver = new ArrayList<>();
+        for (Jugador jugador : this.jugadores) {
+            puntajesADevolver.add(jugador.obtenerPuntos());
+        }
+        return puntajesADevolver;
+    }
+
+    public void SiguientePregunta(){
+        this.preguntaActual = BuscarPregunta();
+        this.jugadaActual = iniciarJugada();
+        setChanged();
+        notifyObservers("Siguiente Pregunta");
+    }
+
+    public void SiguienteJugador()  throws YaJugaronTodosLosJugadores{
+            jugadaActual.siguienteJugador();
+            setChanged();
+            notifyObservers("Siguiente Jugador");
+
+    }
+
+    public void puntuarRespuestas() {
+        //preguntaActual.puntuarJugadores();
+        jugadaActual.puntuarTodosLosJugadores(preguntaActual);
     }
 }

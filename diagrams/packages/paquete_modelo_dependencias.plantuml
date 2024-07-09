@@ -1,17 +1,27 @@
 @startuml
 
-!include ../classes/herencia.plantuml!WITHOUTNOTES
 
-package JUnit {
-        class Test
+
+
+package vista {
+        class VentanaInicio
+        class VentanaLeaderboard
+        class VentanaPregunta
 }
 
-package java.lang {
-        class String
+package Controlador {
+        class ControladorCrearJugadores
+        class ControladorMostrarLeaderboard
+        class ControladorMostrarPregunta
 }
 
-Test --> Localize: "<<instantiate>>"
-Localize -> String: " # esContent"
-Localize -> String: " # usContent"
+package modelo {
+    class Juego
+}
+
+Controlador --> modelo: ""
+Controlador -> vista: ""
+vista --> modelo
+Juego ---> vista: "uses"
 
 @enduml

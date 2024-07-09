@@ -1,8 +1,6 @@
-package edu.fiuba.algo3.modelo.DTO;
+package edu.fiuba.algo3.DTO;
 
-import edu.fiuba.algo3.modelo.ModoDePregunta.GroupChoice;
 import edu.fiuba.algo3.modelo.ModoDePregunta.TipoDePregunta;
-import edu.fiuba.algo3.modelo.Penalidad.Penalidad.TipoDePenalidad;
 import edu.fiuba.algo3.modelo.Respuestas.Respuesta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaCorrecta;
 import edu.fiuba.algo3.modelo.Respuestas.RespuestaIncorrecta;

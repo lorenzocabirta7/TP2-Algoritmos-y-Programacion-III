@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.cambioVentanas;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,8 +8,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage scene) {
-        Juego juego = new Juego();
-        juego.iniciar();
+        cambioVentanas cambioVentanas = new cambioVentanas();
+        cambioVentanas.iniciar();
 
     }
 
