@@ -1,0 +1,105 @@
+@startuml
+class Pregunta {
+  - String enunciado
+  - String tema
+  + void confirmarRespuesta(ArrayList<Respuesta> respuestas, Jugador jugador)
+  + void puntuarJugadores()
+}
+
+'Respuestas'
+
+interface Respuesta {
+  + boolean EsCorrecta(Respuesta respuesta)
+  + String getRespuesta()
+}
+
+class RespuestaCorrecta implements Respuesta {
+    - String enunciado
+    - String ordenParcial
+    + boolean EsCorrecta(Respuesta respuesta)
+}
+
+class RespuestaIncorrecta implements Respuesta {
+    - String enunciado
+    - String ordenParcial
+     + boolean EsCorrecta(Respuesta respuesta)
+}
+
+class RespuestaAVerificar implements Respuesta {
+    - String enunciado
+    - String ordenParcial
+     + boolean EsCorrecta(Respuesta respuesta)
+}
+
+
+
+class Jugador {
+  - String nombre
+  - int puntaje
+  + String obtenerNombre()
+  + int modificarPuntaje(int puntaje)
+  + ArrayList<Respuesta> obtenerRespuestas()
+}
+
+class TipoDePregunta {
+  + String getTipoDePregunta(String mensaje)
+  + int actualizarPuntaje(int puntos, respuestasJugador, respuestasCorrectas)
+  + void activarExclusividad() throws ExclusividadInvalida
+}
+
+'Anulador'
+
+class Anulador {
+  + int anular(int puntaje, Jugador jugador)
+  + void activar(Jugador jugador)
+  + void desactivar()
+}
+Anulador <-- Pregunta
+
+Anulador o--> EstadoAnulador
+
+interface EstadoAnulador{
+    +int anular(int puntaje, Jugador jugador, jugadores)
+}
+
+class AnuladorActivado implements EstadoAnulador{
+    +int anular(int puntaje, Jugador jugador, jugadores)
+}
+
+class AnuladorDesactivado implements EstadoAnulador{
+    +int anular(int puntaje, Jugador jugador, jugadores)
+}
+
+
+'Exclusividad'
+
+class Exclusividad {
+
+  + int excluir(int puntaje, Jugador jugador, ArrayList<Jugador> jugadoresQueRespondieronCorrectamente)
+  + void activar(Jugador jugador)
+  + void desactivar()
+}
+
+Exclusividad o--> EstadoExclusividad
+
+interface EstadoExclusividad{
+    +int excluir(int puntaje, Jugador jugador, jugadores)
+}
+
+class ExclusividadActivado implements EstadoExclusividad{
+    +int excluir(int puntaje, Jugador jugador, jugadores)
+}
+class ExclusividadDesactivado implements EstadoExclusividad{
+    +int excluir(int puntaje, Jugador jugador, jugadores)
+}
+
+
+
+Pregunta -->"*" Respuesta
+TipoDePregunta <-- Pregunta
+
+
+Jugador <- Pregunta
+Jugador ..> Pregunta
+Pregunta *-> Exclusividad
+@enduml

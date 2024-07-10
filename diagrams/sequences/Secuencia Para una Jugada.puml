@@ -46,11 +46,12 @@ loop for pregunta in preguntas
             Ver Secuencia de Multiplicadores
         end note
 
-        pregunta -> pregunta : validarRespuesta()
+        Pregunta -> Pregunta : validarRespuesta()
         deactivate pregunta
         deactivate jugador
     end
 
 end
+
 
 @enduml

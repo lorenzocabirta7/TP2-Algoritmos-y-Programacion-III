@@ -3,29 +3,8 @@ interface Anulador {
     +activar(): void
     +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
 }
-class AnuladorClasico implements Anulador{
-    -estado: EstadoAnulador
-    +activar(): void
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
-class AnuladorClasicoActivado implements EstadoAnulador {
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
-class AnuladorDesactivado implements EstadoAnulador{
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
 
-class AnuladorPenalidad implements Anulador {
-    -estado: EstadoAnulador
-    +activar(): void
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
-class AnuladorActivado implements EstadoAnulador{
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
-interface EstadoAnulador {
-    +puntosLuegoDeEvaluacion(puntajeNoAnulado: int, jugadoresQueUsaronAnulador: ArrayList<Jugador>,unJugador:Jugador): int
-}
+
 class Pregunta {
     - String: enunciado
     - ArrayList: respuestas
@@ -36,43 +15,5 @@ class Pregunta {
     + getEnunciado() String: enunciado
 }
 
-interface FormaDePuntuar {
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
 
-class PuntuarDeFormaOrdenada implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-class PuntuarMultipleChoiceClasico implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-class PuntuarMultipleChoiceParcial implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-class PuntuarMultipleChoicePenalidad implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-class PuntuarVerdaderoFalsoClasico implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-class PuntuarVerdaderoFalsoPenalidad implements FormaDePuntuar{
-    + puntuar(ArrayList: respuestas, Jugador: unJugador)
-}
-
-PuntuarDeFormaOrdenada --> Anulador
-PuntuarMultipleChoiceClasico --> Anulador
-PuntuarMultipleChoiceParcial  --> Anulador
-PuntuarMultipleChoicePenalidad  --> Anulador
-PuntuarVerdaderoFalsoPenalidad  --> Anulador
-PuntuarVerdaderoFalsoClasico  --> Anulador
-PuntuarDeFormaOrdenada  --> Anulador
-
-AnuladorClasico --> EstadoAnulador
-AnuladorPenalidad --> EstadoAnulador
-Pregunta *- FormaDePuntuar
 @enduml

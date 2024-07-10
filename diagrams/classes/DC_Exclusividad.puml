@@ -13,28 +13,9 @@ class Pregunta{
     -jugadoresQueActivaronExclusividad: Array<Jugador>
     +activarExclusividad(jugador: Jugador)
 }
-Pregunta -> UnaFormaDePuntuar
+Jugador .> Pregunta
 
-class UnaFormaDePuntuar{
-    +activarExclusividad( jugadores: Array<Jugador>)
-}
-
-class FormaClasica implements UnaFormaDePuntuar{
-    +activarExclusividad( jugadores: Array<Jugador>)
-    +puntuar(pre)
-}
-FormaClasica -> Exclusividad
-
-
-class FormaPenalidad implements UnaFormaDePuntuar{
-    +activarExclusividad( jugadores: Array<Jugador>)
-
-}
-
-note right
-+activarExclusividad()
- //no hace nada
-end note
+Pregunta -> Exclusividad
 
 
 class Exclusividad{
@@ -54,7 +35,7 @@ class ExclusividadDesctivado implements EstadoExclusividad{
 
 }
 note right
-+activarExclusividad()
++puntuar()
  //no hace nada
 end note
 @enduml

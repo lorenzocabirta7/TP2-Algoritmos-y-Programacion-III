@@ -2,31 +2,24 @@
 class Jugador {
     -nombre: string
     -puntos: int
-    -ArrayList<Respuesta> respuestasDelJugador
-    
-    +{static}Jugador(String nombreJugador)
+    -respuestas: ArrayList<Respuesta>
+
     +responder(pregunta:Pregunta, respuestaElegida:Respuesta)
-    +modificarPuntaje(puntajePregunta:int)
-    +obtenerPuntos(): int
-    +obtenerNombre(): string
-    +activarDuplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException
-    +activarTriplicadorDePuntaje() throws ModificadorSeUsaMasDeUnaVezException
-    +obtenerRespuestas(): ArrayList<Respuesta>
-    +confirmarRespuesta(pregunta: Pregunta)
-    +activarAnuladorDePuntaje(pregunta: Pregunta) throws AnuladorSeUsaMasDeUnaVez
-    +activarExclusividad(pregunta: Pregunta) throws ExclusividadSeUsaMasdeDosVeces
+    +modificarPuntaje(puntajePregunta:int):
 }
-MultiplicadorPorDos <- Jugador
-MultiplicadorPorTres <- Jugador
+Jugador ..> Pregunta
+
+MultiplicadorPorDos <-- Jugador
+MultiplicadorPorTres <-- Jugador
 Jugador -> GestorAnulador
-Jugador -> GestorExclusividad
+GestorExclusividad <- Jugador
 class GestorAnulador {
     -usosDisponiblesAnulador: int
-    +gestarActivacion(pregunta:Pregunta, jugador:Jugador) throws AnuladorSeUsaMasDeUnaVez
+    +gestarActivacion(pregunta:Pregunta, jugador:Jugador)
 }
 class GestorExclusividad {
     -usosDisponiblesExclusividad: int
-    +gestarActivacion(pregunta:Pregunta, jugador:Jugador) throws AnuladorSeUsaMasDeUnaVez
+    +gestarActivacion(pregunta:Pregunta, jugador:Jugador)
 }
 class MultiplicadorPorDos {
     -multiplicador: int
